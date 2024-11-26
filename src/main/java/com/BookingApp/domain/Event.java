@@ -3,6 +3,7 @@ package com.BookingApp.domain;
 import java.time.LocalDate;
 
 public class Event {
+    private Long id;
     private String location;
     private String country;
     private String city;
