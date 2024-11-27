@@ -1,5 +1,6 @@
 package com.BookingApp.web;
 
+import com.BookingApp.dto.EventDto;
 import com.BookingApp.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,8 @@ public class EventController {
     EventService eventService;
     @GetMapping("")
     public String homePage(ModelMap model ){
-        
+        EventDto eventDto= new EventDto();
+        model.addAttribute("event",eventDto);
         return "homepage";
     }
 
