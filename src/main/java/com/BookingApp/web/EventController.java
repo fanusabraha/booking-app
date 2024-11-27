@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class EventController {
     @Autowired
     EventService eventService;
-    @GetMapping("")
+    @GetMapping("/")
     public String homePage(ModelMap model ){
         EventDto eventDto= new EventDto();
         model.addAttribute("event",eventDto);
