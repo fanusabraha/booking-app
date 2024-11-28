@@ -3,6 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>homepage</title>
+    <script>
+        function validateForm(event) {
+            const numberOfVisitors = document.getElementById("numberOfVisitors").value;
+            const country = document.getElementById("country").value.trim();
+            const location = document.getElementById("location").value.trim();
+            const city = document.getElementById("city").value.trim();
+            const date = document.getElementById("date").value;
+
+            // Check if number of visitors is a number
+            if (!/^\d+$/.test(numberOfVisitors)) {
+                alert("Number of Visitors must be a valid number.");
+                event.preventDefault(); // Prevent form submission
+                return false;
+            }
+
+            // Check if required fields are filled
+            if (!country || !location || !city || !date) {
+                alert("All fields are required. Please fill out all fields.");
+                event.preventDefault(); // Prevent form submission
+                return false;
+            }
+
+            // If all validations pass
+            return true;
+        }
+    </script>
 </head>
 <body>
 <h1>Welcome to finding the events</h1>
@@ -13,13 +39,13 @@
     <input type="text" id="country" placeholder="like...Germany" th:field="*{country}"><br>
 
     <label for="location">Location:</label>
-    <input type="text" id="location" placeholder="Area like...downtown" th:field="*{location}"><br>
+    <input type="text" id="location" placeholder="area like...downtown" th:field="*{location}"><br>
 
     <label for="city">City:</label>
     <input type="text" id="city" placeholder="like..Dallas" th:field="*{city}"><br>
 
     <label for="numberOfVisitors">Number of Visitors:</label>
-    <input type="number" id="numberOfVisitors" placeholder="15,20,35" th:field="*{numberOfVisitors}"><br>
+    <input type="number" id="numberOfVisitors" placeholder="15,20,35..." th:field="*{numberOfVisitors}"><br>
 
     <label for="date">Date:</label>
     <input type="date" id="date" th:field="*{date}"><br>
