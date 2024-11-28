@@ -17,6 +17,7 @@ import java.util.Optional;
 public class EventController {
     @Autowired
     EventService eventService;
+    List<EventDto> events = new ArrayList<>();
     @GetMapping("/")
     public String homePageGet(ModelMap model ){
         EventDto eventDto= new EventDto();
@@ -24,10 +25,10 @@ public class EventController {
         return "homepage";
     }
     @PostMapping("/")
-    public String homePagePost (ModelMap model){
-        List<EventDto> events = new ArrayList<>();
+    public String homePagePost (@ModelAttribute("event") EventDto eventDto, ModelMap model){
+
         //events.add(eventDto);
-        return "homepage";
+        return "redirect:/event/";
     }
 
 }
