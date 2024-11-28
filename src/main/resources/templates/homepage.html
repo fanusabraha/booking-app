@@ -34,7 +34,7 @@
 <h1>Welcome to finding the events</h1>
 <h3>put the values for viewing the results</h3>
 
-<form method="post" th:action="@{/event/submit}" th:object="${event}">
+<form method="post" th:action="@{/event/}" th:object="${event}">
     <label for="country">Country:</label>
     <input type="text" id="country" placeholder="like...Germany" th:field="*{country}"><br>
 

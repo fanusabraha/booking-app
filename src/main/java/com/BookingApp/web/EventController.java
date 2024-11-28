@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.w3c.dom.stylesheets.LinkStyle;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/event")
@@ -22,9 +26,13 @@ public class EventController {
         return "homepage";
     }
     @PostMapping("/")
-    public String homePage (EventDto eventDto){
-        
-        return "redirect:/";
+    public String homePage (ModelMap model, EventDto eventDto){
+        List<EventDto> events = new ArrayList<>();
+        events.add(eventDto);
+        EventDto newevnt = (EventDto) model.get("event");
+
+        System.out.println(newevnt.getCity());
+        return "homepage";
     }
 
 }
