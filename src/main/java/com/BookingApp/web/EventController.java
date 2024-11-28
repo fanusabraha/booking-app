@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,6 +20,11 @@ public class EventController {
         EventDto eventDto= new EventDto();
         model.addAttribute("event",eventDto);
         return "homepage";
+    }
+    @PostMapping("/")
+    public String homePage (EventDto eventDto){
+        
+        return "redirect:/";
     }
 
 }
