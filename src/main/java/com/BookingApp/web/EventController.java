@@ -18,15 +18,15 @@ public class EventController {
     @Autowired
     EventService eventService;
     @GetMapping("/")
-    public String homePage(ModelMap model ){
+    public String homePageGet(ModelMap model ){
         EventDto eventDto= new EventDto();
         model.addAttribute("event",eventDto);
         return "homepage";
     }
     @PostMapping("/")
-    public String homePage (@ModelAttribute EventDto eventDto, ModelMap model){
+    public String homePagePost (ModelMap model){
         List<EventDto> events = new ArrayList<>();
-        events.add(eventDto);
+        //events.add(eventDto);
         return "homepage";
     }
 
