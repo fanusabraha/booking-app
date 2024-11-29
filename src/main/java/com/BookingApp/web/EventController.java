@@ -22,13 +22,13 @@ public class EventController {
     public String homePageGet(ModelMap model ){
         EventDto eventDto= new EventDto();
         model.addAttribute("event",eventDto);
-        model.addAttribute();
+        model.addAttribute("searchedEvents", events);
         return "homepage";
     }
     @PostMapping("/")
     public String homePagePost (@ModelAttribute("event") EventDto eventDto, ModelMap model){
         events.add(eventDto);
-        
+        // illustration only to be deleted
        for (EventDto eachEvent: events){
            System.out.println(eachEvent);
        }
