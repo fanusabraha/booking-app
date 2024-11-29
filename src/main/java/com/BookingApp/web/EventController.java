@@ -26,6 +26,8 @@ public class EventController {
     }
     @PostMapping("/")
     public String homePagePost (@ModelAttribute("event") EventDto eventDto, ModelMap model){
+        events.add(eventDto);
+        System.out.println(events);
 
         //events.add(eventDto);
         return "redirect:/event/";
