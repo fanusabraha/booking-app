@@ -22,14 +22,16 @@ public class EventController {
     public String homePageGet(ModelMap model ){
         EventDto eventDto= new EventDto();
         model.addAttribute("event",eventDto);
+        model.addAttribute();
         return "homepage";
     }
     @PostMapping("/")
     public String homePagePost (@ModelAttribute("event") EventDto eventDto, ModelMap model){
         events.add(eventDto);
-        System.out.println(events);
-
-        //events.add(eventDto);
+        
+       for (EventDto eachEvent: events){
+           System.out.println(eachEvent);
+       }
         return "redirect:/event/";
     }
 
