@@ -3,6 +3,18 @@ package com.BookingApp.dto;
 import java.time.LocalDate;
 
 public class EventDto {
+    @Override
+    public String toString() {
+        return "EventDto{" +
+                "id=" + id +
+                ", location='" + location + '\'' +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", numberOfVisitors=" + numberOfVisitors +
+                ", date=" + date +
+                '}';
+    }
+
     private Long id;
     private String location;
     private String country;
