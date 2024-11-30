@@ -3,6 +3,7 @@ package com.BookingApp.web;
 import com.BookingApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 @Controller
@@ -12,7 +13,8 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/")
-    public String logIn(){
+    public String logIn(ModelMap map){
+        map.addAttribute()
         return"login";
     }
 }
