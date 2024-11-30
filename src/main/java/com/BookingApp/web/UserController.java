@@ -14,7 +14,7 @@ public class UserController {
 
     @GetMapping("/")
     public String logIn(ModelMap map){
-        map.addAttribute()
+        map.addAttribute("user", )
         return"login";
     }
 }
