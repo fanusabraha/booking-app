@@ -7,7 +7,7 @@
 <body>
     <h1> Welcome user please login   </h1>
     <div>
-    <form   method="post" th:action="/event" th:object="${user}" >
+    <form   method="post" th:action="/user/login" th:object="${user}" >
         <label> Firstname</label>
         <input type="text" id="username" th:field="*{firstname}">
         <label> Lastname</label>
@@ -15,9 +15,9 @@
         <label> Email</label>
         <input type="text" id="email" th:field="*{email}">
         <label> Password</label>
-        <input type="password" id="password" th:field="*{email}">
+        <input type="password" id="password" th:field="*{password}">
 
-        <button type="button">Submit</button>
+        <button type="submit">Submit</button>
     </form>
     </div>
 </body>
