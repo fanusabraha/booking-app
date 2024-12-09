@@ -11,7 +11,14 @@ public class locations {
         MusicBand,
         Catering,
         Decorations,
-        
+        SelfPreparing;
+    }
+    public enum features {
+        Beach,
+        RoofTop,
+        SwimmingPool,
+        DJ,
+        SelfPreparing;
 
     }
 
