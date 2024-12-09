@@ -16,6 +16,7 @@ public class Event {
     private String city;
     private Integer numberOfVisitors;
     private LocalDate date;
+    private Integer serviceHours;
 
     public enum occasion {
         WEDDING, BAPTISM, GRADUATION, ENGAGEMENT, BRIDAL_SHOWER, HOLIDAYS, ANNIVERSARIES, CONCERT, PARTY
@@ -68,6 +69,10 @@ public class Event {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
+    public Integer getServiceHours() {return serviceHours;}
+
+    public void setServiceHours(Integer serviceHours) {this.serviceHours = serviceHours;}
     // additional attributes for more filtered options
     /*
     * private Integer durationInHours (after it is being shown available on the date)

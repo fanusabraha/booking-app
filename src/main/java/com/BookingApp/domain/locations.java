@@ -21,5 +21,6 @@ public class locations {
         SelfPreparing;
 
     }
+    private String comment;
 
 }
