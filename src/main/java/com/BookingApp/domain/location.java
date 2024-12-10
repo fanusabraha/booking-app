@@ -1,9 +1,6 @@
 package com.BookingApp.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity(name = "EventLocations")
 public class location {
@@ -16,6 +13,8 @@ public class location {
     private Integer capacity;
     private Integer price;
     private String comment;
+    @Lob
+    private byte [] pictures;
     public enum inclusions {
         MusicBand,
         Catering,
@@ -85,6 +84,14 @@ public class location {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public byte[] getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(byte[] pictures) {
+        this.pictures = pictures;
     }
 }
 
