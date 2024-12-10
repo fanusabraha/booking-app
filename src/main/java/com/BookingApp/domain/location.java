@@ -5,7 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
+@Entity(name = "EventLocations")
 public class location {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
