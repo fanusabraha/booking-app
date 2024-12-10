@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity(name = "EventLocations")
 public class location {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String location;
     private String country;
