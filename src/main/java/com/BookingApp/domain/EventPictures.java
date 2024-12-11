@@ -35,4 +35,5 @@ public class EventPictures {
     public void setEventLocation(EventLocation eventLocation) {
         this.eventLocation = eventLocation;
     }
+    
 }
