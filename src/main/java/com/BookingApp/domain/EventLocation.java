@@ -15,6 +15,11 @@ public class EventLocation {
     private String comment;
     @Lob
     private byte [] pictures;
+
+    @OneToMany
+    @JoinColumn(name = "event_id")
+    private EventPictures eventPictures;
+
     public enum inclusions {
         MusicBand,
         Catering,
@@ -92,6 +97,14 @@ public class EventLocation {
 
     public void setPictures(byte[] pictures) {
         this.pictures = pictures;
+    }
+
+    public EventPictures getEventPictures() {
+        return eventPictures;
+    }
+
+    public void setEventPictures(EventPictures eventPictures) {
+        this.eventPictures = eventPictures;
     }
 }
 

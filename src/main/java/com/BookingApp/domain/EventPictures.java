@@ -8,6 +8,7 @@ public class EventPictures {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String address;
+    @ManyToOne
     @JoinColumn(name = "event_id")
     private EventLocation eventLocation;
 
