@@ -2,6 +2,9 @@ package com.BookingApp.domain;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity(name = "EventLocations")
 public class EventLocation {
     @Id
@@ -18,7 +21,7 @@ public class EventLocation {
 
     @OneToMany
     @JoinColumn(name = "event_id")
-    private EventPictures eventPictures;
+    private List <EventPictures> eventPictures = new ArrayList<>();
 
     public enum inclusions {
         MusicBand,
@@ -99,11 +102,11 @@ public class EventLocation {
         this.pictures = pictures;
     }
 
-    public EventPictures getEventPictures() {
+    public List<EventPictures> getEventPictures() {
         return eventPictures;
     }
 
-    public void setEventPictures(EventPictures eventPictures) {
+    public void setEventPictures(List<EventPictures> eventPictures) {
         this.eventPictures = eventPictures;
     }
 }

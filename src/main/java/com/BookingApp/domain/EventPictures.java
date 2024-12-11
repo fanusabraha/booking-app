@@ -7,7 +7,8 @@ public class EventPictures {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String address;
+    @Lob
+    private byte [] imageData;
     @ManyToOne
     @JoinColumn(name = "event_id")
     private EventLocation eventLocation;
@@ -20,12 +21,12 @@ public class EventPictures {
         this.id = id;
     }
 
-    public String getAddress() {
-        return address;
+    public byte [] getImageData() {
+        return imageData;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setImageData(byte[] imageData) {
+        this.imageData = imageData;
     }
 
     public EventLocation getEventLocation() {
@@ -35,5 +36,5 @@ public class EventPictures {
     public void setEventLocation(EventLocation eventLocation) {
         this.eventLocation = eventLocation;
     }
-    
+
 }
