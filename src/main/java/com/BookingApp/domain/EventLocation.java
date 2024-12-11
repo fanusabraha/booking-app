@@ -3,7 +3,7 @@ package com.BookingApp.domain;
 import jakarta.persistence.*;
 
 @Entity(name = "EventLocations")
-public class location {
+public class EventLocation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
