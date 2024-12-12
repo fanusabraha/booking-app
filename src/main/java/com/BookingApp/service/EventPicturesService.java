@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class EventPicturesService {
     @Autowired
     EventPicturesRepository eventPicturesRepository;
-     public void Save() {
+     public void savePicturesLocallyToDatabase() {
          String imagePath = "C:\\Users\\fanus\\OneDrive\\Desktop\\programming folders\\booking-app\\docs\\Hamburg.jpg";
 
          byte[] imageBytes = null;
