@@ -4,8 +4,6 @@ import com.BookingApp.domain.EventPictures;
 import com.BookingApp.repository.EventPicturesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +13,7 @@ import java.nio.file.Files;
 public class EventPicturesService {
     @Autowired
     EventPicturesRepository eventPicturesRepository;
-     public void SaveImagesToRepository () {
+     public void Save() {
          String imagePath = "C:\\Users\\fanus\\OneDrive\\Desktop\\programming folders\\booking-app\\docs\\Hamburg.jpg";
 
          byte[] imageBytes = null;
