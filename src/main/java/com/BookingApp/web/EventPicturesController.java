@@ -14,5 +14,8 @@ public class EventPicturesController {
     EventPicturesService eventPicturesService;
 
     @GetMapping("/image")
-    public String saveImage
+    public String saveImage (){
+        eventPicturesService.SaveImagesToRepository();
+        return"homepage";
+    }
 }
