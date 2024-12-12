@@ -8,7 +8,7 @@
 <h1>Event Pictures</h1>
 <div>
   <ul>
-    <li th:each="id : ${imageIds}">
+    <li th:each="id : ${images}">
       <img th:src="@{/image/{id}(id=${id})}" alt="Event Picture" />
     </li>
   </ul>

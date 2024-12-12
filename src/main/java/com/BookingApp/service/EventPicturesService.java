@@ -29,10 +29,12 @@ public class EventPicturesService {
          eventPictures.setImageData(imageBytes);
          eventPicturesRepository.save(eventPictures);
      }
-     public List<Long> findAllIds(){
+     public List<byte []> findAllIds(){
 
          return eventPicturesRepository.findAll().stream()
-                 .map(EventPictures::getId)
+                 .map(EventPictures::getImageData)
                  .collect(Collectors.toList());
      }
+
+    
 }
