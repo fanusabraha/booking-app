@@ -20,7 +20,7 @@ public class EventPicturesController {
     @GetMapping("/image")
     public String saveImage (){
         eventPicturesService.Save();
-        return"homepage";
+        return"redirect:";
     }
     @GetMapping("/allImages")
     public String getAllImages (Model model){
