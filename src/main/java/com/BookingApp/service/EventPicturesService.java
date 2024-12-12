@@ -29,7 +29,7 @@ public class EventPicturesService {
          eventPictures.setImageData(imageBytes);
          eventPicturesRepository.save(eventPictures);
      }
-     public List<byte []> findAllIds(){
+     public List<byte []> findAllImages(){
 
          return eventPicturesRepository.findAll().stream()
                  .map(EventPictures::getImageData)
