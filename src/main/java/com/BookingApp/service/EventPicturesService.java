@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EventPicturesService {
@@ -25,7 +27,12 @@ public class EventPicturesService {
          }
          EventPictures eventPictures = new EventPictures();
          eventPictures.setImageData(imageBytes);
-         eventPictures.setId(1L);
          eventPicturesRepository.save(eventPictures);
+     }
+     public List<Long> findAllIds(){
+
+         return eventPicturesRepository.findAll().stream()
+                 .map(EventPictures::getId)
+                 .collect(Collectors.toList());
      }
 }
