@@ -21,9 +21,9 @@ public class EventPicturesController {
         return"homepage";
     }
     @GetMapping("/allImages")
-    public List<Long> saveImage (){
-        eventPicturesService.Save();
-        return"homepage";
+    public List<Long> getAllImages (){
+        return eventPicturesService.findAllIds();
+
     }
 
 }
