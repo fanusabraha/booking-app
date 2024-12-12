@@ -36,5 +36,5 @@ public class EventPicturesService {
                  .collect(Collectors.toList());
      }
 
-    
+
 }

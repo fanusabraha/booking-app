@@ -8,9 +8,10 @@
 <h1>Event Pictures</h1>
 <div>
   <ul>
-    <li th:each="id : ${images}">
-      <img th:src="@{/image/{id}(id=${id})}" alt="Event Picture" />
-    </li>
+      <li th:each="image : ${images}">
+          <img th:src="'data:image/jpeg;base64,' + ${T(org.apache.tomcat.util.codec.binary.Base64).encodeBase64String(image)}"
+               alt="Event Picture" />
+      </li>
   </ul>
 </div>
 </body>
