@@ -11,7 +11,7 @@ public class EventPictures {
     private byte [] imageData;
     @ManyToOne
     @JoinColumn(name = "event_id")
-    private EventLocation eventLocation;
+    private Location location;
 
     public Long getId() {
         return id;
@@ -29,12 +29,12 @@ public class EventPictures {
         this.imageData = imageData;
     }
 
-    public EventLocation getEventLocation() {
-        return eventLocation;
+    public Location getEventLocation() {
+        return location;
     }
 
-    public void setEventLocation(EventLocation eventLocation) {
-        this.eventLocation = eventLocation;
+    public void setEventLocation(Location location) {
+        this.location = location;
     }
 
 }

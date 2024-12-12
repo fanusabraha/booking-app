@@ -9,8 +9,7 @@
 <div>
   <ul>
       <li th:each="image : ${images}">
-          <img th:src="'data:image/jpeg;base64,' + ${T(org.apache.tomcat.util.codec.binary.Base64).encodeBase64String(image)}"
-               alt="Event Picture" />
+          <img th:src="'data:image/jpeg;base64,' + ${image}" alt="Event Picture" />
       </li>
   </ul>
 </div>

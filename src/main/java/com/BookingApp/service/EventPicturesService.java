@@ -2,6 +2,7 @@ package com.BookingApp.service;
 
 import com.BookingApp.domain.EventPictures;
 import com.BookingApp.repository.EventPicturesRepository;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,10 +30,10 @@ public class EventPicturesService {
          eventPictures.setImageData(imageBytes);
          eventPicturesRepository.save(eventPictures);
      }
-     public List<byte []> findAllImages(){
+     public List<String > findAllImages(){
 
          return eventPicturesRepository.findAll().stream()
-                 .map(EventPictures::getImageData)
+                 .map(eventPicture -> Base64.encodeBase64String(eventPicture.getImageData()))
                  .collect(Collectors.toList());
      }
 

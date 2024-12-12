@@ -24,7 +24,7 @@ public class EventPicturesController {
     }
     @GetMapping("/allImages")
     public String getAllImages (Model model){
-         List<byte []> images= eventPicturesService.findAllImages();
+         List<String> images= eventPicturesService.findAllImages();
          model.addAttribute("images",images);
         return "allImages";
     }
