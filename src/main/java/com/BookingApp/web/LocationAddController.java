@@ -7,10 +7,8 @@ import com.BookingApp.service.LocationAddService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/addlocation")
@@ -20,13 +18,15 @@ public class LocationAddController {
     @GetMapping("")
     public String addLocation (Model model){
        EventLocation eventLocation = new EventLocation();
+       // replace this later less redundant
        model.addAttribute("eventLocation", eventLocation);
     return"addlocation";
     }
     @PostMapping("")
-    public String addLocation (@ModelAttribute EventLocation eventLocation){
+    public String addLocation (@ModelAttribute EventLocation eventLocation,
+                               @RequestParam("pictures") MultipartFile file){
 
-        locationAddService.saveLocation(eventLocation);
+        locationAddService.saveLocation(eventLocation, file);
         return"redirect:/addlocation";
     }
 }
