@@ -37,15 +37,15 @@
         <input type="file" id="pictures" th:field="*{pictures}" accept="image/*" />
     </div>
     <div>
-        <label for="inclusions">Inclusions:</label>
-        <select id="inclusions" th:field="*{inclusions}">
+        <label for="inclusion">Inclusion:</label>
+        <select id="inclusion" th:field="*{inclusion}">
             <option th:each="inclusion : ${T(com.BookingApp.domain.EventLocation.inclusions).values()}"
                     th:value="${inclusion}" th:text="${inclusion}"></option>
         </select>
     </div>
     <div>
-        <label for="features">Features:</label>
-        <select id="features" th:field="*{features}">
+        <label for="feature">Feature:</label>
+        <select id="feature" th:field="*{feature}">
             <option th:each="feature : ${T(com.BookingApp.domain.EventLocation.features).values()}"
                     th:value="${feature}" th:text="${feature}"></option>
         </select>
