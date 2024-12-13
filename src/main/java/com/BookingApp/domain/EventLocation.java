@@ -22,9 +22,8 @@ public class EventLocation {
     // i will check this transient later
     @Transient
     private MultipartFile pictureFile;
-
+    // check the orphan removal
     @OneToMany(mappedBy = "location", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "event_id")
     private List <EventPictures> eventPictures = new ArrayList<>();
 
     // including the enums enumtypes to ensure in the html
