@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/addLocation")
+@RequestMapping("/addlocation")
 public class LocationAddController {
     @Autowired
     LocationAddService locationAddService;
