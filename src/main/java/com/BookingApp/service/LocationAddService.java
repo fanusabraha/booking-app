@@ -14,16 +14,9 @@ public class LocationAddService {
     @Autowired
     LocationRepository locationRepository;
 
-    public void saveLocation (EventLocation eventLocation, MultipartFile file){
-        try {
-            // Convert MultipartFile to byte[] and set it in the entity
-            if (file != null && !file.isEmpty()) {
-                eventLocation.setPictures(file.getBytes());
-            }
+    public void saveLocation (EventLocation eventLocation){
+
             locationRepository.save(eventLocation);
-        } catch (IOException e) {
-            throw new RuntimeException("Error saving file: " + e.getMessage());
-        }
 
     }
 

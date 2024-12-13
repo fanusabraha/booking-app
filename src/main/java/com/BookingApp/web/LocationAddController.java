@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+
 @Controller
 @RequestMapping("/addlocation")
 public class LocationAddController {
@@ -26,7 +28,15 @@ public class LocationAddController {
     public String addLocation (@ModelAttribute EventLocation eventLocation,
                                @RequestParam("pictures") MultipartFile file){
 
-        locationAddService.saveLocation(eventLocation, file);
-        return"redirect:/addlocation";
+        try {
+            // Convert MultipartFile to byte[] and set it in the entity
+            if (file != null && !file.isEmpty()) {
+                eventLocation.setPictures(file.getBytes());
+            }
+            locationAddService.saveLocation(eventLocation);
+        } catch (IOException e) {
+            e.printStackTrace();  // You can also log this exception
+        }
+        return "redirect:/addlocation";
     }
 }
