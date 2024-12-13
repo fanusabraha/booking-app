@@ -1,6 +1,7 @@
 package com.BookingApp.domain;
 
 import jakarta.persistence.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,9 @@ public class EventLocation {
     private String comment;
     @Lob
     private byte [] pictures;
-
+    // i will check this transient later
+    @Transient
+    private MultipartFile pictureFile;
     @OneToMany
     @JoinColumn(name = "event_id")
     private List <EventPictures> eventPictures = new ArrayList<>();
@@ -124,5 +127,13 @@ public class EventLocation {
     public features getFeature() { return feature;}
 
     public void setFeature(features feature) {  this.feature = feature;}
+
+    public MultipartFile getPictureFile() {
+        return pictureFile;
+    }
+
+    public void setPictureFile(MultipartFile pictureFile) {
+        this.pictureFile = pictureFile;
+    }
 }
 
