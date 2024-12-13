@@ -20,13 +20,13 @@ public class LocationAddController {
     @GetMapping("")
     public String addLocation (Model model){
        EventLocation eventLocation = new EventLocation();
-       model.addAttribute(eventLocation);
+       model.addAttribute("eventLocation", eventLocation);
     return"addlocation";
     }
-    @PostMapping("/new")
-    public String addLocation (@ModelAttribute("eventLocation") EventLocation eventLocation){
+    @PostMapping("")
+    public String addLocation (@ModelAttribute EventLocation eventLocation){
 
         locationAddService.saveLocation(eventLocation);
-        return"redirect:";
+        return"redirect:/addlocation";
     }
 }
