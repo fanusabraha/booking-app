@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 </head>
 <body>
-
+<div class="dashboard-container">
+    <h1>Dashboard</h1>
+    <a th:href="@{/event/}">Manage Events</a>
+    <a th:href="@{/image}">Upload Event Pictures</a>
+    <a th:href="@{/allImages}">View Event Pictures</a>
+    <a th:href="@{/addLocation}">Add Event Location</a>
+    <a th:href="@{/user/login/}">User Login</a>
+</div>
 </body>
 </html>
