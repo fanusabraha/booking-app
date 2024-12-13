@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-
+// illustration purposes because image should be added alongside the location
 @Controller
 @RequestMapping("")
 public class EventPicturesController {
