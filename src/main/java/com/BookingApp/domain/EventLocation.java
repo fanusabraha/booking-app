@@ -23,6 +23,13 @@ public class EventLocation {
     @JoinColumn(name = "event_id")
     private List <EventPictures> eventPictures = new ArrayList<>();
 
+    // including the enums enumtypes to ensure in the html
+    @Enumerated(EnumType.STRING)
+    private inclusions inclusion;
+
+    @Enumerated(EnumType.STRING)
+    private features feature;
+
     public enum inclusions {
         MusicBand,
         Catering,
@@ -109,5 +116,13 @@ public class EventLocation {
     public void setEventPictures(List<EventPictures> eventPictures) {
         this.eventPictures = eventPictures;
     }
+
+    public inclusions getInclusion() {  return inclusion;}
+
+    public void setInclusion(inclusions inclusion) {  this.inclusion = inclusion;}
+
+    public features getFeature() { return feature;}
+
+    public void setFeature(features feature) {  this.feature = feature;}
 }
 
