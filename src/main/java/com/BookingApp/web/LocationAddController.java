@@ -1,6 +1,7 @@
 package com.BookingApp.web;
 
 import com.BookingApp.domain.EventLocation;
+import com.BookingApp.domain.EventPictures;
 import com.BookingApp.dto.EventSearchDto;
 import com.BookingApp.repository.LocationRepository;
 import com.BookingApp.service.LocationAddService;
@@ -26,16 +27,21 @@ public class LocationAddController {
     }
     @PostMapping("")
     public String addLocation (@ModelAttribute EventLocation eventLocation,
-                               @RequestParam("pictures") MultipartFile file){
+                               @RequestParam("pictures") MultipartFile[] files){
 
         try {
             // Convert MultipartFile to byte[] and set it in the entity
-            if (file != null && !file.isEmpty()) {
-                eventLocation.setPictures(file.getBytes());
+            for (MultipartFile file : files) {
+                if (!file.isEmpty()) {
+                    EventPictures eventPicture = new EventPictures();
+                    eventPicture.setImageData(file.getBytes());
+                    eventPicture.setEventLocation(eventLocation); // Associate with EventLocation
+                    eventLocation.getEventPictures().add(eventPicture); // Add to eventPictures list
+                }
             }
-            locationAddService.saveLocation(eventLocation);
+            locationAddService.saveLocation(eventLocation);  // Save the eventLocation with its pictures
         } catch (IOException e) {
-            e.printStackTrace();  // You can also log this exception
+            e.printStackTrace();  // Log the error
         }
         return "redirect:/addlocation";
     }
