@@ -2,7 +2,7 @@ package com.BookingApp.dto;
 
 import java.time.LocalDate;
 
-public class EventDto {
+public class EventSearchDto {
     private Long id;
     private String location;
     private String country;

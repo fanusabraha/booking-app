@@ -1,8 +1,8 @@
 package com.BookingApp.repository;
 
-import com.BookingApp.domain.Event;
+import com.BookingApp.domain.EventSearch;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface EventRepository extends JpaRepository<Event, Long> {
+public interface EventRepository extends JpaRepository<EventSearch, Long> {
 
 }
