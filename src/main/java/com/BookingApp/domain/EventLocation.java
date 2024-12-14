@@ -20,11 +20,11 @@ public class EventLocation {
     @Lob
     private byte [] pictures;
     // i will check this transient later
-    @Transient
-    private MultipartFile pictureFile;
+    //@Transient
+    //private MultipartFile pictureFile;
     // check the orphan removal
-    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List <EventPictures> eventPictures = new ArrayList<>();
+    //@OneToMany(mappedBy = "location", cascade = CascadeType.ALL, orphanRemoval = true)
+    //private List <EventPictures> eventPictures = new ArrayList<>();
 
     // including the enums enumtypes to ensure in the html
     @Enumerated(EnumType.STRING)
@@ -112,13 +112,9 @@ public class EventLocation {
         this.pictures = pictures;
     }
 
-    public List<EventPictures> getEventPictures() {
-        return eventPictures;
-    }
+    //public List<EventPictures> getEventPictures() {return eventPictures;}
 
-    public void setEventPictures(List<EventPictures> eventPictures) {
-        this.eventPictures = eventPictures;
-    }
+    //public void setEventPictures(List<EventPictures> eventPictures) {this.eventPictures = eventPictures;}
 
     public inclusions getInclusion() {  return inclusion;}
 
@@ -128,12 +124,8 @@ public class EventLocation {
 
     public void setFeature(features feature) {  this.feature = feature;}
 
-    public MultipartFile getPictureFile() {
-        return pictureFile;
-    }
+    //public MultipartFile getPictureFile() {return pictureFile;}
 
-    public void setPictureFile(MultipartFile pictureFile) {
-        this.pictureFile = pictureFile;
-    }
+    //public void setPictureFile(MultipartFile pictureFile) {this.pictureFile = pictureFile;}
 }
 

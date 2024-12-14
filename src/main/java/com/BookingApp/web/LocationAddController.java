@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 @Controller
@@ -28,21 +29,35 @@ public class LocationAddController {
     @PostMapping("")
     public String addLocation (@ModelAttribute EventLocation eventLocation,
                                @RequestParam("pictures") MultipartFile[] files){
-
         try {
-            // Convert MultipartFile to byte[] and set it in the entity
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             for (MultipartFile file : files) {
                 if (!file.isEmpty()) {
-                    EventPictures eventPicture = new EventPictures();
-                    eventPicture.setImageData(file.getBytes());
-                    eventPicture.setEventLocation(eventLocation); // Associate with EventLocation
-                    eventLocation.getEventPictures().add(eventPicture); // Add to eventPictures list
+                    outputStream.write(file.getBytes()); // Append each file's bytes
+                    outputStream.write("::".getBytes()); // Use a delimiter to separate images
                 }
             }
-            locationAddService.saveLocation(eventLocation);  // Save the eventLocation with its pictures
+            eventLocation.setPictures(outputStream.toByteArray());
+            locationAddService.saveLocation(eventLocation);
         } catch (IOException e) {
-            e.printStackTrace();  // Log the error
+            e.printStackTrace();
+            return "redirect:/addlocation?error";
         }
+//
+//        try {
+//            // Convert MultipartFile to byte[] and set it in the entity
+//            for (MultipartFile file : files) {
+//                if (!file.isEmpty()) {
+//                    EventPictures eventPicture = new EventPictures();
+//                    eventPicture.setImageData(file.getBytes());
+//                    eventPicture.setEventLocation(eventLocation); // Associate with EventLocation
+//                   // eventLocation.getEventPictures().add(eventPicture); // Add to eventPictures list
+//                }
+//            }
+//            locationAddService.saveLocation(eventLocation);  // Save the eventLocation with its pictures
+//        } catch (IOException e) {
+//            e.printStackTrace();  // Log the error
+//        }
         return "redirect:/addlocation";
     }
 }

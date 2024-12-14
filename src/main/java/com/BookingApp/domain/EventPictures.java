@@ -9,8 +9,8 @@ public class EventPictures {
     private Long id;
     @Lob
     private byte [] imageData;
-    @ManyToOne
-    @JoinColumn(name = "event_id")
+    //@ManyToOne
+    //@JoinColumn(name = "event_id")
     private EventLocation location;
 
     public Long getId() {
