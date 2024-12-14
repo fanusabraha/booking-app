@@ -18,46 +18,35 @@ import java.io.IOException;
 @RequestMapping("/addlocation")
 public class LocationAddController {
     @Autowired
-    LocationAddService locationAddService;
+    private LocationAddService locationAddService;
+
     @GetMapping("")
-    public String addLocation (Model model){
-       EventLocation eventLocation = new EventLocation();
-       // replace this later less redundant
-       model.addAttribute("eventLocation", eventLocation);
-    return"addlocation";
+    public String addLocation(Model model) {
+        model.addAttribute("eventLocation", new EventLocation());
+        return "addlocation";
     }
+
     @PostMapping("")
-    public String addLocation (@ModelAttribute EventLocation eventLocation,
-                               @RequestParam("pictures") MultipartFile[] files){
+    public String addLocation(@ModelAttribute EventLocation eventLocation) {
         try {
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            for (MultipartFile file : files) {
-                if (!file.isEmpty()) {
-                    outputStream.write(file.getBytes()); // Append each file's bytes
-                    outputStream.write("::".getBytes()); // Use a delimiter to separate images
+            // Process uploaded files
+            MultipartFile[] files = eventLocation.getPictureFile();
+            if (files != null) {
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                for (MultipartFile file : files) {
+                    if (!file.isEmpty()) {
+                        outputStream.write(file.getBytes());
+                    }
                 }
+                eventLocation.setPictures(outputStream.toByteArray()); // Save combined pictures as byte[]
             }
-            eventLocation.setPictures(outputStream.toByteArray());
+
+            // Save the entity
             locationAddService.saveLocation(eventLocation);
         } catch (IOException e) {
             e.printStackTrace();
-            return "redirect:/addlocation?error";
         }
-//
-//        try {
-//            // Convert MultipartFile to byte[] and set it in the entity
-//            for (MultipartFile file : files) {
-//                if (!file.isEmpty()) {
-//                    EventPictures eventPicture = new EventPictures();
-//                    eventPicture.setImageData(file.getBytes());
-//                    eventPicture.setEventLocation(eventLocation); // Associate with EventLocation
-//                   // eventLocation.getEventPictures().add(eventPicture); // Add to eventPictures list
-//                }
-//            }
-//            locationAddService.saveLocation(eventLocation);  // Save the eventLocation with its pictures
-//        } catch (IOException e) {
-//            e.printStackTrace();  // Log the error
-//        }
+
         return "redirect:/addlocation";
     }
 }

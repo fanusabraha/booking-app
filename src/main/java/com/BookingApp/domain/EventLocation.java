@@ -21,8 +21,8 @@ public class EventLocation {
     @Column(columnDefinition = "BLOB")
     private byte [] pictures;
     // i will check this transient later
-    //@Transient
-    //private MultipartFile pictureFile;
+    @Transient
+    private MultipartFile [] pictureFile;
     // check the orphan removal
     //@OneToMany(mappedBy = "location", cascade = CascadeType.ALL, orphanRemoval = true)
     //private List <EventPictures> eventPictures = new ArrayList<>();
@@ -125,8 +125,8 @@ public class EventLocation {
 
     public void setFeature(features feature) {  this.feature = feature;}
 
-    //public MultipartFile getPictureFile() {return pictureFile;}
+    public MultipartFile[] getPictureFile() {return pictureFile;}
 
-    //public void setPictureFile(MultipartFile pictureFile) {this.pictureFile = pictureFile;}
+    public void setPictureFile(MultipartFile [] pictureFile) {this.pictureFile = pictureFile;}
 }
 
