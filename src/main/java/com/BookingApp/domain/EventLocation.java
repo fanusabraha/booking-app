@@ -18,6 +18,7 @@ public class EventLocation {
     private Integer price;
     private String comment;
     @Lob
+    @Column(columnDefinition = "BLOB")
     private byte [] pictures;
     // i will check this transient later
     //@Transient
