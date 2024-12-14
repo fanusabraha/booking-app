@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-
 @Controller
 @RequestMapping("/addlocation")
 public class LocationAddController {
@@ -27,18 +26,21 @@ public class LocationAddController {
     }
 
     @PostMapping("")
-    public String addLocation(@ModelAttribute EventLocation eventLocation) {
+    public String addLocation(
+            @ModelAttribute EventLocation eventLocation,
+            @RequestParam("pictureFile") MultipartFile[] files // Separate file parameter
+    ) {
         try {
             // Process uploaded files
-            MultipartFile[] files = eventLocation.getPictureFile();
-            if (files != null) {
+            if (files != null && files.length > 0) {
                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
                 for (MultipartFile file : files) {
                     if (!file.isEmpty()) {
                         outputStream.write(file.getBytes());
                     }
                 }
-                eventLocation.setPictures(outputStream.toByteArray()); // Save combined pictures as byte[]
+                // Save file data into the `pictures` field
+                eventLocation.setPictures(outputStream.toByteArray());
             }
 
             // Save the entity
@@ -47,6 +49,6 @@ public class LocationAddController {
             e.printStackTrace();
         }
 
-        return "redirect:/addlocation";
+        return "dashboard";
     }
 }
