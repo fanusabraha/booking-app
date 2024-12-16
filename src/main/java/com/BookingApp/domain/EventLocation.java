@@ -20,6 +20,9 @@ public class EventLocation {
     @Lob
     //@Column(columnDefinition = "BLOB")
     private byte [] pictures;
+    @Transient
+    private String base64Image;
+
     // i will check this transient later
 //    @Transient
 //    private MultipartFile [] pictureFile;
@@ -128,5 +131,9 @@ public class EventLocation {
     //public MultipartFile[] getPictureFile() {return pictureFile;}
 
     //public void setPictureFile(MultipartFile [] pictureFile) {this.pictureFile = pictureFile;}
+    // this is being used for viewing the pictures in the front web, need to be checked for other option or necessity
+    public String getBase64Image() {    return base64Image;}
+
+    public void setBase64Image(String base64Image) {    this.base64Image = base64Image;}
 }
 

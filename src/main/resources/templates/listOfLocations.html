@@ -19,6 +19,7 @@
                      <p th:text="'information: ' + ${event.comment}"></p>
                      <p th:text="'includes: ' + ${event.inclusion}"></p>
                      <p th:text="'option: ' + ${event.feature}"></p>
+                     <img th:src="'data:image/jpeg;base64,' + ${event.base64Image}" alt="Event Picture" />
                    </li>
                </ul>
     </div>
