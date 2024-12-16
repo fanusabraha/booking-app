@@ -26,29 +26,8 @@ public class LocationAddController {
     }
 
     @PostMapping("")
-    public String addLocation(
-            @ModelAttribute EventLocation eventLocation,
-            @RequestParam("pictureFile") MultipartFile[] files // Separate file parameter
-    ) {
-        try {
-            // Process uploaded files
-            if (files != null && files.length > 0) {
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                for (MultipartFile file : files) {
-                    if (!file.isEmpty()) {
-                        outputStream.write(file.getBytes());
-                    }
-                }
-                // Save file data into the `pictures` field
-                eventLocation.setPictures(outputStream.toByteArray());
-            }
-
-            // Save the entity
-            locationAddService.saveLocation(eventLocation);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    public String addLocation(@ModelAttribute EventLocation eventLocation,
+            @RequestParam("pictureFile") MultipartFile[] files) {
         return "dashboard";
     }
 }
