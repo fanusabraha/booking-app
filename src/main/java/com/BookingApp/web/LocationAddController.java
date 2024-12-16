@@ -23,6 +23,7 @@ public class LocationAddController {
     @PostMapping("")
     public String addLocation(@ModelAttribute EventLocation eventLocation,
             @RequestParam("pictureFile") MultipartFile[] files) {
+        locationAddService.saveLocation(eventLocation,files);
         return "dashboard";
     }
 }
