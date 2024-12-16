@@ -35,8 +35,9 @@ public class EventController {
         return "redirect:/event/";
     }
     @GetMapping("/available")
-    public String listOfEvents(ModelMap map){
+    public String listOfEvents(ModelMap model){
         List <EventLocation> availableLocations = locationAddService.findAllLocations();
+        model.addAttribute("")
         return "listOfLocations";
     }
 
