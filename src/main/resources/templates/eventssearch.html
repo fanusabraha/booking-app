@@ -29,8 +29,10 @@
             return true;
         }
     </script>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 </head>
 <body>
+<div class="dashboard-container">
 <h1>Welcome to finding the events</h1>
 <h3>put the values for viewing the results</h3>
 
@@ -51,7 +53,7 @@
         <input type="date" id="date" th:field="*{date}"><br>
 
         <button type="submit">Submit</button>
-    <form>
+    </form>
         <!-- for demonstration purposes only-->
     <div>
         <!--
@@ -72,6 +74,6 @@
         <div>
             Log in <a href="login.html"></a>
         </div>
-
+</div>
 </body>
 </html>
