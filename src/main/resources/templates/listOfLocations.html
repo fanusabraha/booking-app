@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Locations</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 </head>
 <body>
-
+  <div class="dashboard-container">
     <div th:if="${events != null}">
                <h2>Submitted Events</h2>
                <ul>
@@ -16,9 +17,11 @@
                      <p th:text="'Number of Visitors: ' + ${event.capacity}"></p>
                      <p th:text="'price: ' + ${event.price}"></p>
                      <p th:text="'information: ' + ${event.comment}"></p>
+                     <p th:text="'includes: ' + ${event.inclusion}"></p>
+                     <p th:text="'option: ' + ${event.feature}"></p>
                    </li>
                </ul>
     </div>
-
+  </div>
 </body>
 </html>
