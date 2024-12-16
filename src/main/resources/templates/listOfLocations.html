@@ -19,19 +19,19 @@
                      <p th:text="'information: ' + ${event.comment}"></p>
                      <p th:text="'includes: ' + ${event.inclusion}"></p>
                      <p th:text="'option: ' + ${event.feature}"></p>
-                       <div class="slideshow-container">
-                           <div class="slide" th:each="event, iterStat : ${events}" th:if="${iterStat.index == 0}">
-                               <img th:src="'data:image/jpeg;base64,' + ${event.base64Image}" alt="Event Picture" class="slide-image" />
+                       <div class="slideshow-container" th:id="'slideshow-' + ${iterStat.index}">
+                           <!-- Each image within its own event -->
+                           <div class="slide" th:each="image, imgStat : ${event.base64Images}">
+                               <img th:src="'data:image/jpeg;base64,' + ${image}" alt="Event Picture" class="slide-image"/>
                            </div>
-                           <button class="prev" onclick="changeSlide(-1)">❮</button> <br>
-                           <button class="next" onclick="changeSlide(1)">❯</button>
+                           <!-- Buttons for navigation -->
+                           <button class="prev" th:onclick="'changeSlide(-1, ' + ${iterStat.index} + ')'">❮</button>
+                           <button class="next" th:onclick="'changeSlide(1, ' + ${iterStat.index} + ')'">❯</button>
                        </div>
-
-                       <!-- Link to the external JavaScript file -->
-                       <script src="/js/slideshow.js"></script>
                    </li>
                </ul>
     </div>
   </div>
+  <script src="/js/slideshow.js"></script>
 </body>
 </html>
