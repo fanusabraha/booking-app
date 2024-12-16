@@ -33,7 +33,7 @@ public class EventLocation {
 
     @Enumerated(EnumType.STRING)
     private features feature;
-
+    // thses enums needs adjustments because one location can be used for many purposes not only one
     public enum inclusions {
         MusicBand,
         Catering,
