@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @Controller
-@RequestMapping("/user/login")
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserService userService;
     ArrayList<UserDto> users= new ArrayList<>();
 
-    @GetMapping("/")
+    @GetMapping("/register")
     public String logIn(ModelMap map){
         map.addAttribute("user",new UserDto());
-        return"login";
+        return"register";
     }
-    @PostMapping("/")
+    @PostMapping("/register")
     public String logIn (@ModelAttribute("user") UserDto userDto){
         users.add(userDto);
         return"redirect:/event/";

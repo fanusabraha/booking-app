@@ -32,9 +32,10 @@
     <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 </head>
 <body>
+
 <div class="dashboard-container">
-<h1>Welcome to finding the events</h1>
-<h3>put the values for viewing the results</h3>
+    <h1>Welcome to finding the events</h1>
+    <h3>put the values for viewing the results</h3>
 
     <form method="post" th:action="@{/event/}" th:object="${event}" onsubmit="return validateForm(event)">
         <label for="country">Country:</label>
@@ -72,7 +73,7 @@
         -->
     </div>
         <div>
-            Log in <a href="login.html"></a>
+            <a href="/user/register">Sign Up</a>
         </div>
 </div>
 </body>
