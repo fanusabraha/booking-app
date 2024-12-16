@@ -32,5 +32,11 @@ public class EventController {
        }
         return "redirect:/event/";
     }
+    @GetMapping("available/Events")
+    public String listOfEvents(){
+        
+        return "listOfLocations";
+    }
+
 
 }
