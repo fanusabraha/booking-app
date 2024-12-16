@@ -33,48 +33,48 @@
 </head>
 <body>
 
-<div class="dashboard-container">
-    <h1>Welcome to finding the events</h1>
-    <h3>put the values for viewing the results</h3>
+    <div class="dashboard-container">
+        <h1>Welcome to finding the events</h1>
+        <h3>put the values for viewing the results</h3>
 
-    <form method="post" th:action="@{/event/}" th:object="${event}" onsubmit="return validateForm(event)">
-        <label for="country">Country:</label>
-        <input type="text" id="country" placeholder="like...Germany" th:field="*{country}"><br>
+        <form method="post" th:action="@{/event/}" th:object="${event}" onsubmit="return validateForm(event)">
+            <label for="country">Country:</label>
+            <input type="text" id="country" placeholder="like...Germany" th:field="*{country}"><br>
 
-        <label for="location">Location:</label>
-        <input type="text" id="location" placeholder="area like...downtown" th:field="*{location}"><br>
+            <label for="location">Location:</label>
+            <input type="text" id="location" placeholder="area like...downtown" th:field="*{location}"><br>
 
-        <label for="city">City:</label>
-        <input type="text" id="city" placeholder="like..Dallas" th:field="*{city}"><br>
+            <label for="city">City:</label>
+            <input type="text" id="city" placeholder="like..Dallas" th:field="*{city}"><br>
 
-        <label for="numberOfVisitors">Number of Visitors:</label>
-        <input type="number" id="numberOfVisitors" placeholder="15,20,35..." th:field="*{numberOfVisitors}"><br>
+            <label for="numberOfVisitors">Number of Visitors:</label>
+            <input type="number" id="numberOfVisitors" placeholder="15,20,35..." th:field="*{numberOfVisitors}"><br>
 
-        <label for="date">Date:</label>
-        <input type="date" id="date" th:field="*{date}"><br>
+            <label for="date">Date:</label>
+            <input type="date" id="date" th:field="*{date}"><br>
 
-        <button type="submit">Submit</button>
-    </form>
-        <!-- for demonstration purposes only-->
-    <div>
-        <!--
-        <div th:if="${events != null}">
-            <h2>Submitted Events</h2>
-            <ul>
-                <li th:each="event : ${events}">
-                    <p th:text="'Country: ' + ${event.country}"></p>
-                    <p th:text="'Location: ' + ${event.location}"></p>
-                    <p th:text="'City: ' + ${event.city}"></p>
-                    <p th:text="'Number of Visitors: ' + ${event.numberOfVisitors}"></p>
-                    <p th:text="'Date: ' + ${event.date}"></p>
-                </li>
-            </ul>
+            <button type="submit">Submit</button>
+        </form>
+            <!-- for demonstration purposes only-->
+        <div>
+            <!--
+            <div th:if="${events != null}">
+                <h2>Submitted Events</h2>
+                <ul>
+                    <li th:each="event : ${events}">
+                        <p th:text="'Country: ' + ${event.country}"></p>
+                        <p th:text="'Location: ' + ${event.location}"></p>
+                        <p th:text="'City: ' + ${event.city}"></p>
+                        <p th:text="'Number of Visitors: ' + ${event.numberOfVisitors}"></p>
+                        <p th:text="'Date: ' + ${event.date}"></p>
+                    </li>
+                </ul>
+            </div>
+            -->
         </div>
-        -->
-    </div>
         <div>
             <a href="/user/register">Sign Up</a>
         </div>
-</div>
+    </div>
 </body>
 </html>

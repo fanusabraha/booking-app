@@ -3,22 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>login</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 </head>
 <body>
-    <h1> Welcome user please login   </h1>
-    <div>
-    <form   method="post" th:action="@{/user/login/}" th:object="${user}" >
-        <label> Firstname</label>
-        <input type="text" id="firstname" th:field="*{firstName}">
-        <label> Lastname</label>
-        <input type="text" id="lastname" th:field="*{lastName}">
-        <label> Email</label>
-        <input type="text" id="email" th:field="*{email}">
-        <label> Password</label>
-        <input type="password" id="password" th:field="*{password}">
-
-        <button type="submit">Submit</button>
-    </form>
+    <div class="dashboard-container">
+        <h1> Welcome! create an account here </h1>
+        <div>
+            <form   method="post" th:action="@{/user/login/}" th:object="${user}" >
+                <div>
+                    <label> Firstname</label>
+                    <input type="text" id="firstname" th:field="*{firstName}">
+                </div>
+                <div>
+                    <label> Lastname</label>
+                    <input type="text" id="lastname" th:field="*{lastName}">
+                </div>
+                <div>
+                    <label> Email</label>
+                    <input type="text" id="email" th:field="*{email}">
+                </div>
+                <div>
+                    <label> Password</label>
+                    <input type="password" id="password" th:field="*{password}">
+                </div>
+            <button type="submit">Submit</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>
