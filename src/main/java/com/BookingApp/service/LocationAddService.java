@@ -51,6 +51,6 @@ public class LocationAddService {
                 available.setBase64Image(base64Image);
             }
         }
-       return locationRepository.findAll();
+       return allLocations;
     }
 }
