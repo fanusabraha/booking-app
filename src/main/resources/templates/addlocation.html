@@ -34,10 +34,6 @@
         <textarea id="comment" th:field="*{comment}" placeholder="Enter comment" rows="3"></textarea>
     </div>
     <div>
-        <label for="pictureFile">Upload Pictures:</label>
-        <input type="file" id="pictureFile" name="pictureFile" accept="image/*"  multiple/>
-    </div>
-    <div>
         <label for="inclusion">Inclusion:</label>
         <select id="inclusion" th:field="*{inclusion}">
             <option th:each="inclusion : ${T(com.BookingApp.domain.EventLocation.inclusions).values()}"
@@ -50,6 +46,10 @@
             <option th:each="feature : ${T(com.BookingApp.domain.EventLocation.features).values()}"
                     th:value="${feature}" th:text="${feature}"></option>
         </select>
+    </div>
+    <div>
+        <label for="pictureFile">Upload Pictures:</label>
+        <input type="file" id="pictureFile" name="pictureFile" accept="image/*"  multiple/>
     </div>
     <div>
         <button type="submit">Add Location</button>

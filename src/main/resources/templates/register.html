@@ -9,7 +9,7 @@
     <div class="dashboard-container">
         <h1> Welcome! create an account here </h1>
         <div>
-            <form   method="post" th:action="@{/user/login/}" th:object="${user}" >
+            <form   method="post" th:action="@{/user/register}" th:object="${user}" >
                 <div>
                     <label> Firstname</label>
                     <input type="text" id="firstname" th:field="*{firstName}">
