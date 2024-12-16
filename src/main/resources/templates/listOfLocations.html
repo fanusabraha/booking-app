@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Locations</title>
-    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+    <link rel="stylesheet" th:href="@{/css/pictures.css}" />
 </head>
 <body>
   <div class="dashboard-container">
@@ -23,7 +23,7 @@
                            <div class="slide" th:each="event, iterStat : ${events}" th:if="${iterStat.index == 0}">
                                <img th:src="'data:image/jpeg;base64,' + ${event.base64Image}" alt="Event Picture" class="slide-image" />
                            </div>
-                           <button class="prev" onclick="changeSlide(-1)">❮</button>
+                           <button class="prev" onclick="changeSlide(-1)">❮</button> <br>
                            <button class="next" onclick="changeSlide(1)">❯</button>
                        </div>
 
