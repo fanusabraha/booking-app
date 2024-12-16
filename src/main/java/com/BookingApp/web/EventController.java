@@ -21,8 +21,7 @@ public class EventController {
     List<EventSearchDto> events = new ArrayList<>();
     @GetMapping("/")
     public String homePageGet(ModelMap model ){
-        EventSearchDto eventDto= new EventSearchDto();
-        model.addAttribute("event",eventDto);
+        model.addAttribute("event",new EventSearchDto());
         model.addAttribute("searchedEvents", events);
         return "eventssearch";
     }
@@ -35,7 +34,7 @@ public class EventController {
        }
         return "redirect:/event/";
     }
-    @GetMapping("available/Events")
+    @GetMapping("/available")
     public String listOfEvents(ModelMap map){
         List <EventLocation> availableLocations = locationAddService.findAllLocations();
         return "listOfLocations";
