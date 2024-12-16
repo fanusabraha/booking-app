@@ -10,11 +10,12 @@
                <h2>Submitted Events</h2>
                <ul>
                    <li th:each="event : ${events}">
-                       <p th:text="'Country: ' + ${event.country}"></p>
-                       <p th:text="'Location: ' + ${event.location}"></p>
-                       <p th:text="'City: ' + ${event.city}"></p>
-                       <p th:text="'Number of Visitors: ' + ${event.numberOfVisitors}"></p>
-                       <p th:text="'Date: ' + ${event.date}"></p>
+                     <p th:text="'Country: ' + ${event.country}"></p>
+                     <p th:text="'Location: ' + ${event.location}"></p>
+                     <p th:text="'City: ' + ${event.city}"></p>
+                     <p th:text="'Number of Visitors: ' + ${event.capacity}"></p>
+                     <p th:text="'price: ' + ${event.price}"></p>
+                     <p th:text="'information: ' + ${event.comment}"></p>
                    </li>
                </ul>
     </div>

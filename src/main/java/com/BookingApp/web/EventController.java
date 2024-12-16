@@ -37,7 +37,7 @@ public class EventController {
     @GetMapping("/available")
     public String listOfEvents(ModelMap model){
         List <EventLocation> availableLocations = locationAddService.findAllLocations();
-        model.addAttribute("")
+        model.addAttribute("events", availableLocations);
         return "listOfLocations";
     }
 
