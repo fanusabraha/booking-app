@@ -1,7 +1,9 @@
 package com.BookingApp.web;
 
+import com.BookingApp.domain.EventLocation;
 import com.BookingApp.dto.EventSearchDto;
 import com.BookingApp.service.EventService;
+import com.BookingApp.service.LocationAddService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,8 +15,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/event")
 public class EventController {
+    // examine if using the locationAddService is the best solution
     @Autowired
-    EventService eventService;
+    LocationAddService locationAddService;
     List<EventSearchDto> events = new ArrayList<>();
     @GetMapping("/")
     public String homePageGet(ModelMap model ){
@@ -33,8 +36,8 @@ public class EventController {
         return "redirect:/event/";
     }
     @GetMapping("available/Events")
-    public String listOfEvents(){
-        
+    public String listOfEvents(ModelMap map){
+        List <EventLocation> availableLocations = locationAddService.findAllLocations();
         return "listOfLocations";
     }
 

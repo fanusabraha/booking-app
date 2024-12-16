@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class LocationAddService {
@@ -41,4 +42,7 @@ public class LocationAddService {
     }
 
 
+    public List<EventLocation> findAllLocations() {
+       return locationRepository.findAll();
+    }
 }
