@@ -21,7 +21,7 @@ public class EventLocation {
     @Lob
     private List<byte[]> pictures;
     @Transient
-    private String base64Image;
+    private List<String> base64Images;
 
     // i will check this transient later
 //    @Transient
@@ -132,8 +132,12 @@ public class EventLocation {
 
     //public void setPictureFile(MultipartFile [] pictureFile) {this.pictureFile = pictureFile;}
     // this is being used for viewing the pictures in the front web, need to be checked for other option or necessity
-    public String getBase64Image() {    return base64Image;}
+    public List<String> getBase64Images() {
+        return base64Images;
+    }
 
-    public void setBase64Image(String base64Image) {    this.base64Image = base64Image;}
+    public void setBase64Images(List<String> base64Images) {
+        this.base64Images = base64Images;
+    }
 }
 

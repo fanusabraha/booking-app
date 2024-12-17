@@ -6,34 +6,35 @@
     <link rel="stylesheet" th:href="@{/css/pictures.css}" />
 </head>
 <body>
-  <div class="dashboard-container">
+<div class="dashboard-container">
     <div th:if="${events != null}">
-               <h2>Submitted Events</h2>
-               <ul>
-                   <li th:each="event, iterStat : ${events}">
-                       <p th:text="'Country: ' + ${event.country}"></p>
-                       <p th:text="'Location: ' + ${event.location}"></p>
-                       <p th:text="'City: ' + ${event.city}"></p>
-                       <p th:text="'Number of Visitors: ' + ${event.capacity}"></p>
-                       <p th:text="'Price: ' + ${event.price}"></p>
-                       <p th:text="'Information: ' + ${event.comment}"></p>
-                       <p th:text="'Includes: ' + ${event.inclusion}"></p>
-                       <p th:text="'Option: ' + ${event.feature}"></p>
+        <h2>Submitted Events</h2>
+        <ul>
+            <li th:each="event, iterStat : ${events}">
+                <p th:text="'Country: ' + ${event.country}"></p>
+                <p th:text="'Location: ' + ${event.location}"></p>
+                <p th:text="'City: ' + ${event.city}"></p>
+                <p th:text="'Number of Visitors: ' + ${event.capacity}"></p>
+                <p th:text="'Price: ' + ${event.price}"></p>
+                <p th:text="'Information: ' + ${event.comment}"></p>
+                <p th:text="'Includes: ' + ${event.inclusion}"></p>
+                <p th:text="'Option: ' + ${event.feature}"></p>
 
-                       <!-- Unique slideshow container for each event -->
-                       <div class="slideshow-container" th:id="'slideshow-' + ${iterStat.index}">
-                           <div class="slide">
-                               <!-- Using event.base64Image instead of event.base64Images -->
-                               <img th:src="'data:image/jpeg;base64,' + ${event.base64Image}" alt="Event Picture" class="slide-image"/>
-                           </div>
-                           <!-- Navigation buttons -->
-                           <button class="prev" th:onclick="'changeSlide(-1, ' + ${iterStat.index} + ')'">❮</button>
-                           <button class="next" th:onclick="'changeSlide(1, ' + ${iterStat.index} + ')'">❯</button>
-                       </div>
-                   </li>
-               </ul>
+                <!-- Unique slideshow container for each event -->
+                <div class="slideshow-container" th:id="'slideshow-' + ${iterStat.index}">
+                    <!-- Slides -->
+                    <div th:each="image, imageIndex : ${event.base64Images}" class="slide" style="display: none;">
+                        <img th:src="'data:image/jpeg;base64,' + ${image}" alt="Event Picture" class="slide-image" />
+                    </div>
+
+                    <!-- Navigation buttons -->
+                    <button class="prev" th:attr="data-slideshow='slideshow-' + ${iterStat.index}">❮ previous</button>
+                    <button class="next" th:attr="data-slideshow='slideshow-' + ${iterStat.index}">next ❯</button>
+                </div>
+            </li>
+        </ul>
     </div>
-  </div>
-  <script src="/js/slideshow.js"></script>
+</div>
+<script src="/js/slideshow.js"></script>
 </body>
 </html>

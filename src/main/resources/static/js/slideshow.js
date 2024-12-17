@@ -1,24 +1,36 @@
-let slideIndex = 0;
+document.addEventListener("DOMContentLoaded", () => {
+    const slideshows = document.querySelectorAll(".slideshow-container");
 
-// Show the first slide
-showSlide(slideIndex);
+    slideshows.forEach((slideshow) => {
+        let currentIndex = 0;
+        const slides = slideshow.querySelectorAll(".slide");
 
-function changeSlide(n) {
-    showSlide(slideIndex += n);
-}
+        // Show the first slide initially
+        showSlide(currentIndex, slides);
 
-function showSlide(n) {
-    let slides = document.getElementsByClassName("slide");
+        // Add event listeners to buttons
+        const prevButton = slideshow.querySelector(".prev");
+        const nextButton = slideshow.querySelector(".next");
 
-    if (n >= slides.length) {
-        slideIndex = 0; // Loop back to the first slide
-    } else if (n < 0) {
-        slideIndex = slides.length - 1; // Loop to the last slide
+        prevButton.addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            showSlide(currentIndex, slides);
+        });
+
+        nextButton.addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex, slides);
+        });
+    });
+
+    /**
+     * Shows the slide at the specified index and hides the others.
+     * @param {number} index The index of the slide to show.
+     * @param {NodeList} slides The list of slide elements.
+     */
+    function showSlide(index, slides) {
+        slides.forEach((slide, i) => {
+            slide.style.display = i === index ? "block" : "none";
+        });
     }
-
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-
-    slides[slideIndex].style.display = "block";
-}
+});

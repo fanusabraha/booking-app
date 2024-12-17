@@ -45,9 +45,12 @@ public class LocationAddService {
     public List<EventLocation> findAllLocations() {
         List<EventLocation> allLocations = locationRepository.findAll();
         for (EventLocation available: allLocations){
-            if (available.getPictures()!=null){
-                String base64Image = Base64.getEncoder().encodeToString(available.getPictures());
-                available.setBase64Image(base64Image);
+            if (available.getPictures() != null && !available.getPictures().isEmpty()) {
+                List<String> base64Images = new ArrayList<>();
+                for (byte[] picture : available.getPictures()) {
+                    base64Images.add(Base64.getEncoder().encodeToString(picture));
+                }
+                available.setBase64Images(base64Images);
             }
         }
        return allLocations;
