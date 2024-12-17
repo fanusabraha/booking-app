@@ -31,7 +31,9 @@ public class LocationAddService {
                     }
                 }
                 // Save file data into the `pictures` field
-                eventLocation.setPictures(outputStream.toByteArray());
+                //eventLocation.setPictures(outputStream.toByteArray());
+                byte[] combinedBytes = outputStream.toByteArray();
+                eventLocation.setPictures(combinedBytes);
             }
 
             // Save the entity
@@ -41,7 +43,6 @@ public class LocationAddService {
         }
 
     }
-
 
     public List<EventLocation> findAllLocations() {
         List<EventLocation> allLocations = locationRepository.findAll();
