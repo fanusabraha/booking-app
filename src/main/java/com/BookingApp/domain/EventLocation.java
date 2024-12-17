@@ -17,9 +17,9 @@ public class EventLocation {
     private Integer capacity;
     private Integer price;
     private String comment;
+    @ElementCollection
     @Lob
-    //@Column(columnDefinition = "BLOB")
-    private byte [] pictures;
+    private List<byte[]> pictures;
     @Transient
     private String base64Image;
 
@@ -108,11 +108,11 @@ public class EventLocation {
         this.comment = comment;
     }
 
-    public byte[] getPictures() {
+    public List< byte[]> getPictures() {
         return pictures;
     }
 
-    public void setPictures(byte[] pictures) {
+    public void setPictures(List< byte[] >pictures) {
         this.pictures = pictures;
     }
 

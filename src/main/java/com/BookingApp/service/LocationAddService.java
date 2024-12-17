@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -22,22 +23,19 @@ public class LocationAddService {
     public void saveLocation (@ModelAttribute EventLocation eventLocation,
                               @RequestParam("pictureFile")MultipartFile[] files){
         try {
-            // Process uploaded files
             if (files != null && files.length > 0) {
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                List<byte[]> pictureList = new ArrayList<>();
                 for (MultipartFile file : files) {
                     if (!file.isEmpty()) {
-                        outputStream.write(file.getBytes());
+                        System.out.println("Processing file: " + file.getOriginalFilename() + ", size: " + file.getSize() + " bytes");
+                        pictureList.add(file.getBytes());
                     }
                 }
-                // Save file data into the `pictures` field
-                //eventLocation.setPictures(outputStream.toByteArray());
-                byte[] combinedBytes = outputStream.toByteArray();
-                eventLocation.setPictures(combinedBytes);
+                eventLocation.setPictures(pictureList);
             }
 
-            // Save the entity
             locationRepository.save(eventLocation);
+            System.out.println("Location saved successfully with multiple pictures!");
         } catch (IOException e) {
             e.printStackTrace();
         }
