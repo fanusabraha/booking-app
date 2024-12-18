@@ -61,8 +61,8 @@ public class LocationAddService {
                 .filter(eventLocation -> (country == null || eventLocation.getCountry().equalsIgnoreCase(country)) &&
                         (location == null || eventLocation.getLocation().equalsIgnoreCase(location)) &&
                         (city == null || eventLocation.getCity().equalsIgnoreCase(city)) &&
-                        (numberOfVisitors == null || eventLocation.getCapacity() >= numberOfVisitors) &&
-                        (date == null || eventLocation.getDate().equalsIgnoreCase(date)))
+                        (numberOfVisitors == null || eventLocation.getCapacity() >= numberOfVisitors))
+                        //&& (date == null || eventLocation.getDate().equalsIgnoreCase(date)))
                 .toList();
     }
 }

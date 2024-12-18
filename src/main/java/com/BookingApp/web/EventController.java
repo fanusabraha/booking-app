@@ -41,8 +41,8 @@ public class EventController {
             @RequestParam(required = false) String location,
             @RequestParam(required = false) String city,
             @RequestParam(required = false) Integer numberOfVisitors,
-            @RequestParam(required = false) String date) {
-        return ;
+            @RequestParam(required = false) String budget) {
+        return locationAddService.searchLocations(country, location, city, numberOfVisitors, budget);
     }
     // To see all the added elements or locations
     @GetMapping("/available")

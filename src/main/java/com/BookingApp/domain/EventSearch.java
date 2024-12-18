@@ -74,13 +74,9 @@ public class EventSearch {
 
     public void setServiceHours(Integer serviceHours) {this.serviceHours = serviceHours;}
 
-    public Integer getBudget() {
-        return budget;
-    }
+    public Integer getBudget() {return budget;}
 
-    public void setBudget(Integer budget) {
-        this.budget = budget;
-    }
+    public void setBudget(Integer budget) {this.budget = budget;}
     // additional attributes for more filtered options
     /*
     * private Integer durationInHours (after it is being shown available on the date)
