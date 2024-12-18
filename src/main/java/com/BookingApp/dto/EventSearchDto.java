@@ -9,6 +9,7 @@ public class EventSearchDto {
     private String city;
     private Integer numberOfVisitors;
     private LocalDate date;
+    private Integer budget;
 
     public Long getId() {
         return id;

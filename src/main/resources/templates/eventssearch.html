@@ -2,80 +2,45 @@
 <html xmlns:th="http://thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>homepage</title>
-    <script>
-        function validateForm(event) {
-            const numberOfVisitors = document.getElementById("numberOfVisitors").value;
-            const country = document.getElementById("country").value.trim();
-            const location = document.getElementById("location").value.trim();
-            const city = document.getElementById("city").value.trim();
-            const date = document.getElementById("date").value;
-
-            // Check if number of visitors is a number
-            if (!/^\d+$/.test(numberOfVisitors)) {
-                alert("Number of Visitors must be a valid number.");
-                event.preventDefault(); // Prevent form submission
-                return false;
-            }
-
-            // Check if required fields are filled
-            if (!country || !location || !city || !date) {
-                alert("All fields are required. Please fill out all fields.");
-                event.preventDefault(); // Prevent form submission
-                return false;
-            }
-
-            // If all validations pass
-            return true;
-        }
-    </script>
+    <title>Event Search</title>
     <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 </head>
 <body>
+<div class="dashboard-container">
+    <h1>Welcome to Event Finder</h1>
+    <h3>Enter values to view matching events</h3>
 
-    <div class="dashboard-container">
-        <h1>Welcome to finding the events</h1>
-        <h3>put the values for viewing the results</h3>
+    <form method="post" th:action="@{/event/}" th:object="${event}" onsubmit="return validateForm(event)">
+        <label for="country">Country:</label>
+        <input type="text" id="country" placeholder="like...Germany" th:field="*{country}"><br>
 
-        <form method="post" th:action="@{/event/}" th:object="${event}" onsubmit="return validateForm(event)">
-            <label for="country">Country:</label>
-            <input type="text" id="country" placeholder="like...Germany" th:field="*{country}"><br>
+        <label for="location">Location:</label>
+        <input type="text" id="location" placeholder="area like...downtown" th:field="*{location}"><br>
 
-            <label for="location">Location:</label>
-            <input type="text" id="location" placeholder="area like...downtown" th:field="*{location}"><br>
+        <label for="city">City:</label>
+        <input type="text" id="city" placeholder="like...Dallas" th:field="*{city}"><br>
 
-            <label for="city">City:</label>
-            <input type="text" id="city" placeholder="like..Dallas" th:field="*{city}"><br>
+        <label for="numberOfVisitors">Number of Visitors:</label>
+        <input type="number" id="numberOfVisitors" placeholder="15,20,35..." th:field="*{numberOfVisitors}"><br>
 
-            <label for="numberOfVisitors">Number of Visitors:</label>
-            <input type="number" id="numberOfVisitors" placeholder="15,20,35..." th:field="*{numberOfVisitors}"><br>
+        <label for="budget">Budget:</label>
+        <input type="number" id="budget" placeholder="4000..." th:field="*{budget}"><br>
 
-            <label for="budget"> Budget:</label>
-            <input type="number" id="budget" placeholder=" 4000..." th:field="*{budget}"><br>
+        <label for="date">Date:</label>
+        <input type="date" id="date" th:field="*{date}"><br>
 
-            <label for="date">Date:</label>
-            <input type="date" id="date" th:field="*{date}"><br>
+        <button type="submit">Submit</button>
+        <div>
+            <a href="/user/register">Sign Up</a>
+        </div>
+    </form>
 
-            <button type="submit">Submit</button>
-            <div>
-                <a href="/user/register">Sign Up</a>
-            </div>
-        </form>
-            <!-- for demonstration purposes only-->
+    <div id="results">
+        <h3>Search results will appear here</h3>
     </div>
+</div>
+
+<!-- Link to external JavaScript -->
+<script src="/js/event-search.js"></script>
 </body>
-<!--
-           <div th:if="${events != null}">
-               <h2>Submitted Events</h2>
-               <ul>
-                   <li th:each="event : ${events}">
-                       <p th:text="'Country: ' + ${event.country}"></p>
-                       <p th:text="'Location: ' + ${event.location}"></p>
-                       <p th:text="'City: ' + ${event.city}"></p>
-                       <p th:text="'Number of Visitors: ' + ${event.numberOfVisitors}"></p>
-                       <p th:text="'Date: ' + ${event.date}"></p>
-                   </li>
-               </ul>
-           </div>
-           -->
 </html>
