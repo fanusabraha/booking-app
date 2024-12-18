@@ -42,7 +42,7 @@ public class EventController {
             @RequestParam(required = false) String city,
             @RequestParam(required = false) Integer numberOfVisitors,
             @RequestParam(required = false) String date) {
-        return
+        return ;
     }
     // To see all the added elements or locations
     @GetMapping("/available")
