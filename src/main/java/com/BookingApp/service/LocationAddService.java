@@ -55,14 +55,14 @@ public class LocationAddService {
         }
        return allLocations;
     }
-    public List<EventLocation> searchLocations(String country, String location, String city, Integer numberOfVisitors, String date) {
+    public List<EventLocation> searchLocations(String country, String location, String city, Integer numberOfVisitors, Integer budget) {
         List<EventLocation> allLocations = findAllLocations(); // Reuse the method to fetch all locations
         return allLocations.stream()
-                .filter(eventLocation -> (country == null || eventLocation.getCountry().equalsIgnoreCase(country)) ||
+                .filter(eventLocation -> (country == null || eventLocation.getCountry().equalsIgnoreCase(country)) &&
                         (location == null || eventLocation.getLocation().equalsIgnoreCase(location)) ||
                         (city == null || eventLocation.getCity().equalsIgnoreCase(city)) ||
-                        (numberOfVisitors == null || eventLocation.getCapacity() >= numberOfVisitors))
-                        //&& (date == null || eventLocation.getDate().equalsIgnoreCase(date)))
+                        (numberOfVisitors == null || eventLocation.getCapacity() >= numberOfVisitors) ||
+                        (budget == null || eventLocation.getPrice() >= budget))
                 .toList();
     }
 }
