@@ -139,5 +139,22 @@ public class EventLocation {
     public void setBase64Images(List<String> base64Images) {
         this.base64Images = base64Images;
     }
+
+    @Override
+    public String toString() {
+        return "EventLocation{" +
+                "id=" + id +
+                ", location='" + location + '\'' +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", capacity=" + capacity +
+                ", price=" + price +
+                ", comment='" + comment + '\'' +
+                ", pictures=" + pictures +
+                ", base64Images=" + base64Images +
+                ", inclusion=" + inclusion +
+                ", feature=" + feature +
+                '}';
+    }
 }
 
