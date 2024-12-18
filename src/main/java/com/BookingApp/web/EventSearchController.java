@@ -28,7 +28,7 @@ public class EventSearchController {
     }
     @PostMapping("/")
     public String homePagePost (@ModelAttribute("event") EventSearchDto eventDto, ModelMap model){
-        eventServiceSearch.
+        eventServiceSearch.addSerachedEvent(eventDto);
         return "redirect:/event/";
     }
     // this is to see real time search
