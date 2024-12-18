@@ -59,6 +59,14 @@ public class EventSearchDto {
         this.date = date;
     }
 
+    public Integer getBudget() {
+        return budget;
+    }
+
+    public void setBudget(Integer budget) {
+        this.budget = budget;
+    }
+
     @Override
     public String toString() {
         return "EventDto{" +
