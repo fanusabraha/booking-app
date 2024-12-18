@@ -34,6 +34,17 @@ public class EventController {
        }
         return "redirect:/event/";
     }
+    // this is to see real time search
+    @GetMapping("/search")
+    public List<EventLocation> searchEvents(
+            @RequestParam(required = false) String country,
+            @RequestParam(required = false) String location,
+            @RequestParam(required = false) String city,
+            @RequestParam(required = false) Integer numberOfVisitors,
+            @RequestParam(required = false) String date) {
+        return
+    }
+    // To see all the added elements or locations
     @GetMapping("/available")
     public String listOfEvents(ModelMap model){
         List <EventLocation> availableLocations = locationAddService.findAllLocations();

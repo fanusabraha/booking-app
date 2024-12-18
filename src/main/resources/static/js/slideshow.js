@@ -1,36 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Select all slideshow containers
     const slideshows = document.querySelectorAll(".slideshow-container");
 
-    slideshows.forEach((slideshow) => {
-        let currentIndex = 0;
+    slideshows.forEach((slideshow, index) => {
+        let currentSlideIndex = 0;
         const slides = slideshow.querySelectorAll(".slide");
 
-        // Show the first slide initially
-        showSlide(currentIndex, slides);
+        // Initialize: Show the first slide
+        showSlide(currentSlideIndex, slides);
 
-        // Add event listeners to buttons
+        // Add event listeners to the buttons within this slideshow
         const prevButton = slideshow.querySelector(".prev");
         const nextButton = slideshow.querySelector(".next");
 
         prevButton.addEventListener("click", () => {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            showSlide(currentIndex, slides);
+            currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+            showSlide(currentSlideIndex, slides);
         });
 
         nextButton.addEventListener("click", () => {
-            currentIndex = (currentIndex + 1) % slides.length;
-            showSlide(currentIndex, slides);
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            showSlide(currentSlideIndex, slides);
         });
-    });
 
-    /**
-     * Shows the slide at the specified index and hides the others.
-     * @param {number} index The index of the slide to show.
-     * @param {NodeList} slides The list of slide elements.
-     */
-    function showSlide(index, slides) {
-        slides.forEach((slide, i) => {
-            slide.style.display = i === index ? "block" : "none";
-        });
-    }
+        // Function to display the current slide and hide others
+        function showSlide(index, slides) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? "block" : "none";
+            });
+        }
+    });
 });

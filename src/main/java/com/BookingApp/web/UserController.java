@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class UserController {
     @Autowired
     private UserService userService;
-    ArrayList<UserDto> users= new ArrayList<>();
 
     @GetMapping("/register")
     public String logIn(ModelMap map){
@@ -23,8 +22,8 @@ public class UserController {
         return"register";
     }
     @PostMapping("/register")
-    public String logIn (@ModelAttribute("user") UserDto userDto){
-        users.add(userDto);
-        return"redirect:/event/";
+    public String logIn (@ModelAttribute("user") User user){
+    userService.save(user);
+    return"redirect:/event/";
     }
 }
