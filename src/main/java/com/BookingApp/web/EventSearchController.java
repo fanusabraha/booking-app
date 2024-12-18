@@ -23,7 +23,7 @@ public class EventSearchController {
     @GetMapping("/")
     public String homePageGet(ModelMap model ){
         model.addAttribute("event",new EventSearchDto());
-        model.addAttribute("searchedEvents", events);
+        //model.addAttribute("searchedEvents", events);
         return "eventssearch";
     }
     @PostMapping("/")
@@ -33,12 +33,14 @@ public class EventSearchController {
     }
     // this is to see real time search
     @GetMapping("/search")
+    @ResponseBody
     public List<EventLocation> searchEvents(
             @RequestParam(required = false) String country,
             @RequestParam(required = false) String location,
             @RequestParam(required = false) String city,
             @RequestParam(required = false) Integer numberOfVisitors,
             @RequestParam(required = false) String budget) {
+        System.out.println(locationAddService.searchLocations(country, location, city, numberOfVisitors, budget).listIterator() + "these are the results");
         return locationAddService.searchLocations(country, location, city, numberOfVisitors, budget);
     }
     // To see all the added elements or locations

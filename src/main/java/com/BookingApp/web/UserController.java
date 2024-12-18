@@ -19,7 +19,7 @@ public class UserController {
     @GetMapping("/register")
     public String logIn(ModelMap map){
         map.addAttribute("user",new UserDto());
-        return"register";
+        return"signUp";
     }
     @PostMapping("/register")
     public String logIn (@ModelAttribute("user") User user){
