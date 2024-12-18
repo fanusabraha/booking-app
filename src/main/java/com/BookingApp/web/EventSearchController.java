@@ -2,7 +2,7 @@ package com.BookingApp.web;
 
 import com.BookingApp.domain.EventLocation;
 import com.BookingApp.dto.EventSearchDto;
-import com.BookingApp.service.EventService;
+import com.BookingApp.service.EventServiceSearch;
 import com.BookingApp.service.LocationAddService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,11 +14,12 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/event")
-public class EventController {
+public class EventSearchController {
     // examine if using the locationAddService is the best solution
     @Autowired
     LocationAddService locationAddService;
-    List<EventSearchDto> events = new ArrayList<>();
+    @Autowired
+    EventServiceSearch eventServiceSearch;
     @GetMapping("/")
     public String homePageGet(ModelMap model ){
         model.addAttribute("event",new EventSearchDto());
@@ -27,11 +28,7 @@ public class EventController {
     }
     @PostMapping("/")
     public String homePagePost (@ModelAttribute("event") EventSearchDto eventDto, ModelMap model){
-        events.add(eventDto);
-        // illustration only to be deleted
-       for (EventSearchDto eachEvent: events){
-           System.out.println(eachEvent);
-       }
+        eventServiceSearch.
         return "redirect:/event/";
     }
     // this is to see real time search
