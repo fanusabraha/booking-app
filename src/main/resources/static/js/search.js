@@ -5,7 +5,7 @@ document.querySelectorAll("#country, #location, #city, #numberOfVisitors, #budge
 
 function searchEvents() {
     const country = document.getElementById("country").value;
-    const location = document.getElementById("location").value;
+    const name = document.getElementById("name").value;
     const city = document.getElementById("city").value;
     const numberOfVisitors = document.getElementById("numberOfVisitors").value;
     const budget = document.getElementById("budget").value;
@@ -13,7 +13,7 @@ function searchEvents() {
 
     const params = new URLSearchParams({
         country,
-        location,
+        name,
         city,
         numberOfVisitors,
         budget,
@@ -40,7 +40,7 @@ function updateResults(events) {
         const li = document.createElement("li");
         li.innerHTML = `
             <strong>Country:</strong> ${event.country} <br>
-            <strong>Location:</strong> ${event.location} <br>
+            <strong>Name:</strong> ${event.name} <br>
             <strong>City:</strong> ${event.city} <br>
             <strong>Capacity:</strong> ${event.capacity} <br>
             <strong>Budget:</strong> ${event.budget} <br>

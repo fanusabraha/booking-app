@@ -35,11 +35,11 @@ public class EventSearchController {
     @ResponseBody
     public List<EventLocation> searchEvents(
             @RequestParam(required = false) String country,
-            @RequestParam(required = false) String location,
+            @RequestParam(required = false) String name,
             @RequestParam(required = false) String city,
             @RequestParam(required = false) Integer numberOfVisitors,
             @RequestParam(required = false) Integer budget) {
-        return locationAddService.searchLocations(country, location, city, numberOfVisitors, budget);
+        return locationAddService.searchLocations(country, name, city, numberOfVisitors, budget);
     }
     // To see all the added elements or locations
 
