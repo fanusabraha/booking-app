@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>editSingleLocation</title>
-  <link rel="stylesheet" th:href="@{/css/pictures.css}" />
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 </head>
 <body>
     <div class="dashboard-container">
@@ -13,7 +13,7 @@
         <div>
             <a th:href="@{/}" class="button"> Go to main page</a>
         </div>
-            <form  method="post" th:action="@{update/{id}(id=${location.id})}">
+            <form  method="post" th:action="@{/{id}(id=${location.id})}">
                 <label for="location"> Edit location  </label>
                 <input type="text" id="location" th:value="${oldValue}" placeholder="Downtown.." th:field="${location.location}" >
 
