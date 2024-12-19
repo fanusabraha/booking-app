@@ -6,19 +6,31 @@
   <link rel="stylesheet" th:href="@{/css/pictures.css}" />
 </head>
 <body>
-  <label for="location"> Edit location  </label>
-  <input type="text" id="location" th:value="${oldValue}" placeholder="Downtown.." th:field="${location.location}" >
-  <label for="country"> Edit location  </label>
-  <input type="text" id="country" th:value="${oldValue}" placeholder="USA,Germany.." th:field="${location.country}" >
-  <label for="capacity"> Edit location  </label>
-  <input type="text" id="capacity" th:value="${oldValue}" placeholder="Downtown.." th:field="${location.capacity}" >
-  <label for="city"> Edit location  </label>
-  <input type="text" id="city" th:value="${oldValue}" placeholder="Downtown.." th:field="${location.city}" >
-  <label for="price"> Edit location  </label>
-  <input type="text" id="price" th:value="${oldValue}" placeholder="Downtown.." th:field="${location.price}" >
-  <label for="comment"> Edit location  </label>
-  <input type="text" id="comment" th:value="${oldValue}" placeholder="Downtown.." th:field="${location.comment}" >
+<div>
+  Updating eventlocation <label th:field="${location.location}"></label>
+</div>
+    <form  method="post" th:action="{locations/update/{id}(id=${location.id})}">
+        <label for="location"> Edit location  </label>
+        <input type="text" id="location" th:value="${oldValue}" placeholder="Downtown.." th:field="${location.location}" >
 
+        <label for="country"> Edit country  </label>
+        <input type="text" id="country" th:value="${oldValue}" placeholder="USA,Germany.." th:field="${location.country}" >
+
+        <label for="city"> Edit city  </label>
+        <input type="text" id="city" th:value="${oldValue}" placeholder="Downtown.." th:field="${location.city}" >
+
+        <label for="capacity"> Edit capacity  </label>
+        <input type="number" id="capacity" th:value="${oldValue}" placeholder="200.." th:field="${location.capacity}" >
+
+        <label for="price"> Edit location  </label>
+        <input type="number" id="price" th:value="${oldValue}" placeholder="6000.." th:field="${location.price}" >
+
+        <label for="comment"> Edit location  </label>
+        <textarea id="comment" th:value="${oldValue}" placeholder="Location description.." th:field="${location.comment}" ></textarea>
+        <div>
+          <button>Update information</button>
+        </div>
+    </form>
 
 </body>
 </html>
