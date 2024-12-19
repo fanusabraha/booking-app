@@ -11,7 +11,7 @@
     <div>
         <a th:href="@{/}" class="button"> Go to main page</a>
     </div>
-<form th:action="@{/addlocation}" th:object="${eventLocation}" method="post" enctype="multipart/form-data" >
+<form th:action="@{/locations/add}" th:object="${eventLocation}" method="post" enctype="multipart/form-data" >
     <div>
         <label for="location">Location Name:</label>
         <input type="text" id="location" th:field="*{location}" placeholder="Enter location name" required />

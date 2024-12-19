@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 
 @Service
-public class EventServiceSearch {
+public class EventSearchService {
     @Autowired
     private EventRepository eventRepository;
     public void addSerachedEvent (EventSearchDto eventSearchDto){
