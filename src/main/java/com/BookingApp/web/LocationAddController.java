@@ -37,7 +37,7 @@ public class LocationAddController {
     }
     @GetMapping("/update/{id}")
     public String editLocations( @PathVariable("id") Long id, Model model){
-        EventLocation location = locationAddService.findAllLocations().get(id);
+        EventLocation location = locationAddService.findById(id);
         model.addAttribute("location", location);
         return "editLocation";
     }

@@ -65,7 +65,8 @@ public class LocationAddService {
                         (budget == null || eventLocation.getPrice() >= budget))
                 .toList();
     }
-    public Optional<EventLocation> findById(Long id){
-        return locationRepository.findById(id);
+    public EventLocation findById(Long id){
+        return locationRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("Eventlocation with this Id not found"));
     }
 }

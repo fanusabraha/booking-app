@@ -6,7 +6,7 @@
   <link rel="stylesheet" th:href="@{/css/pictures.css}" />
 </head>
 <body>
-  <label for="location"> Edit the location name </label>
-  <input type="text" id="location" th:value="${oldValue}" placeholder="Downtown.." th:field="" >
+  <label for="location"> Edit location  </label>
+  <input type="text" id="location" th:value="${oldValue}" placeholder="Downtown.." th:field="location.location" >
 </body>
 </html>
