@@ -8,6 +8,9 @@
 <body>
 <div class="dashboard-container">
 <h1>Add Event Location</h1>
+    <div>
+        <a th:href="@{/}" class="button"> Go to main page</a>
+    </div>
 <form th:action="@{/addlocation}" th:object="${eventLocation}" method="post" enctype="multipart/form-data" >
     <div>
         <label for="location">Location Name:</label>
@@ -55,6 +58,7 @@
         <button type="submit">Add Location</button>
     </div>
 </form>
+
 </div>
 </body>
 </html>

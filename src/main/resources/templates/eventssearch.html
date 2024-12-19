@@ -9,6 +9,9 @@
 <div class="dashboard-container">
     <h1>Welcome to Event Finder</h1>
     <h3>Enter values to view matching events</h3>
+    <div>
+        <a th:href="@{/}" class="button"> Go to main page</a>
+    </div>
 
     <form method="post" th:action="@{/event/}" th:object="${event}" onsubmit="return validateForm(event)">
         <label for="country">Country:</label>

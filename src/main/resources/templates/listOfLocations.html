@@ -7,6 +7,9 @@
 </head>
 <body>
 <div class="dashboard-container">
+    <div>
+        <a th:href="@{/}" class="button"> Go to main page</a>
+    </div>
     <div th:if="${events != null}">
         <h2>Submitted Events</h2>
         <ul>

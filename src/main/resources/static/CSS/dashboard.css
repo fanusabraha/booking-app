@@ -82,16 +82,16 @@ form input[type="file"] {
 }
 
 form button {
-    padding: 15px;
-    font-size: 18px;
-    background-color: #007BFF;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
+    padding: 20px; /* Increased padding */
+    font-size: 22px; /* Increased font size */
+    background-color: #007BFF; /* Button color */
+    color: #ffffff; /* Text color */
+    border: 10px;
+    border-radius: 10px; /* Increased border radius for a softer look */
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-    width: 100%;
-    margin-top: 20px;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease; /* Added transform transition */
+    width: 100%; /* Full width */
+    margin-top: 30px; /* Increased margin for spacing */
 }
 
 form button:hover {
