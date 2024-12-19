@@ -69,4 +69,9 @@ public class LocationAddService {
         return locationRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("Eventlocation with this Id not found"));
     }
+    public void saveById (Long id, EventLocation eventLocation){
+        EventLocation location = locationRepository.findById(id).
+                orElseThrow(()-> new IllegalArgumentException("Eventlocation with this Id not found"));
+        // to be completed
+    }
 }

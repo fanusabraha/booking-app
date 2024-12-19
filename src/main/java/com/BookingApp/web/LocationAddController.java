@@ -41,5 +41,10 @@ public class LocationAddController {
         model.addAttribute("location", location);
         return "editLocation";
     }
+    @PostMapping("update/{id}")
+    public String editlocation(@PathVariable("id") Long id, @ModelAttribute EventLocation eventLocation){
+        locationAddService.
+        return;
+    }
 
 }
