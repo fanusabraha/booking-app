@@ -36,8 +36,9 @@ public class LocationAddController {
         return "listOfLocations";
     }
     @GetMapping("/id")
-    public String editLocations( @PathVariable Integer id){
+    public String editLocations( @PathVariable Integer id, Model model){
         EventLocation location = locationAddService.findAllLocations().get(id);
+        model.addAttribute("location", location);
         return "editLocation";
     }
 

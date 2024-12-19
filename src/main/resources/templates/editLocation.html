@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>editSingleLocation</title>
+  <link rel="stylesheet" th:href="@{/css/pictures.css}" />
 </head>
 <body>
-
+  <label for="location"> Edit the location name </label>
+  <input type="text" id="location" value="oldValueHere" placeholder="Downtown.." th:field="" >
 </body>
 </html>
