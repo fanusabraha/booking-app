@@ -40,9 +40,6 @@ public class EventSearchController {
             @RequestParam(required = false) String city,
             @RequestParam(required = false) Integer numberOfVisitors,
             @RequestParam(required = false) Integer budget) {
-        List<EventLocation> results = locationAddService.searchLocations(country, location, city, numberOfVisitors, budget);
-        results.forEach(System.out::println);
-
         return locationAddService.searchLocations(country, location, city, numberOfVisitors, budget);
     }
     // To see all the added elements or locations
