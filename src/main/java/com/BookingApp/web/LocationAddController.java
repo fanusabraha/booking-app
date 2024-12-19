@@ -36,15 +36,15 @@ public class LocationAddController {
         return "listOfLocations";
     }
     @GetMapping("/update/{id}")
-    public String editLocations( @PathVariable("id") Long id, Model model){
+    public String editLocation( @PathVariable("id") Long id, Model model){
         EventLocation location = locationAddService.findById(id);
         model.addAttribute("location", location);
         return "editLocation";
     }
     @PostMapping("update/{id}")
-    public String editlocation(@PathVariable("id") Long id, @ModelAttribute EventLocation eventLocation){
-        locationAddService.
-        return;
+    public String editLocation(@PathVariable("id") Long id, @ModelAttribute EventLocation eventLocation){
+        locationAddService.saveById(id, eventLocation);
+        return"listOfLocations";
     }
 
 }
