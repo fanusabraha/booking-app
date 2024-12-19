@@ -17,7 +17,7 @@ public class EventSearchService {
         eventSearch.setBudget(eventSearchDto.getBudget());
         eventSearch.setCity(eventSearchDto.getCity());
         eventSearch.setCountry(eventSearchDto.getCountry());
-        eventSearch.setLocation(eventSearchDto.getLocation());
+        eventSearch.setName(eventSearchDto.getName());
         eventSearch.setNumberOfVisitors(eventSearchDto.getNumberOfVisitors());
         eventSearch.setId(eventSearchDto.getId());
         eventSearch.setDate(LocalDate.EPOCH);

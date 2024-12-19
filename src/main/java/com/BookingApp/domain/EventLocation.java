@@ -1,9 +1,7 @@
 package com.BookingApp.domain;
 
 import jakarta.persistence.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "EventLocations")
@@ -11,7 +9,7 @@ public class EventLocation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String location;
+    private String name;
     private String country;
     private String city;
     private Integer capacity;
@@ -60,12 +58,12 @@ public class EventLocation {
         this.id = id;
     }
 
-    public String getLocation() {
-        return location;
+    public String getName() {
+        return name;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCountry() {
@@ -144,7 +142,7 @@ public class EventLocation {
     public String toString() {
         return "EventLocation{" +
                 "id=" + id +
-                ", location='" + location + '\'' +
+                ", location='" + name + '\'' +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
                 ", capacity=" + capacity +

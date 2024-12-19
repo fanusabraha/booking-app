@@ -8,14 +8,14 @@
 <body>
     <div class="dashboard-container">
         <div>
-          Updating eventlocation <label th:field="${location.location}"></label>
+            <h1 th:text="${location.name}">Default Name</h1>
         </div>
         <div>
             <a th:href="@{/}" class="button"> Go to main page</a>
         </div>
-            <form  method="post" th:action="@{/{id}(id=${location.id})}">
-                <label for="location"> Edit location  </label>
-                <input type="text" id="location" th:value="${oldValue}" placeholder="Downtown.." th:field="${location.location}" >
+        <form method="post" th:action="@{/locations/update/{id}(id=${location.id})}">
+                <label for="name"> Edit location  </label>
+                <input type="text" id="name" th:value="${oldValue}" placeholder="Downtown.." th:field="${location.name}" >
 
                 <label for="country"> Edit country  </label>
                 <input type="text" id="country" th:value="${oldValue}" placeholder="USA,Germany.." th:field="${location.country}" >

@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class LocationAddService {
@@ -55,11 +54,11 @@ public class LocationAddService {
         }
        return allLocations;
     }
-    public List<EventLocation> searchLocations(String country, String location, String city, Integer numberOfVisitors, Integer budget) {
+    public List<EventLocation> searchLocations(String country, String name, String city, Integer numberOfVisitors, Integer budget) {
         List<EventLocation> allLocations = findAllLocations(); // Reuse the method to fetch all locations
         return allLocations.stream()
                 .filter(eventLocation -> (country == null || eventLocation.getCountry().equalsIgnoreCase(country)) &&
-                        (location == null || eventLocation.getLocation().equalsIgnoreCase(location)) ||
+                        (name == null || eventLocation.getName().equalsIgnoreCase(name)) ||
                         (city == null || eventLocation.getCity().equalsIgnoreCase(city)) ||
                         (numberOfVisitors == null || eventLocation.getCapacity() >= numberOfVisitors) ||
                         (budget == null || eventLocation.getPrice() >= budget))
@@ -72,6 +71,6 @@ public class LocationAddService {
     public void saveById (Long id, EventLocation eventLocation){
         EventLocation location = locationRepository.findById(id).
                 orElseThrow(()-> new IllegalArgumentException("Eventlocation with this Id not found"));
-        // to be completed
+        if (eventLocation)
     }
 }

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class EventSearchDto {
     private Long id;
-    private String location;
+    private String name;
     private String country;
     private String city;
     private Integer numberOfVisitors;
@@ -19,12 +19,12 @@ public class EventSearchDto {
         this.id = id;
     }
 
-    public String getLocation() {
-        return location;
+    public String getName() {
+        return name;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCountry() {
@@ -71,7 +71,7 @@ public class EventSearchDto {
     public String toString() {
         return "EventDto{" +
                 "id=" + id +
-                ", location='" + location + '\'' +
+                ", location='" + name + '\'' +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
                 ", numberOfVisitors=" + numberOfVisitors +
