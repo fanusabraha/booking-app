@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LocationAddService {
@@ -64,5 +64,8 @@ public class LocationAddService {
                         (numberOfVisitors == null || eventLocation.getCapacity() >= numberOfVisitors) ||
                         (budget == null || eventLocation.getPrice() >= budget))
                 .toList();
+    }
+    public Optional<EventLocation> findById(Long id){
+        return locationRepository.findById(id);
     }
 }
