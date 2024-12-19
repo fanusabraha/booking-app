@@ -71,6 +71,23 @@ public class LocationAddService {
     public void saveById (Long id, EventLocation eventLocation){
         EventLocation location = locationRepository.findById(id).
                 orElseThrow(()-> new IllegalArgumentException("Eventlocation with this Id not found"));
-        //if (eventLocation)
+        if (eventLocation.getName()!=null && !eventLocation.getName().isEmpty() ){
+            eventLocation.setName(eventLocation.getName());
+        }
+        if (eventLocation.getCountry()!=null && !eventLocation.getCountry().isEmpty() ){
+            eventLocation.setCountry(eventLocation.getCountry());
+        }
+        if (eventLocation.getCity()!=null && !eventLocation.getCity().isEmpty() ){
+            eventLocation.setCity(eventLocation.getCity());
+        }
+        if (eventLocation.getCapacity()!=null){
+            eventLocation.setName(eventLocation.getName());
+        }
+        if (eventLocation.getPrice()!=null){
+            eventLocation.setName(eventLocation.getName());
+        }
+        if (eventLocation.getComment()!=null && !eventLocation.getComment().isEmpty() ){
+            eventLocation.setName(eventLocation.getName());
+        }
     }
 }
