@@ -8,7 +8,7 @@
 <body>
 <div class="dashboard-container">
     <h1>Welcome to Event Finder</h1>
-    <h3>Enter values to view matching events</h3>
+    <h3>Enter the information to view available events</h3>
     <div>
         <a th:href="@{/}" class="button"> Go to main page</a>
     </div>
@@ -16,21 +16,21 @@
     <form method="post" th:action="@{/event/}" th:object="${event}" onsubmit="return validateForm(event)">
 
         <label for="country">Country:</label>
-        <input type="text" id="country" placeholder="like...Germany" th:field="*{country}"><br>
+        <input type="text" id="country" placeholder="like...Germany" th:field="*{country}">
 
         <label for="name">Location name:</label>
-        <input type="text" id="name" placeholder="area like...downtown" th:field="*{name}"><br>
+        <input type="text" id="name" placeholder="area like...Alster Lagune" th:field="*{name}">
 
         <label for="city">City:</label>
-        <input type="text" id="city" placeholder="like...Dallas" th:field="*{city}"><br>
+        <input type="text" id="city" placeholder="like...Dallas" th:field="*{city}">
 
         <label for="numberOfVisitors">Number of Visitors:</label>
-        <input type="number" id="numberOfVisitors" placeholder="15,20,35..." th:field="*{numberOfVisitors}"><br>
+        <input type="number" id="numberOfVisitors" placeholder="15,20,35..." th:field="*{numberOfVisitors}">
 
         <label for="budget">Budget:</label>
-        <input type="number" id="budget" placeholder="4000..." th:field="*{budget}"><br>
+        <input type="number" id="budget" placeholder="4000..." th:field="*{budget}">
 
-        <label for="date">Date:</label>
+        <label for="date">Choose event date:</label>
         <input type="date" id="date" th:field="*{date}"><br>
 
         <button type="submit">Submit</button>

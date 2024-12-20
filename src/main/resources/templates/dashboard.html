@@ -6,12 +6,20 @@
     <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 </head>
 <body>
-<div class="dashboard-container">
-    <h1>Dashboard</h1>
-    <a th:href="@{/event/}" class="button">Look up Events</a>
-    <a th:href="@{/locations/add}">Add new event location</a>
-    <a th:href="@{/locations/all}">See all event locations</a>
-    <a th:href="@{/user/register}"> Sign Up</a>
-</div>
+    <div class="dashboard-container">
+        <h1>Dashboard</h1>
+        <div>
+        <a th:href="@{/event/}" class="button">Look up Events</a>
+        </div><br>
+        <div>
+        <a th:href="@{/locations/add}" class="button">Add new event location</a>
+        </div>
+        <div>
+        <a th:href="@{/locations/all}" class="button">See all event locations</a>
+        </div>
+        <div>
+        <a th:href="@{/user/register}" class="button"> Sign Up</a>
+        </div>
+    </div>
 </body>
 </html>

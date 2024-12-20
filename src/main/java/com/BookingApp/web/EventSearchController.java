@@ -23,7 +23,7 @@ public class EventSearchController {
     public String homePageGet(ModelMap model ){
         model.addAttribute("event",new EventSearchDto());
         //model.addAttribute("searchedEvents", events);
-        return "eventssearch";
+        return "eventsSearch";
     }
     @PostMapping("/")
     public String homePagePost (@ModelAttribute("event") EventSearchDto eventDto, ModelMap model){
