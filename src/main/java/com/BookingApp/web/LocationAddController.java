@@ -46,7 +46,7 @@ public class LocationAddController {
         locationAddService.saveById(id, eventLocation);
         return"redirect:/locations/all";
     }
-    @PostMapping("delete")
+    @PostMapping("/delete/{id}")
     public String deleteLocation(@PathVariable("id") Long id){
         locationAddService.deleteLocationById(id);
         return"redirect:/locations/all";

@@ -36,10 +36,8 @@
                   <button>Update information</button>
                 </div>
             </form>
-            <form  method="post" th:action="@{/locations/delete}">
-                <div>
+            <form  method="post" th:action="@{/locations/delete/{id}(id=${location.id})}">
                     <button>Delete location</button>
-                </div>
             </form>
     </div>
 </body>
