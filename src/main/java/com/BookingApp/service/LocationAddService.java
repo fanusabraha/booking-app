@@ -81,15 +81,40 @@ public class LocationAddService {
             location.setCity(eventLocation.getCity());
         }
         if (eventLocation.getCapacity()!=null){
-            location.setName(eventLocation.getName());
+            location.setCapacity(eventLocation.getCapacity());
         }
         if (eventLocation.getPrice()!=null){
-            location.setName(eventLocation.getName());
+            location.setPrice(eventLocation.getPrice());
         }
         if (eventLocation.getComment()!=null && !eventLocation.getComment().isEmpty() ){
-            location.setName(eventLocation.getName());
+            location.setComment(eventLocation.getComment());
         }
         //this needs to be modified because the pictures needs to be updated too
         locationRepository.save(location);
     }
+    // other alternatives for less redundancy
+//    private void updateIfPresent(String newValue, Consumer<String> updater) {
+//        if (newValue != null && !newValue.isEmpty()) {
+//            updater.accept(newValue);
+//        }
+//    }
+//    public void saveById(Long id, EventLocation eventLocation) {
+//        EventLocation location = locationRepository.findById(id)
+//                .orElseThrow(() -> new IllegalArgumentException("Event location with this ID not found"));
+//
+//        updateIfPresent(eventLocation.getLocation(), location::setLocation);
+//        updateIfPresent(eventLocation.getCountry(), location::setCountry);
+//        updateIfPresent(eventLocation.getCity(), location::setCity);
+//
+//        if (eventLocation.getCapacity() != null) {
+//            location.setCapacity(eventLocation.getCapacity());
+//        }
+//        if (eventLocation.getPrice() != null) {
+//            location.setPrice(eventLocation.getPrice());
+//        }
+//        updateIfPresent(eventLocation.getComment(), location::setComment);
+//
+//        locationRepository.save(location);
+//    }
+
 }

@@ -44,7 +44,12 @@ public class LocationAddController {
     @PostMapping("update/{id}")
     public String editLocation(@PathVariable("id") Long id, @ModelAttribute EventLocation eventLocation){
         locationAddService.saveById(id, eventLocation);
-        return"listOfLocations";
+        return"redirect:/locations/all";
+    }
+    @PostMapping("delete")
+    public String deleteLocation(@PathVariable("id") Long id){
+
+        return"redirect:/locations/all";
     }
 
 }

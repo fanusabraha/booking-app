@@ -8,15 +8,15 @@
 <body>
 <div class="dashboard-container">
     <div>
-        <a th:href="@{/}" class="button"> Go to main page</a>
+        <button class="button" onclick="location.href='/'">Go to main page</button>
     </div>
+
     <div th:if="${events != null}">
         <h2>Submitted Events</h2>
         <ul>
             <li th:each="event : ${events}">
                 <a th:href="@{/locations/update/{id}(id=${event.id})}" class="button"> Update location</a>
-                <p th:text="'Country: ' + ${event.country}"></p>
-                <p th:text="'Location name: ' + ${event.name}"></p>
+                <p th:text="'Location name: ' + ${event.name}"></p><p th:text="'Country: ' + ${event.country}"></p>
                 <p th:text="'City: ' + ${event.city}"></p>
                 <p th:text="'Number of Visitors: ' + ${event.capacity}"></p>
                 <p th:text="'Price: ' + ${event.price}"></p>
