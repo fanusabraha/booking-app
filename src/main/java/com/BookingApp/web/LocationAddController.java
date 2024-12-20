@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -38,6 +39,14 @@ public class LocationAddController {
     @GetMapping("/update/{id}")
     public String editLocation( @PathVariable("id") Long id, Model model){
         EventLocation location = locationAddService.findById(id);
+        // needs to move to service
+        if (location.getPictures() != null) {
+            List<String> base64Images = location.getPictures().stream()
+                    .map(picture -> Base64.getEncoder().encodeToString(picture))
+                    .toList();
+            location.setBase64Images(base64Images);
+        }
+
         model.addAttribute("location", location);
         return "editLocation";
     }

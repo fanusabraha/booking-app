@@ -35,6 +35,7 @@
                 <div>
                     <h4>Current Pictures:</h4>
                     <div th:each="image, iterStat : ${location.base64Images}" style="display: inline-block; margin: 10px;">
+                        <p th:text="${image}"></p>
                         <img th:src="'data:image/jpeg;base64,' + ${image}"
                              alt="Location Picture"
                              style="width: 150px; height: auto; border: 1px solid #ddd;" />
