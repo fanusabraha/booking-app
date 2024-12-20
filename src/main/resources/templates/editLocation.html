@@ -33,6 +33,20 @@
                 <label for="comment"> Edit comment  </label>
                 <textarea id="comment" th:value="${oldValue}" placeholder="Location description.." th:field="${location.comment}" ></textarea>
                 <div>
+                    <h4>Current Pictures:</h4>
+                    <div th:each="image, iterStat : ${location.base64Images}" style="display: inline-block; margin: 10px;">
+                        <img th:src="'data:image/jpeg;base64,' + ${image}"
+                             alt="Location Picture"
+                             style="width: 150px; height: auto; border: 1px solid #ddd;" />
+                        <input type="checkbox" name="removePictures" th:value="${iterStat.index}" /> Remove
+                    </div>
+                </div>
+
+                <div>
+                    <label for="newPictures">Add New Pictures</label>
+                    <input type="file" id="newPictures" name="newPictures" multiple>
+                </div>
+                <div>
                   <button>Update information</button>
                 </div>
             </form>
