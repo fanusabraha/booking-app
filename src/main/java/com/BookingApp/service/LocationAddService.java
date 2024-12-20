@@ -116,5 +116,8 @@ public class LocationAddService {
 //
 //        locationRepository.save(location);
 //    }
-
+    public void deleteLocationById(Long id){
+        locationRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("Eventlocation with this Id not found"));
+    }
 }
