@@ -45,8 +45,9 @@ public class LocationAddController {
     @PostMapping("update/{id}")
     public String editLocation(@PathVariable("id") Long id,
                                @ModelAttribute EventLocation eventLocation,
-                               ){
-        locationAddService.saveById(id, eventLocation);
+                               @RequestParam(value = "removePictures", required = false) List<Integer> removePicturesIndices,
+                               @RequestParam(value = "newPictures", required = false) MultipartFile[] newPictures){
+        locationAddService.saveById(id, eventLocation, removePicturesIndices, newPictures);
         return"redirect:/locations/all";
     }
     @PostMapping("/delete/{id}")

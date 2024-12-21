@@ -76,7 +76,7 @@ public class LocationAddService {
         }
         return location;
     }
-    public void saveById (Long id, EventLocation eventLocation){
+    public void saveById (Long id, EventLocation eventLocation,List<Integer> removePicturesIndices, MultipartFile[] newPictures){
         EventLocation location = locationRepository.findById(id).
                 orElseThrow(()-> new IllegalArgumentException("Eventlocation with this Id not found"));
         if (eventLocation.getName()!=null && !eventLocation.getName().isEmpty() ){
@@ -97,7 +97,26 @@ public class LocationAddService {
         if (eventLocation.getComment()!=null && !eventLocation.getComment().isEmpty() ){
             location.setComment(eventLocation.getComment());
         }
-        //this needs to be modified because the pictures needs to be updated too
+        if (removePicturesIndices != null && !removePicturesIndices.isEmpty()) {
+            List<byte[]> updatedPictures = new ArrayList<>(location.getPictures());
+            for (int index : removePicturesIndices) {
+                updatedPictures.remove(index);
+            }
+            location.setPictures(updatedPictures);
+        }
+
+        // Handle new picture uploads
+        if (newPictures != null && newPictures.length > 0) {
+            for (MultipartFile file : newPictures) {
+                try {
+                    location.getPictures().add(file.getBytes());
+                } catch (IOException e) {
+                    throw new RuntimeException("Error while uploading new pictures", e);
+                }
+            }
+        }
+
+        // Save updated location
         locationRepository.save(location);
     }
     // other alternatives for less redundancy
