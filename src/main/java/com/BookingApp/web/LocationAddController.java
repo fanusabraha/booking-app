@@ -39,19 +39,13 @@ public class LocationAddController {
     @GetMapping("/update/{id}")
     public String editLocation( @PathVariable("id") Long id, Model model){
         EventLocation location = locationAddService.findById(id);
-        // needs to move to service
-        if (location.getPictures() != null) {
-            List<String> base64Images = location.getPictures().stream()
-                    .map(picture -> Base64.getEncoder().encodeToString(picture))
-                    .toList();
-            location.setBase64Images(base64Images);
-        }
-
         model.addAttribute("location", location);
         return "editLocation";
     }
     @PostMapping("update/{id}")
-    public String editLocation(@PathVariable("id") Long id, @ModelAttribute EventLocation eventLocation){
+    public String editLocation(@PathVariable("id") Long id,
+                               @ModelAttribute EventLocation eventLocation,
+                               ){
         locationAddService.saveById(id, eventLocation);
         return"redirect:/locations/all";
     }

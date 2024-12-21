@@ -65,8 +65,16 @@ public class LocationAddService {
                 .toList();
     }
     public EventLocation findById(Long id){
-        return locationRepository.findById(id)
+        EventLocation location = locationRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("Eventlocation with this Id not found"));
+        // for rendering the images to webpage
+        if (location.getPictures() != null) {
+            List<String> base64Images = location.getPictures().stream()
+                    .map(picture -> Base64.getEncoder().encodeToString(picture))
+                    .toList();
+            location.setBase64Images(base64Images);
+        }
+        return location;
     }
     public void saveById (Long id, EventLocation eventLocation){
         EventLocation location = locationRepository.findById(id).

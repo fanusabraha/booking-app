@@ -9,6 +9,9 @@
     <div class="dashboard-container">
         <div>
             <a th:href="@{/}" class="button"> Go to main page</a>
+        </div><br>
+        <div>
+            <a th:href="@{/locations/all}" class="button"> See All Locations</a>
         </div>
         <div>
             <h1 th:text="${location.name}">Default Name</h1>
@@ -35,7 +38,6 @@
                 <div>
                     <h4>Current Pictures:</h4>
                     <div th:each="image, iterStat : ${location.base64Images}" style="display: inline-block; margin: 10px;">
-                        <p th:text="${image}"></p>
                         <img th:src="'data:image/jpeg;base64,' + ${image}"
                              alt="Location Picture"
                              style="width: 150px; height: auto; border: 1px solid #ddd;" />
