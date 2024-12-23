@@ -28,7 +28,7 @@ public class LocationAddController {
     public String addLocation(@ModelAttribute EventLocation eventLocation,
             @RequestParam("pictureFile") MultipartFile[] files) {
         locationAddService.saveLocation(eventLocation,files);
-        return "dashboard";
+        return "redirect:/locations/all";
     }
     @GetMapping("/all")
     public String listOfEvents(ModelMap model){

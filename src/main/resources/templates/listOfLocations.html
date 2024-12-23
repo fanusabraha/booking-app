@@ -10,6 +10,10 @@
     <div>
         <button class="button" onclick="location.href='/'">Go to main page</button>
     </div>
+    <div>
+        <a th:href="@{/locations/add}" class="button">Add new event location</a>
+    </div><br>
+    <div>
 
     <div th:if="${events != null}">
         <h2>Submitted Events</h2>
