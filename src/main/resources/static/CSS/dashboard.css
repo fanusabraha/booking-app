@@ -1,12 +1,18 @@
-/* dashboard.css */
-body {
+/* Ensure body and html elements can scroll */
+html, body {
     margin: 0;
+    padding: 0;
+    height: 100%; /* Full height for scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+body {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-    overflow: hidden;
     padding: 0;
     box-sizing: border-box;
 
@@ -17,7 +23,7 @@ body {
     transition: background-image 2s ease-in-out;
 }
 
-
+/* Dashboard container adjustments */
 .dashboard-container {
     text-align: center;
     background: #ffffff;
@@ -27,16 +33,12 @@ body {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+    background: transparent;
+    position: relative;
+    z-index: 1;
 }
 
-.dashboard-container h1 {
-    margin-bottom: 20px;
-    font-size: 28px;
-    color: #333;
-    text-align: center;
-}
-
-/* Add Event Location Form */
+/* Form Styling */
 form {
     background: #ffffff;
     padding: 30px;
@@ -89,16 +91,16 @@ form input[type="file"] {
 }
 
 form button {
-    padding: 20px; /* Increased padding */
-    font-size: 22px; /* Increased font size */
-    background-color: #007BFF; /* Button color */
-    color: #ffffff; /* Text color */
+    padding: 20px;
+    font-size: 22px;
+    background-color: #007BFF;
+    color: #ffffff;
     border: 10px;
-    border-radius: 10px; /* Increased border radius for a softer look */
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease; /* Added transform transition */
-    width: 100%; /* Full width */
-    margin-top: 30px; /* Increased margin for spacing */
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease;
+    width: 100%;
+    margin-top: 30px;
 }
 
 form button:hover {
@@ -108,7 +110,7 @@ form button:hover {
 form div {
     display: flex;
     flex-direction: column;
-    flex: 1 1 calc(48% - 20px); /* Adjusted to allow side-by-side */
+    flex: 1 1 calc(48% - 20px);
     min-width: 300px;
     box-sizing: border-box;
 }
@@ -129,20 +131,21 @@ form div.full-width {
 form div + div {
     margin-top: 10px;
 }
+
 .button {
-      display: inline-block;
-      padding: 10px 20px;
-      font-size: 16px;
-      color: white;
-      background-color: #007bff; /* Blue color */
-      border: none;
-      border-radius: 5px;
-      text-decoration: none; /* Remove underline */
-      text-align: center;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .button:hover {
-      background-color: #0056b3; /* Darker blue on hover */
+    background-color: #0056b3;
 }

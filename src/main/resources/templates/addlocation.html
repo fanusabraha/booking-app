@@ -7,57 +7,62 @@
 </head>
 <body>
 <div class="dashboard-container">
-<h1>Add Event Location</h1>
+    <h1 style="font-family: 'Cursive', sans-serif; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">Add Event Location</h1>
     <div>
         <a th:href="@{/}" class="button"> Go to main page</a>
-    </div>
-<form th:action="@{/locations/add}" th:object="${eventLocation}" method="post" enctype="multipart/form-data" >
-    <div>
-        <label for="name">Location Name:</label>
-        <input type="text" id="name" th:field="*{name}" placeholder="Enter location name" required />
-    </div>
-    <div>
-        <label for="country">Country:</label>
-        <input type="text" id="country" th:field="*{country}" placeholder="Enter country" required />
-    </div>
-    <div>
-        <label for="city">City:</label>
-        <input type="text" id="city" th:field="*{city}" placeholder="Enter city" required />
-    </div>
-    <div>
-        <label for="capacity">Capacity:</label>
-        <input type="number" id="capacity" th:field="*{capacity}" placeholder="Enter capacity" required />
-    </div>
-    <div>
-        <label for="price">Price:</label>
-        <input type="number" id="price" th:field="*{price}" placeholder="Enter price" required />
-    </div>
-    <div>
-        <label for="comment">Comment:</label>
-        <textarea id="comment" th:field="*{comment}" placeholder="Enter comment" rows="3"></textarea>
-    </div>
-    <div>
-        <label for="inclusion">Inclusion:</label>
-        <select id="inclusion" th:field="*{inclusion}">
-            <option th:each="inclusion : ${T(com.BookingApp.domain.EventLocation.inclusions).values()}"
-                    th:value="${inclusion}" th:text="${inclusion}"></option>
-        </select>
-    </div>
-    <div>
-        <label for="feature">Feature:</label>
-        <select id="feature" th:field="*{feature}">
-            <option th:each="feature : ${T(com.BookingApp.domain.EventLocation.features).values()}"
-                    th:value="${feature}" th:text="${feature}"></option>
-        </select>
-    </div>
-    <div>
-        <label for="pictureFile">Upload Pictures:</label>
-        <input type="file" id="pictureFile" name="pictureFile" accept="image/*"  multiple/>
-    </div>
-    <div>
-        <button type="submit">Add Location</button>
-    </div>
-</form>
+    </div><br>
+    <form th:action="@{/locations/add}" th:object="${eventLocation}" method="post" enctype="multipart/form-data" >
+        <div>
+            <label for="name">Location Name:</label>
+            <input type="text" id="name" th:field="*{name}" placeholder="Enter location name" required />
+        </div>
+        <div>
+            <label for="country">Country:</label>
+            <input type="text" id="country" th:field="*{country}" placeholder="Enter country" required />
+        </div>
+        <div>
+            <label for="city">City:</label>
+            <input type="text" id="city" th:field="*{city}" placeholder="Enter city" required />
+        </div>
+        <div>
+            <label for="capacity">Capacity:</label>
+            <input type="number" id="capacity" th:field="*{capacity}" placeholder="Enter capacity" required />
+        </div>
+        <div>
+            <label for="price">Price:</label>
+            <input type="number" id="price" th:field="*{price}" placeholder="Enter price" required />
+        </div>
+        <div>
+            <label for="comment">Comment:</label>
+            <textarea id="comment" th:field="*{comment}" placeholder="Enter comment" rows="3"></textarea>
+        </div>
+        <div>
+            <label for="inclusion">Inclusion:</label>
+            <select id="inclusion" th:field="*{inclusion}">
+                <option th:each="inclusion : ${T(com.BookingApp.domain.EventLocation.inclusions).values()}"
+                        th:value="${inclusion}" th:text="${inclusion}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="feature">Feature:</label>
+            <select id="feature" th:field="*{feature}">
+                <option th:each="feature : ${T(com.BookingApp.domain.EventLocation.features).values()}"
+                        th:value="${feature}" th:text="${feature}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="pictureFile">Upload Pictures:</label>
+            <input type="file" id="pictureFile" name="pictureFile" accept="image/*"  multiple/>
+        </div>
+        <div>
+            <button type="submit">Add Location</button>
+        </div>
+        <text>put additional information in the comment</text>
+
+    </form>
+
+
+    <script src="/js/backgroundslideshow.js"></script>
 
 </div>
 </body>
