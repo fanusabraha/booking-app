@@ -7,13 +7,10 @@ const images = [
 let currentIndex = 0;
 
 function changeBackground() {
-    const slideshow = document.querySelector('.background-slideshow');
-    slideshow.innerHTML = images
-        .map((src, index) => `<img src="${src}" class="${index === currentIndex ? 'active' : ''}" alt="Background Image">`)
-        .join('');
-
+    document.body.style.backgroundImage = `url(${images[currentIndex]})`;
     currentIndex = (currentIndex + 1) % images.length;
 }
 
-setInterval(changeBackground, 5000); // Change every 5 seconds
+// Change background every 5 seconds
+setInterval(changeBackground, 5000);
 document.addEventListener('DOMContentLoaded', changeBackground);
