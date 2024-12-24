@@ -93,6 +93,12 @@ public class LocationAddService {
         if (eventLocation.getPrice()!=null){
             location.setPrice(eventLocation.getPrice());
         }
+        if (eventLocation.getInclusion()!=null){
+            location.setInclusion(eventLocation.getInclusion());
+        }
+        if (eventLocation.getFeature()!=null){
+            location.setFeature(eventLocation.getFeature());
+        }
         if (eventLocation.getComment()!=null && !eventLocation.getComment().isEmpty() ){
             location.setComment(eventLocation.getComment());
         }
