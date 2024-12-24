@@ -34,13 +34,13 @@
                 <input type="number" id="price" th:value="${oldValue}" placeholder="6000.." th:field="${location.price}" >
 
                 <label for="inclusion"> Edit inclusion  </label>
-                <select id="inclusion" th:field="*{inclusion}">
+                <select id="inclusion" th:field="*{location.inclusion}">
                     <option th:each="inclusion : ${T(com.BookingApp.domain.EventLocation.inclusions).values()}"
                             th:value="${inclusion}" th:text="${inclusion}"></option>
                 </select>
 
                 <label for="feature"> Edit features  </label>
-                <select id="feature" th:field="*{feature}">
+                <select id="feature" th:field="*{location.feature}">
                     <option th:each="feature : ${T(com.BookingApp.domain.EventLocation.features).values()}"
                             th:value="${feature}" th:text="${feature}"></option>
                 </select>
