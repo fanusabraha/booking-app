@@ -19,19 +19,19 @@ public class EventSearchController {
     LocationAddService locationAddService;
     @Autowired
     EventSearchService eventServiceSearch;
-    @GetMapping("/")
+    @GetMapping("/search")
     public String homePageGet(ModelMap model ){
         model.addAttribute("event",new EventSearchDto());
         //model.addAttribute("searchedEvents", events);
         return "eventsSearch";
     }
-    @PostMapping("/")
+    @PostMapping("/search")
     public String homePagePost (@ModelAttribute("event") EventSearchDto eventDto, ModelMap model){
         eventServiceSearch.addSerachedEvent(eventDto);
-        return "redirect:/event/";
+        return "redirect:/event/search";
     }
     // this is to see real time search
-    @GetMapping("/search")
+    @GetMapping("/searchlocations")
     @ResponseBody
     public List<EventLocation> searchEvents(
             @RequestParam(required = false) String country,

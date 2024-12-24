@@ -13,7 +13,7 @@
     </div>
     <br>
     <h3 style="background-color: white; display: inline;" >Enter the information to view available events</h3>
-    <form method="post" th:action="@{/event/}" th:object="${event}" onsubmit="return validateForm(event)">
+    <form method="post" th:action="@{/event/search}" th:object="${event}" onsubmit="return validateForm(event)">
 
         <label for="country">Country:</label>
         <input type="text" id="country" placeholder="like...Germany" th:field="*{country}">
