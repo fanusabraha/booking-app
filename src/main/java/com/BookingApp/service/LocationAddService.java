@@ -53,16 +53,7 @@ public class LocationAddService {
         }
        return allLocations;
     }
-    public List<EventLocation> searchLocations(String country, String name, String city, Integer numberOfVisitors, Integer budget) {
-        List<EventLocation> allLocations = findAllLocations(); // Reuse the method to fetch all locations
-        return allLocations.stream()
-                .filter(eventLocation -> (country == null || eventLocation.getCountry().equalsIgnoreCase(country)) &&
-                        (name == null || eventLocation.getName().equalsIgnoreCase(name)) ||
-                        (city == null || eventLocation.getCity().equalsIgnoreCase(city)) ||
-                        (numberOfVisitors == null || eventLocation.getCapacity() >= numberOfVisitors) ||
-                        (budget == null || eventLocation.getPrice() >= budget))
-                .toList();
-    }
+
     public EventLocation findById(Long id){
         EventLocation location = locationRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("Eventlocation with this Id not found"));
