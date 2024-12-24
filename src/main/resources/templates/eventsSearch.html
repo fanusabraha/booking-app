@@ -13,13 +13,10 @@
     </div>
     <br>
     <h3 style="background-color: white; display: inline;" >Enter the information to view available events</h3>
-    <form method="post" th:action="@{/event/search}" th:object="${event}" onsubmit="return validateForm(event)">
+    <form method="post" th:action="@{/event/search}" th:object="${event}" onsubmit="return validateForm()">
 
         <label for="country">Country:</label>
         <input type="text" id="country" placeholder="like...Germany" th:field="*{country}">
-
-        <label for="name">Location name:</label>
-        <input type="text" id="name" placeholder="area like...Alster Lagune" th:field="*{name}">
 
         <label for="city">City:</label>
         <input type="text" id="city" placeholder="like...Dallas" th:field="*{city}">
@@ -30,22 +27,22 @@
         <label for="budget">Budget:</label>
         <input type="number" id="budget" placeholder="4000..." th:field="*{budget}">
 
-        <label for="date">Choose event date:</label>
-        <input type="date" id="date" th:field="*{date}"><br>
+        <label for="name">Location name (if you have specific one):</label>
+        <input type="text" id="name" placeholder="names like...Alster Lagune" th:field="*{name}">
 
-        <button type="submit">Submit</button>
+        <label for="date">Choose event date:</label>
+        <input type="date" id="date" th:field="*{date}">
+
+        <button type="submit">Search</button>
         <div>
             <a href="/user/register">Sign Up</a>
         </div>
     </form>
 
-    <div id="results">
-        <h3>Search results will appear here</h3>
-    </div>
 </div>
 
 <!-- Link to external JavaScript -->
 <script src="/js/backgroundslideshow.js"></script>
-<script src="/js/search.js"></script>
+<script src="/js/inputvalidate.js"></script>
 </body>
 </html>
