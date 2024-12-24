@@ -33,6 +33,18 @@
                 <label for="price"> Edit price  </label>
                 <input type="number" id="price" th:value="${oldValue}" placeholder="6000.." th:field="${location.price}" >
 
+                <label for="inclusion"> Edit inclusion  </label>
+                <select id="inclusion" th:field="*{inclusion}">
+                    <option th:each="inclusion : ${T(com.BookingApp.domain.EventLocation.inclusions).values()}"
+                            th:value="${inclusion}" th:text="${inclusion}"></option>
+                </select>
+
+                <label for="feature"> Edit features  </label>
+                <select id="feature" th:field="*{feature}">
+                    <option th:each="feature : ${T(com.BookingApp.domain.EventLocation.features).values()}"
+                            th:value="${feature}" th:text="${feature}"></option>
+                </select>
+
                 <label for="comment"> Edit comment  </label>
                 <textarea id="comment" th:value="${oldValue}" placeholder="Location description.." th:field="${location.comment}" ></textarea>
                 <div>

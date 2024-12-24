@@ -46,11 +46,14 @@ public class EventLocation {
         SelfPreparing;
     }
     public enum features {
-        Beach_RoofTop,
+        Beach,
         RoofTop,
         SwimmingPool,
         DJ,
-        SelfPreparing;
+        SelfPreparing,
+        Beach_RoofTop_and_SwimmingPool,
+        RoofTop_and_SwimmingPool,
+        SwimmingPool_and_Beach;
 
     }
 
