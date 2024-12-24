@@ -1,7 +1,10 @@
 const images = [
-    '/images/ABC.jpg',
+    '/images/AA.jpg',
     '/images/BB.jpg',
-    '/images/CC.jpg' // Add more image paths as needed
+    '/images/CC.jpg',
+    '/images/DD.jpg',
+    '/images/EE.jpg',
+    '/images/FF.jpg' // Add more image paths as needed
 ];
 
 let currentIndex = 0;
