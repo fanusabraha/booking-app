@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -23,7 +24,6 @@ public class EventSearchController {
     @GetMapping("/search")
     public String homePageGet(ModelMap model ){
         model.addAttribute("event",new EventSearchDto());
-        //model.addAttribute("searchedEvents", events);
         return "eventsSearch";
     }
 
@@ -33,9 +33,20 @@ public class EventSearchController {
                                 @RequestParam(required = false) String name,
                                 @RequestParam(required = false) String city,
                                 @RequestParam(required = false) Integer numberOfVisitors,
-                                @RequestParam(required = false) Integer budget){
-       eventServiceSearch.searchLocations(country,name,city, numberOfVisitors, budget);
-        return "redirect:/event/search";
+                                @RequestParam(required = false) Integer budget,
+                                RedirectAttributes redirectAttributes){
+       List<EventLocation> matchingLocations = eventServiceSearch.searchLocations(country,name,city, numberOfVisitors, budget);
+        redirectAttributes.addFlashAttribute("searchedEvents",matchingLocations);
+        redirectAttributes.addFlashAttribute("searchedCriteria", eventDto);
+        return "redirect:/event/search/results";
+    }
+
+    @GetMapping("/search/results")
+    public String searchResults(ModelMap map){
+        if (!map.containsAttribute("searchedEvents")){
+            return"redirect:/event/search";
+        }
+        return"availableLocations";
     }
     // To see all the added elements or locations
 
