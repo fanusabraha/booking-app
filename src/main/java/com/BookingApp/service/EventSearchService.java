@@ -15,11 +15,8 @@ import java.util.List;
 public class EventSearchService {
     @Autowired
     LocationRepository locationRepository;
-    @Autowired
-    private EventRepository eventRepository;
-    public List<EventLocation> searchLocations(String country, String name, String city, Integer numberOfVisitors, Integer budget) {
-        List<EventLocation> allLocations = locationRepository.findAll(); // Reuse the method to fetch all locations
-        return locationRepository.searchLocations(country, name, city, budget, budget);
+    public List<EventLocation> searchLocations(String country, String city, Integer numberOfVisitors, Integer budget) {
+        return locationRepository.searchLocations(country, city, numberOfVisitors, budget);
     }
 //        return allLocations.stream()
 //                .filter(eventLocation -> (country == null || eventLocation.getCountry().equalsIgnoreCase(country)) &&

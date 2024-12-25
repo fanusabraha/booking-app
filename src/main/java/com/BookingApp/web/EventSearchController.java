@@ -30,12 +30,11 @@ public class EventSearchController {
     @PostMapping("/search")
     public String homePagePost (@ModelAttribute("event") EventSearchDto eventDto,
                                 @RequestParam(required = false) String country,
-                                @RequestParam(required = false) String name,
                                 @RequestParam(required = false) String city,
                                 @RequestParam(required = false) Integer numberOfVisitors,
                                 @RequestParam(required = false) Integer budget,
                                 RedirectAttributes redirectAttributes){
-       List<EventLocation> matchingLocations = eventServiceSearch.searchLocations(country,name,city, numberOfVisitors, budget);
+       List<EventLocation> matchingLocations = eventServiceSearch.searchLocations(country,city, numberOfVisitors, budget);
         redirectAttributes.addFlashAttribute("searchedEvents",matchingLocations);
         redirectAttributes.addFlashAttribute("searchedCriteria", eventDto);
         return "redirect:/event/search/results";
