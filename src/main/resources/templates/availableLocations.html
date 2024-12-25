@@ -11,7 +11,9 @@
         <button class="button" onclick="location.href='/'">Go to main page</button>
     </div>
     <br>
-
+    <div th:if="${message != null}">
+        <h2 th:text="${message}" style="color: red;"></h2>
+    </div>
     <div th:if="${searchedEvents != null}">
         <h2> here are the results of your search</h2>
         <ul>

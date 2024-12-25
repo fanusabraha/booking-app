@@ -42,8 +42,10 @@ public class EventSearchController {
 
     @GetMapping("/search/results")
     public String searchResults(ModelMap map){
-        if (!map.containsAttribute("searchedEvents")){
-            return"redirect:/event/search";
+        if (!map.containsAttribute("searchedEvents")) {
+            map.addAttribute("message", "No results found. Please try again.");
+        } else if (((List<?>) map.get("searchedEvents")).isEmpty()) {
+            map.addAttribute("message", "No matching locations found.");
         }
         return"availableLocations";
     }
