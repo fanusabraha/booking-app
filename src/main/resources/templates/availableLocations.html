@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Available Locations</title>
 </head>
 <body>
+<div class="dashboard-container">
+    <div>
+        <button class="button" onclick="location.href='/'">Go to main page</button>
+    </div>
+    <br>
+
+    <div th:if="${events != null}">
+        <h2> here are the results of your search</h2>
+        <ul>
+            <li th:each="event : ${events}">
+                <table>
+                    <h2 th:text="${event.name}"></h2>
+                    <tr>
+                        <td valign="top">
+                            <p th:text="'Location name: ' + ${event.name}"></p><p th:text="'Country: ' + ${event.country}"></p>
+                            <p th:text="'City: ' + ${event.city}"></p>
+                            <p th:text="'Number of Visitors: ' + ${event.capacity}"></p>
+                            <p th:text="'Price: ' + ${event.price}"></p>
+                            <p th:text="'Includes: ' + ${event.inclusion}"></p>
+                            <p th:text="'Option: ' + ${event.feature}"></p>
+                            <p th:text="'Information: ' + ${event.comment}"></p>
+                        </td>
+                        <td>
+                            <h4>Pictures:</h4>
+                            <div th:each="image : ${event.base64Images}" style="display: inline-block; margin: 10px;">
+                                <img th:src="'data:image/jpeg;base64,' + ${image}"
+                                     alt="Event Picture"
+                                     style="width: 300px; height: auto; border: 1px solid #ddd;" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </li>
+        </ul>
+    </div>
+</div>
 
 </body>
 </html>
