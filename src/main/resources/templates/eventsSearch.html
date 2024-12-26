@@ -35,10 +35,12 @@
             <a href="/user/register">Sign Up</a>
         </div>
     </form>
+    <br>
+    <!-- needs to be worked on submitting the search by name -->
     <form method="post" th:action="@{/event/search}" th:object="${event}">
         <h3>Search instead by name </h3>
         <label for="name">Location name (if you have specific one and want to search by name):</label>
-        <input type="text" id="name" placeholder="names like...Alster Lagune" th:field="*{event.name}">
+        <input type="text" id="name" placeholder="names like...Alster Lagune" th:field="*{name}">
         <button type="submit">Search</button>
     </form>
 
