@@ -38,6 +38,9 @@
                                      alt="Event Picture"
                                      style="width: 300px; height: auto; border: 1px solid #ddd;" />
                             </div>
+                            <div th:if="${event.base64Images == null || event.base64Images.isEmpty()}" style="margin: 10px;">
+                                <p>No pictures available</p>
+                            </div>
                         </td>
                     </tr>
                 </table>

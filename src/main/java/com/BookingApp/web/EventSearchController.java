@@ -35,6 +35,7 @@ public class EventSearchController {
                                 @RequestParam(required = false) Integer budget,
                                 RedirectAttributes redirectAttributes){
        List<EventLocation> matchingLocations = eventServiceSearch.searchLocations(country,city, numberOfVisitors, budget);
+
         redirectAttributes.addFlashAttribute("searchedEvents",matchingLocations);
         redirectAttributes.addFlashAttribute("searchedCriteria", eventDto);
         return "redirect:/event/search/results";

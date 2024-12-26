@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -16,7 +18,17 @@ public class EventSearchService {
     @Autowired
     LocationRepository locationRepository;
     public List<EventLocation> searchLocations(String country, String city, Integer numberOfVisitors, Integer budget) {
-        return locationRepository.searchLocations(country, city, numberOfVisitors, budget);
+        List<EventLocation> filteredLocations = locationRepository.searchLocations(country, city, numberOfVisitors, budget);
+        for (EventLocation available: filteredLocations){
+            if (available.getPictures() != null && !available.getPictures().isEmpty()) {
+                List<String> base64Images = new ArrayList<>();
+                for (byte[] picture : available.getPictures()) {
+                    base64Images.add(Base64.getEncoder().encodeToString(picture));
+                }
+                available.setBase64Images(base64Images);
+            }
+        }
+        return filteredLocations;
     }
 //        return allLocations.stream()
 //                .filter(eventLocation -> (country == null || eventLocation.getCountry().equalsIgnoreCase(country)) &&
