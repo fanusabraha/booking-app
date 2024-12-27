@@ -19,7 +19,7 @@ public class EventSearch {
     private Integer serviceHours;
     private Integer budget;
     public enum occasion {
-        WEDDING, BAPTISM, GRADUATION, ENGAGEMENT, BRIDAL_SHOWER, HOLIDAYS, ANNIVERSARIES, CONCERT, PARTY
+        WEDDING, BAPTISM, GRADUATION, ENGAGEMENT, BRIDAL_SHOWER, HOLIDAYS, ANNIVERSARIES, CONCERT, PARTY, SPECIAL_VENUE
     };
 
     public Long getId() {

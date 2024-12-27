@@ -42,10 +42,11 @@
                                 <p>No pictures available</p>
                             </div>
                         </td>
-                        <td>
+
                             <form th:action="@{/booking/{id}(id=${event.id})}" method="post">
-                                <button type="submit" class="button">Book this location</button>
-                            </form>                        </td>
+                                <button type="submit" class="button">Book venue</button>
+                            </form>
+
                     </tr>
                 </table>
             </li>
