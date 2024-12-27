@@ -43,9 +43,9 @@
                             </div>
                         </td>
 
-                            <form th:action="@{/booking/{id}(id=${event.id})}" method="post">
-                                <button type="submit" class="button">Book venue</button>
-                            </form>
+                        <td colspan="2">
+                            <button class="button" onclick="openModal(1)">Book Venue</button>
+                        </td>
 
                     </tr>
                 </table>
@@ -53,6 +53,33 @@
         </ul>
     </div>
 </div>
+<!-- Modal Popup -->
+<div id="bookingModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Book Venue</h2>
+        <form id="bookingForm" method="post">
+            <label for="phone">Phone Number:</label><br>
+            <input type="text" id="phone" name="phone" required placeholder="Enter your phone number"><br><br>
 
+            <label for="email">Email Address:</label><br>
+            <input type="email" id="email" name="email" required placeholder="Enter your email"><br><br>
+
+            <label for="availability">How are you more available?</label><br>
+            <select id="availability" name="availability" required>
+                <option value="morning">Morning</option>
+                <option value="afternoon">Afternoon</option>
+                <option value="evening">Evening</option>
+            </select><br><br>
+
+            <label for="additionalInfo">Additional Information:</label><br>
+            <textarea id="additionalInfo" name="additionalInfo" rows="4" cols="50" placeholder="Enter any additional details"></textarea><br><br>
+
+            <button type="submit" class="button">Submit Booking</button>
+        </form>
+    </div>
+</div>
+
+<script src="/js/modal.js"></script>
 </body>
 </html>

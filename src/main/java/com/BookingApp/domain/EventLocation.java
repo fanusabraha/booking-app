@@ -42,17 +42,18 @@ public class EventLocation {
         MusicBand_Catering_and_Decoration,
         MusicBand_and_Catering,
         Catering_and_Decoration,
-        SelfPreparing_NothingIncluded;
+        No_MusicBand_Catering_and_Decoration_included,
+        SelfPreparing;
     }
     public enum features {
         Beach,
         RoofTop,
         SwimmingPool,
         DJ,
+        SelfPreparing,
         Beach_RoofTop_and_SwimmingPool,
         RoofTop_and_SwimmingPool,
-        SwimmingPool_and_Beach,
-        SelfPreparing_NothingIncluded,;
+        SwimmingPool_and_Beach;
 
     }
 
