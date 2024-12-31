@@ -44,7 +44,7 @@
                         </td>
 
                         <td colspan="2">
-                            <button class="button" onclick="openModal(1)">Book Venue</button>
+                            <button class="button" th:onclick="'openModal(' + ${event.id} + ')'">Book Venue</button>
                         </td>
 
                     </tr>

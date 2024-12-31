@@ -5,8 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Open modal
     window.openModal = function (eventId) {
+        const modal = document.getElementById('bookingModal');
+        const form = document.getElementById('bookingForm');
         modal.style.display = 'block';
-        form.setAttribute('action', `/booking/${eventId}`);
+        form.setAttribute('action', `http://localhost:9090/api/bookings/book/${eventId}`);
     };
 
     // Close modal
