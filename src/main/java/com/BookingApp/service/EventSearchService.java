@@ -1,22 +1,30 @@
 package com.BookingApp.service;
 
 import com.BookingApp.domain.EventLocation;
-import com.BookingApp.domain.EventSearch;
-import com.BookingApp.dto.EventSearchDto;
-import com.BookingApp.repository.EventRepository;
 import com.BookingApp.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EventSearchService {
     @Autowired
     LocationRepository locationRepository;
+    public Optional<EventLocation> findLocationById(Long id){
+        Optional<EventLocation> location = locationRepository.findById(id);
+        if (location.get().getPictures() != null && !location.get().getPictures().isEmpty()) {
+            List<String> base64Images = new ArrayList<>();
+            for (byte[] picture : location.get().getPictures()) {
+                base64Images.add(Base64.getEncoder().encodeToString(picture));
+            }
+            location.get().setBase64Images(base64Images);
+        }
+        return location;
+    }
     public List<EventLocation> searchLocations(String country, String city, Integer numberOfVisitors, Integer budget) {
         List<EventLocation> filteredLocations = locationRepository.searchLocations(country, city, numberOfVisitors, budget);
         for (EventLocation available: filteredLocations){

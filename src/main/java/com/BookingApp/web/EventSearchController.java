@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/event")
@@ -20,6 +21,17 @@ public class EventSearchController {
     LocationAddService locationAddService;
     @Autowired
     EventSearchService eventServiceSearch;
+
+    @GetMapping("/{id}")
+    public String findLocationById(@PathVariable("id") Long id, ModelMap map){
+        Optional<EventLocation> event = eventServiceSearch.findLocationById(id);
+        if (event.isPresent()) {
+            map.addAttribute("event", event.get());
+        } else {
+            map.addAttribute("event", null);
+        }
+        return"eachLocation";
+    }
 
     @GetMapping("/search")
     public String homePageGet(ModelMap model ){
