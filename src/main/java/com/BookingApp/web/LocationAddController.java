@@ -34,7 +34,7 @@ public class LocationAddController {
     public String listOfEvents(ModelMap model){
         List<EventLocation> availableLocations = locationAddService.findAllLocations();
         model.addAttribute("events", availableLocations);
-        return "listOfLocations";
+        return "listOfAllLocations";
     }
     @GetMapping("/update/{id}")
     public String editLocation( @PathVariable("id") Long id, Model model){

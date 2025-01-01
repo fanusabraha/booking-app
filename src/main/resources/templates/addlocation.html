@@ -33,11 +33,11 @@
             <input type="number" id="price" th:field="*{price}" placeholder="Enter price" required />
         </div>
         <div>
-            <label for="comment">Comment:</label>
+            <label for="comment">Information about this location:</label>
             <textarea id="comment" th:field="*{comment}" placeholder="Enter comment" rows="3"></textarea>
         </div>
         <div>
-            <label for="inclusion">Inclusion:</label>
+            <label for="inclusion">includes:</label>
             <select id="inclusion" th:field="*{inclusion}">
                 <option th:each="inclusion : ${T(com.BookingApp.domain.EventLocation.inclusions).values()}"
                         th:value="${inclusion}" th:text="${inclusion}"></option>
@@ -57,7 +57,6 @@
         <div>
             <button type="submit">Add Location</button>
         </div>
-        <text>put additional information in the comment</text>
 
     </form>
 
