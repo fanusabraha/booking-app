@@ -25,7 +25,7 @@
                         <td valign="top">
                             <a th:href="@{/locations/update/{id}(id=${event.id})}" class="button"> Update location</a>
                             <p th:text="'Address: ' + ${event.country} +', '+ ${event.city}"></p>
-                            <p th:text="'Capacity: up to ' + ${event.capacity} + ' people'"></p>
+                            <p th:text="'Capacity: max ' + ${event.capacity} + ' people'"></p>
                             <p th:text="'Price: $' + ${event.price}+'/event'"></p>
                             <p th:text="'Location includes: ' + ${event.inclusion}"></p>
                             <p th:text="'Location has: ' + ${event.feature}"></p>
