@@ -3,87 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <title>editSingleLocation</title>
-    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}"/>
 </head>
 <body>
-    <div class="dashboard-container">
+<div class="dashboard-container">
+    <div>
+        <a th:href="@{/}" class="button"> Go to main page</a>
+    </div>
+    <br>
+    <div>
+        <a th:href="@{/locations/all}" class="button"> See All Locations</a>
+    </div>
+    <div>
+        <h1 th:text="${location.name}">Default Name</h1>
+    </div>
+
+    <form method="post" th:action="@{/locations/update/{id}(id=${location.id})}">
+        <label for="name"> Edit name </label>
+        <input type="text" id="name" th:value="${oldValue}" placeholder="Downtown.." th:field="${location.name}">
+
+        <label for="address"> Edit street </label>
+        <input type="text" id="address" th:value="${oldValue}" placeholder="37278 antioch.."
+               th:field="${location.street}">
+
+        <label for="country"> Edit country </label>
+        <input type="text" id="country" th:value="${oldValue}" placeholder="USA,Germany.."
+               th:field="${location.country}">
+
+        <label for="city"> Edit city </label>
+        <input type="text" id="city" th:value="${oldValue}" placeholder="Downtown.." th:field="${location.city}">
+
+        <label for="capacity"> Edit capacity </label>
+        <input type="number" id="capacity" th:value="${oldValue}" placeholder="200.." th:field="${location.capacity}">
+
+        <label for="price"> Edit price </label>
+        <input type="number" id="price" th:value="${oldValue}" placeholder="6000.." th:field="${location.price}">
+
+        <label for="inclusion"> Edit inclusion </label>
+        <select id="inclusion" th:field="*{location.inclusion}">
+            <option th:each="inclusion : ${T(com.BookingApp.domain.EventLocation.inclusions).values()}"
+                    th:value="${inclusion}" th:text="${inclusion}"></option>
+        </select>
+
+        <label for="feature"> Edit features </label>
+        <select id="feature" th:field="*{location.feature}">
+            <option th:each="feature : ${T(com.BookingApp.domain.EventLocation.features).values()}"
+                    th:value="${feature}" th:text="${feature}"></option>
+        </select>
+
+        <label for="bookedDates">Edit Booked Dates:</label><br>
+        <ul id="bookedDates">
+            <li th:each="date, indexStat : ${location.bookedDates}">
+                <input type="date" th:name="'updatedDates[' + ${indexStat.index} + ']'" th:value="${date}" />
+                <input type="checkbox" th:name="'removeBookedDates[' + ${indexStat.index} + ']'" /> Remove
+            </li>
+        </ul><br>
+
+        <div>  </div>
         <div>
-            <a th:href="@{/}" class="button"> Go to main page</a>
+            <h3>Add a new booking date:  </h3> <input type="date" id="addDate" name="newBookingDate">
         </div><br>
-         <div>
-             <a th:href="@{/locations/all}" class="button"> See All Locations</a>
-         </div>
+
+        <label for="comment"> Edit comment </label>
+        <textarea id="comment" th:value="${oldValue}" placeholder="Location description.."
+                  th:field="${location.comment}"></textarea>
         <div>
-            <h1 th:text="${location.name}">Default Name</h1>
+            <h4>Current Pictures:</h4>
+            <div th:each="image, iterStat : ${location.base64Images}" style="display: inline-block; margin: 10px;">
+                <img th:src="'data:image/jpeg;base64,' + ${image}"
+                     alt="Location Picture"
+                     style="width: 150px; height: auto; border: 1px solid #ddd;"/>
+                <input type="checkbox" name="removePictures" th:value="${iterStat.index}"/> Remove
+            </div>
         </div>
 
-        <form method="post" th:action="@{/locations/update/{id}(id=${location.id})}">
-                <label for="name"> Edit name  </label>
-                <input type="text" id="name" th:value="${oldValue}" placeholder="Downtown.." th:field="${location.name}" >
-
-                <label for="address"> Edit street  </label>
-                <input type="text" id="address" th:value="${oldValue}" placeholder="37278 antioch.." th:field="${location.street}" >
-
-                <label for="country"> Edit country  </label>
-                <input type="text" id="country" th:value="${oldValue}" placeholder="USA,Germany.." th:field="${location.country}" >
-
-                <label for="city"> Edit city  </label>
-                    <input type="text" id="city" th:value="${oldValue}" placeholder="Downtown.." th:field="${location.city}" >
-
-                <label for="capacity"> Edit capacity  </label>
-                <input type="number" id="capacity" th:value="${oldValue}" placeholder="200.." th:field="${location.capacity}" >
-
-                <label for="price"> Edit price  </label>
-                <input type="number" id="price" th:value="${oldValue}" placeholder="6000.." th:field="${location.price}" >
-
-                <label for="inclusion"> Edit inclusion  </label>
-                <select id="inclusion" th:field="*{location.inclusion}">
-                    <option th:each="inclusion : ${T(com.BookingApp.domain.EventLocation.inclusions).values()}"
-                            th:value="${inclusion}" th:text="${inclusion}"></option>
-                </select>
-
-                <label for="feature"> Edit features  </label>
-                <select id="feature" th:field="*{location.feature}">
-                    <option th:each="feature : ${T(com.BookingApp.domain.EventLocation.features).values()}"
-                            th:value="${feature}" th:text="${feature}"></option>
-                </select>
-
-                <label for="bookedDates">Booked on</label>
-                <p id="bookedDates" th:each="date : ${location.bookedDates}" th:text="${date}"></p><br>
-
-                <label for="addDate">Add a new booking date:</label>
-                <input type="date" id="addDate" name="newBookingDate"><br>
-
-                <label for="comment"> Edit comment  </label>
-                <textarea id="comment" th:value="${oldValue}" placeholder="Location description.." th:field="${location.comment}" ></textarea>
-                <div>
-                    <h4>Current Pictures:</h4>
-                    <div th:each="image, iterStat : ${location.base64Images}" style="display: inline-block; margin: 10px;">
-                        <img th:src="'data:image/jpeg;base64,' + ${image}"
-                             alt="Location Picture"
-                             style="width: 150px; height: auto; border: 1px solid #ddd;" />
-                        <input type="checkbox" name="removePictures" th:value="${iterStat.index}" /> Remove
-                    </div>
-                </div>
-
-                <div>
-                    <label for="newPictures">Add New Pictures</label>
-                    <input type="file" id="newPictures" name="newPictures" multiple>
-                </div>
-                <div>
-                  <button>Update information</button>
-                </div>
-            </form>
-            <form  method="post" th:action="@{/locations/delete/{id}(id=${location.id})}"
-                   onsubmit="return confirmDeletion();">
-                <button>Delete location</button>
-            </form>
-    </div>
-    <script>
-        function confirmDeletion() {
-            return confirm("Are you sure you want to delete this location? This action cannot be undone.");
-        }
-    </script>
-    <script src="/js/backgroundslideshow.js"></script>
+        <div>
+            <label for="newPictures">Add New Pictures</label>
+            <input type="file" id="newPictures" name="newPictures" multiple>
+        </div>
+        <div>
+            <button>Update information</button>
+        </div>
+    </form>
+    <form method="post" th:action="@{/locations/delete/{id}(id=${location.id})}"
+          onsubmit="return confirmDeletion();">
+        <button>Delete location</button>
+    </form>
+</div>
+<script>
+    function confirmDeletion() {
+        return confirm("Are you sure you want to delete this location? This action cannot be undone.");
+    }
+</script>
+<script src="/js/backgroundslideshow.js"></script>
 </body>
 </html>
