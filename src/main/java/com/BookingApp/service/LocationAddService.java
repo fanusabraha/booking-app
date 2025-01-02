@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,8 +20,8 @@ public class LocationAddService {
     @Autowired
     LocationRepository locationRepository;
 
-    public void saveLocation (@ModelAttribute EventLocation eventLocation,
-                              @RequestParam("pictureFile")MultipartFile[] files){
+    public void saveLocation(@ModelAttribute EventLocation eventLocation,
+                             @RequestParam("pictureFile") MultipartFile[] files) {
         try {
             if (files != null && files.length > 0) {
                 List<byte[]> pictureList = new ArrayList<>();
@@ -43,7 +44,7 @@ public class LocationAddService {
 
     public List<EventLocation> findAllLocations() {
         List<EventLocation> allLocations = locationRepository.findAll();
-        for (EventLocation available: allLocations){
+        for (EventLocation available : allLocations) {
             if (available.getPictures() != null && !available.getPictures().isEmpty()) {
                 List<String> base64Images = new ArrayList<>();
                 for (byte[] picture : available.getPictures()) {
@@ -52,12 +53,12 @@ public class LocationAddService {
                 available.setBase64Images(base64Images);
             }
         }
-       return allLocations;
+        return allLocations;
     }
 
-    public EventLocation findById(Long id){
+    public EventLocation findById(Long id) {
         EventLocation location = locationRepository.findById(id)
-                .orElseThrow(()-> new IllegalArgumentException("Eventlocation with this Id not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Eventlocation with this Id not found"));
         // for rendering the images to webpage
         if (location.getPictures() != null) {
             List<String> base64Images = location.getPictures().stream()
@@ -67,31 +68,35 @@ public class LocationAddService {
         }
         return location;
     }
-    public void saveById (Long id, EventLocation eventLocation,List<Integer> removePicturesIndices, MultipartFile[] newPictures, LocalDate newBookingDate){
+
+    public void saveById(Long id, EventLocation eventLocation, List<Integer> removePicturesIndices, MultipartFile[] newPictures, LocalDate newBookingDate) {
         EventLocation location = locationRepository.findById(id).
-                orElseThrow(()-> new IllegalArgumentException("Eventlocation with this Id not found"));
-        if (eventLocation.getName()!=null && !eventLocation.getName().isEmpty() ){
+                orElseThrow(() -> new IllegalArgumentException("Eventlocation with this Id not found"));
+        if (eventLocation.getName() != null && !eventLocation.getName().isEmpty()) {
             location.setName(eventLocation.getName());
         }
-        if (eventLocation.getCountry()!=null && !eventLocation.getCountry().isEmpty() ){
+        if (eventLocation.getStreet() != null && !eventLocation.getStreet().isEmpty()) {
+            location.setStreet(eventLocation.getStreet());
+        }
+        if (eventLocation.getCountry() != null && !eventLocation.getCountry().isEmpty()) {
             location.setCountry(eventLocation.getCountry());
         }
-        if (eventLocation.getCity()!=null && !eventLocation.getCity().isEmpty() ){
+        if (eventLocation.getCity() != null && !eventLocation.getCity().isEmpty()) {
             location.setCity(eventLocation.getCity());
         }
-        if (eventLocation.getCapacity()!=null){
+        if (eventLocation.getCapacity() != null) {
             location.setCapacity(eventLocation.getCapacity());
         }
-        if (eventLocation.getPrice()!=null){
+        if (eventLocation.getPrice() != null) {
             location.setPrice(eventLocation.getPrice());
         }
-        if (eventLocation.getInclusion()!=null){
+        if (eventLocation.getInclusion() != null) {
             location.setInclusion(eventLocation.getInclusion());
         }
-        if (eventLocation.getFeature()!=null){
+        if (eventLocation.getFeature() != null) {
             location.setFeature(eventLocation.getFeature());
         }
-        if (eventLocation.getComment()!=null && !eventLocation.getComment().isEmpty() ){
+        if (eventLocation.getComment() != null && !eventLocation.getComment().isEmpty()) {
             location.setComment(eventLocation.getComment());
         }
         if (newBookingDate != null && !location.getBookedDates().contains(newBookingDate)) {
@@ -119,6 +124,7 @@ public class LocationAddService {
         // Save updated location
         locationRepository.save(location);
     }
+
     // other alternatives for less redundancy
 //    private void updateIfPresent(String newValue, Consumer<String> updater) {
 //        if (newValue != null && !newValue.isEmpty()) {
@@ -143,7 +149,7 @@ public class LocationAddService {
 //
 //        locationRepository.save(location);
 //    }
-    public void deleteLocationById(Long id){
+    public void deleteLocationById(Long id) {
         locationRepository.deleteById(id);
     }
 }

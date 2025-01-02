@@ -18,12 +18,13 @@
     <div th:if="${events != null}">
         <h2>List of all locations</h2>
         <ul>
-            <li th:each="event : ${events}">
+            <div th:each="event : ${events}">
                 <table>
                     <h2 th:text="${event.name}"></h2>
                     <tr>
                         <td valign="top">
                             <a th:href="@{/locations/update/{id}(id=${event.id})}" class="button"> Update location</a>
+                            <p th:text="'Street:' + ${event.street}"></p>
                             <p th:text="'Address: ' + ${event.country} +', '+ ${event.city}"></p>
                             <p th:text="'Capacity: max ' + ${event.capacity} + ' people'"></p>
                             <p th:text="'Price: $' + ${event.price}+'/event'"></p>
@@ -39,8 +40,20 @@
                         </div>
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div th:if="${event.bookedDates != null and !event.bookedDates.isEmpty()}">
+                                <label for="bookedDates">Booked on</label>
+                                <p id="bookedDates" th:each="date : ${event.bookedDates}" th:text="${date}"></p><br>
+                            </div>
+                            <div th:unless="${event.bookedDates != null and !event.bookedDates.isEmpty()}">
+                                <p>No booked dates available.</p>
+                            </div>
+                        </td>
+                    </tr>
+
                 </table>
-            </li>
+            </div>
         </ul>
     </div>
 </div>

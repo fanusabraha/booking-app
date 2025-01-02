@@ -17,6 +17,7 @@ public class EventLocation {
     private Integer capacity;
     private Integer price;
     private String comment;
+    private String street;
     @ElementCollection
     @Lob
     private List<byte[]> pictures;
@@ -39,6 +40,7 @@ public class EventLocation {
 
     @Enumerated(EnumType.STRING)
     private features feature;
+
     // thses enums needs adjustments because one location can be used for many purposes not only one
     public enum inclusions {
         MusicBand,
@@ -50,6 +52,7 @@ public class EventLocation {
         No_MusicBand_Catering_and_Decoration_included,
         SelfPreparing;
     }
+
     public enum features {
         Beach,
         RoofTop,
@@ -118,11 +121,19 @@ public class EventLocation {
         this.comment = comment;
     }
 
-    public List< byte[]> getPictures() {
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public List<byte[]> getPictures() {
         return pictures;
     }
 
-    public void setPictures(List< byte[] >pictures) {
+    public void setPictures(List<byte[]> pictures) {
         this.pictures = pictures;
     }
 
@@ -130,13 +141,21 @@ public class EventLocation {
 
     //public void setEventPictures(List<EventPictures> eventPictures) {this.eventPictures = eventPictures;}
 
-    public inclusions getInclusion() {  return inclusion;}
+    public inclusions getInclusion() {
+        return inclusion;
+    }
 
-    public void setInclusion(inclusions inclusion) {  this.inclusion = inclusion;}
+    public void setInclusion(inclusions inclusion) {
+        this.inclusion = inclusion;
+    }
 
-    public features getFeature() { return feature;}
+    public features getFeature() {
+        return feature;
+    }
 
-    public void setFeature(features feature) {  this.feature = feature;}
+    public void setFeature(features feature) {
+        this.feature = feature;
+    }
 
     //public MultipartFile[] getPictureFile() {return pictureFile;}
 
@@ -149,6 +168,7 @@ public class EventLocation {
     public void setBase64Images(List<String> base64Images) {
         this.base64Images = base64Images;
     }
+
     public List<LocalDate> getBookedDates() {
         return bookedDates;
     }
@@ -156,18 +176,21 @@ public class EventLocation {
     public void setBookedDates(List<LocalDate> bookedDates) {
         this.bookedDates = bookedDates;
     }
+
     @Override
     public String toString() {
         return "EventLocation{" +
                 "id=" + id +
-                ", location='" + name + '\'' +
+                ", name='" + name + '\'' +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
                 ", capacity=" + capacity +
                 ", price=" + price +
                 ", comment='" + comment + '\'' +
+                ", address='" + street + '\'' +
                 ", pictures=" + pictures +
                 ", base64Images=" + base64Images +
+                ", bookedDates=" + bookedDates +
                 ", inclusion=" + inclusion +
                 ", feature=" + feature +
                 '}';

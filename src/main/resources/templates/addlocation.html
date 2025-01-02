@@ -17,6 +17,10 @@
             <input type="text" id="name" th:field="*{name}" placeholder="Enter location name" required />
         </div>
         <div>
+            <label for="street"> Street:</label>
+            <input type="text" id="street" th:field="*{street}" placeholder="Enter street name" required />
+        </div>
+        <div>
             <label for="country">Country:</label>
             <input type="text" id="country" th:field="*{country}" placeholder="Enter country" required />
         </div>
@@ -32,10 +36,7 @@
             <label for="price">Price:</label>
             <input type="number" id="price" th:field="*{price}" placeholder="Enter price" required />
         </div>
-        <div>
-            <label for="comment">Information about this location:</label>
-            <textarea id="comment" th:field="*{comment}" placeholder="Enter comment" rows="3"></textarea>
-        </div>
+
         <div>
             <label for="inclusion">includes:</label>
             <select id="inclusion" th:field="*{inclusion}">
@@ -54,6 +55,11 @@
             <label for="pictureFile">Upload Pictures:</label>
             <input type="file" id="pictureFile" name="pictureFile" accept="image/*"  multiple/>
         </div>
+        <div>
+            <label for="comment">Information about this location:</label>
+            <textarea id="comment" th:field="*{comment}" placeholder="Enter event location description" rows="3"></textarea>
+        </div>
+
         <div>
             <button type="submit">Add Location</button>
         </div>

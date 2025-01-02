@@ -21,6 +21,9 @@
                 <label for="name"> Edit name  </label>
                 <input type="text" id="name" th:value="${oldValue}" placeholder="Downtown.." th:field="${location.name}" >
 
+                <label for="address"> Edit street  </label>
+                <input type="text" id="address" th:value="${oldValue}" placeholder="37278 antioch.." th:field="${location.street}" >
+
                 <label for="country"> Edit country  </label>
                 <input type="text" id="country" th:value="${oldValue}" placeholder="USA,Germany.." th:field="${location.country}" >
 
@@ -45,7 +48,7 @@
                             th:value="${feature}" th:text="${feature}"></option>
                 </select>
 
-                <label for="bookedDates">Booked dates on</label>
+                <label for="bookedDates">Booked on</label>
                 <p id="bookedDates" th:each="date : ${location.bookedDates}" th:text="${date}"></p><br>
 
                 <label for="addDate">Add a new booking date:</label>
