@@ -2,6 +2,8 @@ package com.BookingApp.domain;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "EventLocations")
@@ -20,7 +22,10 @@ public class EventLocation {
     private List<byte[]> pictures;
     @Transient
     private List<String> base64Images;
-
+    @ElementCollection
+    @CollectionTable(name = "event_bookings", joinColumns = @JoinColumn(name = "location_id"))
+    @Column(name = "booked_date")
+    private List<LocalDate> bookedDates = new ArrayList<>();
     // i will check this transient later
 //    @Transient
 //    private MultipartFile [] pictureFile;
@@ -144,7 +149,13 @@ public class EventLocation {
     public void setBase64Images(List<String> base64Images) {
         this.base64Images = base64Images;
     }
+    public List<LocalDate> getBookedDates() {
+        return bookedDates;
+    }
 
+    public void setBookedDates(List<LocalDate> bookedDates) {
+        this.bookedDates = bookedDates;
+    }
     @Override
     public String toString() {
         return "EventLocation{" +
