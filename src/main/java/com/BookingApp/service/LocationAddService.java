@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -66,7 +67,7 @@ public class LocationAddService {
         }
         return location;
     }
-    public void saveById (Long id, EventLocation eventLocation,List<Integer> removePicturesIndices, MultipartFile[] newPictures){
+    public void saveById (Long id, EventLocation eventLocation,List<Integer> removePicturesIndices, MultipartFile[] newPictures, LocalDate newBookingDate){
         EventLocation location = locationRepository.findById(id).
                 orElseThrow(()-> new IllegalArgumentException("Eventlocation with this Id not found"));
         if (eventLocation.getName()!=null && !eventLocation.getName().isEmpty() ){
@@ -92,6 +93,9 @@ public class LocationAddService {
         }
         if (eventLocation.getComment()!=null && !eventLocation.getComment().isEmpty() ){
             location.setComment(eventLocation.getComment());
+        }
+        if (newBookingDate != null && !location.getBookedDates().contains(newBookingDate)) {
+            location.getBookedDates().add(newBookingDate);
         }
         if (removePicturesIndices != null && !removePicturesIndices.isEmpty()) {
             List<byte[]> updatedPictures = new ArrayList<>(location.getPictures());

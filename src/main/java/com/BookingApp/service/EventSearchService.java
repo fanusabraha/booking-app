@@ -5,10 +5,12 @@ import com.BookingApp.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EventSearchService {
@@ -25,8 +27,15 @@ public class EventSearchService {
         }
         return location;
     }
-    public List<EventLocation> searchLocations(String country, String city, Integer numberOfVisitors, Integer budget) {
-        List<EventLocation> filteredLocations = locationRepository.searchLocations(country, city, numberOfVisitors, budget);
+    public List<EventLocation> searchLocations(String country, String city, Integer numberOfVisitors, Integer budget,  LocalDate date) {
+        List<EventLocation> filteredLocations = locationRepository.searchLocations(country, city, numberOfVisitors, budget, date);
+
+//        if (date != null) {
+//            filteredLocations = filteredLocations.stream()
+//                    .filter(location -> !location.getBookedDates().contains(date))
+//                    .collect(Collectors.toList());
+//        }
+
         for (EventLocation available: filteredLocations){
             if (available.getPictures() != null && !available.getPictures().isEmpty()) {
                 List<String> base64Images = new ArrayList<>();

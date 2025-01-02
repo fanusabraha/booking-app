@@ -3,12 +3,14 @@ package com.BookingApp.web;
 import com.BookingApp.domain.EventLocation;
 import com.BookingApp.service.LocationAddService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
 import java.util.Base64;
 import java.util.List;
 
@@ -40,14 +42,15 @@ public class LocationAddController {
     public String editLocation( @PathVariable("id") Long id, Model model){
         EventLocation location = locationAddService.findById(id);
         model.addAttribute("location", location);
-        return "editLocation";
+        return "updateLocation";
     }
     @PostMapping("update/{id}")
-    public String editLocation(@PathVariable("id") Long id,
-                               @ModelAttribute EventLocation eventLocation,
-                               @RequestParam(value = "removePictures", required = false) List<Integer> removePicturesIndices,
-                               @RequestParam(value = "newPictures", required = false) MultipartFile[] newPictures){
-        locationAddService.saveById(id, eventLocation, removePicturesIndices, newPictures);
+    public String updateLocation(@PathVariable("id") Long id,
+                                 @ModelAttribute EventLocation eventLocation,
+                                 @RequestParam(value = "removePictures", required = false) List<Integer> removePicturesIndices,
+                                 @RequestParam(value = "newPictures", required = false) MultipartFile[] newPictures,
+                                 @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate newBookingDate){
+        locationAddService.saveById(id, eventLocation, removePicturesIndices, newPictures, newBookingDate);
         return"redirect:/locations/all";
     }
     @PostMapping("/delete/{id}")

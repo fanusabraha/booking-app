@@ -9,6 +9,7 @@ public class EventSearchDto {
     private String city;
     private Integer numberOfVisitors;
     private LocalDate date;
+    private Integer serviceHours;
     private Integer budget;
 
     public Long getId() {
@@ -58,6 +59,9 @@ public class EventSearchDto {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+    public Integer getServiceHours() {return serviceHours;}
+
+    public void setServiceHours(Integer serviceHours) {this.serviceHours = serviceHours;}
 
     public Integer getBudget() {
         return budget;

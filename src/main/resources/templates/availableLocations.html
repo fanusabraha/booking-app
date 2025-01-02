@@ -28,6 +28,9 @@
                             <p th:text="'Price: $' + ${event.price}+'/event'"></p>
                             <p th:text="'Location includes: ' + ${event.inclusion}"></p>
                             <p th:text="'Location has: ' + ${event.feature}"></p>
+                            <p th:text="'available on: ' + ${searchedCriteria.date}"></p>
+                            <!--<p th:if="${location.bookedDates.contains(searchedCriteria.date)}">Booked for this date</p>-->
+                            <!--<p th:unless="${location.bookedDates.contains(searchedCriteria.date)}">Available for this date</p>-->
                             <p th:text="'Information: ' + ${event.comment}"></p>
                         </td>
                         <td>

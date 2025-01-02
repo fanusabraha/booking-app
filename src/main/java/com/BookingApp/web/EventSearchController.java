@@ -5,11 +5,13 @@ import com.BookingApp.dto.EventSearchDto;
 import com.BookingApp.service.EventSearchService;
 import com.BookingApp.service.LocationAddService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,8 +47,9 @@ public class EventSearchController {
                                 @RequestParam(required = false) String city,
                                 @RequestParam(required = false) Integer numberOfVisitors,
                                 @RequestParam(required = false) Integer budget,
+                                @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
                                 RedirectAttributes redirectAttributes){
-       List<EventLocation> matchingLocations = eventServiceSearch.searchLocations(country,city, numberOfVisitors, budget);
+       List<EventLocation> matchingLocations = eventServiceSearch.searchLocations(country,city, numberOfVisitors, budget, date);
 
         redirectAttributes.addFlashAttribute("searchedEvents",matchingLocations);
         redirectAttributes.addFlashAttribute("searchedCriteria", eventDto);

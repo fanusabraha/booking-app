@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -14,10 +15,12 @@ public interface LocationRepository extends JpaRepository<EventLocation, Long> {
             "(:country IS NULL OR LOWER(el.country) = LOWER(:country)) AND " +
             "(:city IS NULL OR LOWER(el.city) = LOWER(:city)) AND " +
             "(:capacity IS NULL OR el.capacity >= :capacity) AND " +
-            "(:budget IS NULL OR el.price <= :budget)")
+            "(:budget IS NULL OR el.price <= :budget) AND" +
+            "(:date IS NULL OR :date NOT IN (SELECT bd FROM el.bookedDates bd))")
     List<EventLocation> searchLocations(@Param("country") String country,
                                         @Param("city") String city,
                                         @Param("capacity") Integer capacity,
-                                        @Param("budget") Integer budget);
+                                        @Param("budget") Integer budget,
+                                        @Param("date")LocalDate date);
 
 }

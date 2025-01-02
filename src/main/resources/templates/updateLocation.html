@@ -45,6 +45,12 @@
                             th:value="${feature}" th:text="${feature}"></option>
                 </select>
 
+                <label for="bookedDates">Booked dates on</label>
+                <p id="bookedDates" th:each="date : ${location.bookedDates}" th:text="${date}"></p><br>
+
+                <label for="addDate">Add a new booking date:</label>
+                <input type="date" id="addDate" name="newBookingDate"><br>
+
                 <label for="comment"> Edit comment  </label>
                 <textarea id="comment" th:value="${oldValue}" placeholder="Location description.." th:field="${location.comment}" ></textarea>
                 <div>
