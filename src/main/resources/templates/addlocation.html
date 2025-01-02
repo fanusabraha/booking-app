@@ -51,15 +51,16 @@
                         th:value="${feature}" th:text="${feature}"></option>
             </select>
         </div>
-        <div>
-            <label for="pictureFile">Upload Pictures:</label>
-            <input type="file" id="pictureFile" name="pictureFile" accept="image/*"  multiple/>
-        </div>
+
         <div>
             <label for="comment">Information about this location:</label>
             <textarea id="comment" th:field="*{comment}" placeholder="Enter event location description" rows="3"></textarea>
         </div>
 
+        <div>
+            <label for="pictureFile">Upload Pictures:</label>
+            <input type="file" id="pictureFile" name="pictureFile" accept="image/*"  multiple/>
+        </div>
         <div>
             <button type="submit">Add Location</button>
         </div>

@@ -5,7 +5,7 @@
   <title>Location Details</title>
   <link rel="stylesheet" th:href="@{/css/pictures.css}" />
 </head>
-<body>
+<body style="background-image: url('/images/II.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
 <div class="dashboard-container">
   <div>
     <button class="button" onclick="location.href='/'">Go to Main Page</button>
@@ -17,18 +17,15 @@
       <tr>
         <td valign="top">
 
-          <p th:text="'Location Name: ' + ${event.name}"></p>
-          <p th:text="'Street: ' + ${event.street}"></p>
-          <p th:text="'Country: ' + ${event.country}"></p>
-          <p th:text="'City: ' + ${event.city}"></p>
-          <p th:text="'Number of Visitors: ' + ${event.capacity}"></p>
-          <p th:text="'Price: ' + ${event.price}"></p>
-          <p th:text="'Includes: ' + ${event.inclusion}"></p>
-          <p th:text="'Option: ' + ${event.feature}"></p>
+          <p th:text="'Street:' + ${event.street}"></p>
+          <p th:text="'Address: ' + ${event.country} +', '+ ${event.city}"></p>
+          <p th:text="'Capacity: max ' + ${event.capacity} + ' people'"></p>
+          <p th:text="'Price: $' + ${event.price}+'/event'"></p>
+          <p th:text="'Location includes: ' + ${event.inclusion}"></p>
+          <p th:text="'Location has: ' + ${event.feature}"></p>
           <p th:text="'Information: ' + ${event.comment}"></p>
         </td>
         <td>
-          <h4>Pictures:</h4>
           <div th:each="image : ${event.base64Images}" style="display: inline-block; margin: 10px;">
             <img th:src="'data:image/jpeg;base64,' + ${image}"
                  alt="Event Picture"

@@ -43,8 +43,9 @@
                     <tr>
                         <td colspan="2">
                             <div th:if="${event.bookedDates != null and !event.bookedDates.isEmpty()}">
-                                <label for="bookedDates">Booked on</label>
-                                <p id="bookedDates" th:each="date : ${event.bookedDates}" th:text="${date}"></p><br>
+                                <h3>Booked on these dates</h3>
+                                <label for="bookedDates"></label>
+                                <p id="bookedDates" th:each="date : ${event.bookedDates}" th:text="${date}"></p>
                             </div>
                             <div th:unless="${event.bookedDates != null and !event.bookedDates.isEmpty()}">
                                 <p>No booked dates available.</p>
