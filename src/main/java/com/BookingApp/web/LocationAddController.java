@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.time.LocalDate;
 import java.util.Base64;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/locations")
@@ -49,8 +50,14 @@ public class LocationAddController {
                                  @ModelAttribute EventLocation eventLocation,
                                  @RequestParam(value = "removePictures", required = false) List<Integer> removePicturesIndices,
                                  @RequestParam(value = "newPictures", required = false) MultipartFile[] newPictures,
-                                 @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate newBookingDate){
-        locationAddService.saveById(id, eventLocation, removePicturesIndices, newPictures, newBookingDate);
+                                 @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate newBookingDate,
+                                 @RequestParam Map<String, String> updatedDates,
+                                 @RequestParam(required = false) List<Integer> removeBookedDates){
+        System.out.println("removeBookedDates: " + removeBookedDates);
+        updatedDates.entrySet().removeIf(entry -> entry.getKey().contains("name"));
+        updatedDates.entrySet().removeIf(entry -> !entry.getKey().contains("updatedDates"));
+        System.out.println("removeBookedDates: " + removeBookedDates);
+        locationAddService.saveById(id, eventLocation, removePicturesIndices, newPictures, newBookingDate, updatedDates, removeBookedDates);
         return"redirect:/locations/all";
     }
     @PostMapping("/delete/{id}")

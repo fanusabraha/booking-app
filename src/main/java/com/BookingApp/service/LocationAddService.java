@@ -11,9 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class LocationAddService {
@@ -69,60 +67,76 @@ public class LocationAddService {
         return location;
     }
 
-    public void saveById(Long id, EventLocation eventLocation, List<Integer> removePicturesIndices, MultipartFile[] newPictures, LocalDate newBookingDate) {
-        EventLocation location = locationRepository.findById(id).
-                orElseThrow(() -> new IllegalArgumentException("Eventlocation with this Id not found"));
-        if (eventLocation.getName() != null && !eventLocation.getName().isEmpty()) {
-            location.setName(eventLocation.getName());
+    public void saveById(Long id, EventLocation updatedLocation, List<Integer> removePicturesIndices, MultipartFile[] newPictures, LocalDate newBookingDate, Map<String, String> updatedDates, List<Integer> removeBookedDates) {
+        EventLocation existingLocation = locationRepository.findById(id).
+                orElseThrow(() -> new IllegalArgumentException("EventLocation with this Id not found"));
+        if (updatedLocation.getName() != null && !updatedLocation.getName().isEmpty()) {
+            existingLocation.setName(updatedLocation.getName());
         }
-        if (eventLocation.getStreet() != null && !eventLocation.getStreet().isEmpty()) {
-            location.setStreet(eventLocation.getStreet());
+        if (updatedLocation.getStreet() != null && !updatedLocation.getStreet().isEmpty()) {
+            existingLocation.setStreet(updatedLocation.getStreet());
         }
-        if (eventLocation.getCountry() != null && !eventLocation.getCountry().isEmpty()) {
-            location.setCountry(eventLocation.getCountry());
+        if (updatedLocation.getCountry() != null && !updatedLocation.getCountry().isEmpty()) {
+            existingLocation.setCountry(updatedLocation.getCountry());
         }
-        if (eventLocation.getCity() != null && !eventLocation.getCity().isEmpty()) {
-            location.setCity(eventLocation.getCity());
+        if (updatedLocation.getCity() != null && !updatedLocation.getCity().isEmpty()) {
+            existingLocation.setCity(updatedLocation.getCity());
         }
-        if (eventLocation.getCapacity() != null) {
-            location.setCapacity(eventLocation.getCapacity());
+        if (updatedLocation.getCapacity() != null) {
+            existingLocation.setCapacity(updatedLocation.getCapacity());
         }
-        if (eventLocation.getPrice() != null) {
-            location.setPrice(eventLocation.getPrice());
+        if (updatedLocation.getPrice() != null) {
+            existingLocation.setPrice(updatedLocation.getPrice());
         }
-        if (eventLocation.getInclusion() != null) {
-            location.setInclusion(eventLocation.getInclusion());
+        if (updatedLocation.getInclusion() != null) {
+            existingLocation.setInclusion(updatedLocation.getInclusion());
         }
-        if (eventLocation.getFeature() != null) {
-            location.setFeature(eventLocation.getFeature());
+        if (updatedLocation.getFeature() != null) {
+            existingLocation.setFeature(updatedLocation.getFeature());
         }
-        if (eventLocation.getComment() != null && !eventLocation.getComment().isEmpty()) {
-            location.setComment(eventLocation.getComment());
+        if (updatedLocation.getComment() != null && !updatedLocation.getComment().isEmpty()) {
+            existingLocation.setComment(updatedLocation.getComment());
         }
-        if (newBookingDate != null && !location.getBookedDates().contains(newBookingDate)) {
-            location.getBookedDates().add(newBookingDate);
+        if (newBookingDate != null && !existingLocation.getBookedDates().contains(newBookingDate)) {
+            existingLocation.getBookedDates().add(newBookingDate);
         }
         if (removePicturesIndices != null && !removePicturesIndices.isEmpty()) {
-            List<byte[]> updatedPictures = new ArrayList<>(location.getPictures());
+            List<byte[]> updatedPictures = new ArrayList<>(existingLocation.getPictures());
             for (int index : removePicturesIndices) {
                 updatedPictures.remove(index);
             }
-            location.setPictures(updatedPictures);
+            existingLocation.setPictures(updatedPictures);
         }
 
         // Handle new picture uploads
         if (newPictures != null && newPictures.length > 0) {
             for (MultipartFile file : newPictures) {
                 try {
-                    location.getPictures().add(file.getBytes());
+                    existingLocation.getPictures().add(file.getBytes());
                 } catch (IOException e) {
                     throw new RuntimeException("Error while uploading new pictures", e);
                 }
             }
         }
+        if (updatedDates != null && !updatedDates.isEmpty()) {
+            List<LocalDate> currentDates = existingLocation.getBookedDates();
+            for (Map.Entry<String, String> entry : updatedDates.entrySet()) {
+                int index = Integer.parseInt(entry.getKey().replace("updatedDates[", "").replace("]", ""));
+                LocalDate newDate = LocalDate.parse(entry.getValue());
+                currentDates.set(index, newDate);
+            }
+        }
 
+        // Remove selected booked dates
+        if (removeBookedDates != null && !removeBookedDates.isEmpty()) {
+            List<LocalDate> currentDates = existingLocation.getBookedDates();
+            removeBookedDates.sort(Collections.reverseOrder()); // Remove from the highest index to avoid shifting issues
+            for (int index : removeBookedDates) {
+                currentDates.remove(index);
+            }
+        }
         // Save updated location
-        locationRepository.save(location);
+        locationRepository.save(existingLocation);
     }
 
     // other alternatives for less redundancy

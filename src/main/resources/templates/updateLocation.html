@@ -54,10 +54,12 @@
         <label for="bookedDates">Edit Booked Dates:</label><br>
         <ul id="bookedDates">
             <li th:each="date, indexStat : ${location.bookedDates}">
+
                 <input type="date" th:name="'updatedDates[' + ${indexStat.index} + ']'" th:value="${date}" />
-                <input type="checkbox" th:name="'removeBookedDates[' + ${indexStat.index} + ']'" /> Remove
+                <input type="checkbox" th:name="'removeBookedDates[' + ${indexStat.index} + ']'" th:value="${indexStat.index}" />
             </li>
         </ul><br>
+
 
         <div>  </div>
         <div>
