@@ -134,6 +134,7 @@ public class LocationAddService {
             for (int index : removeBookedDates) {
                 currentDates.remove(index);
             }
+            System.out.println(currentDates);
         }
         // Save updated location
         locationRepository.save(existingLocation);

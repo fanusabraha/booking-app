@@ -52,11 +52,12 @@ public class LocationAddController {
                                  @RequestParam(value = "newPictures", required = false) MultipartFile[] newPictures,
                                  @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate newBookingDate,
                                  @RequestParam Map<String, String> updatedDates,
-                                 @RequestParam(required = false) List<Integer> removeBookedDates){
+                                 @RequestParam(required = false) List<Integer> removeBookedDates,@RequestParam Map<String, String> requestParams){
+        requestParams.forEach((key, value) -> System.out.println(key + " = " + value));
         System.out.println("removeBookedDates: " + removeBookedDates);
         updatedDates.entrySet().removeIf(entry -> entry.getKey().contains("name"));
         updatedDates.entrySet().removeIf(entry -> !entry.getKey().contains("updatedDates"));
-        System.out.println("removeBookedDates: " + removeBookedDates);
+
         locationAddService.saveById(id, eventLocation, removePicturesIndices, newPictures, newBookingDate, updatedDates, removeBookedDates);
         return"redirect:/locations/all";
     }
