@@ -85,5 +85,18 @@ public class ContactRequest {
         this.requestDate = requestDate;
     }
 
-    // Getters and Setters
+    @Override
+    public String toString() {
+        return "ContactRequest{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", availability='" + availability + '\'' +
+                ", additionalInfo='" + additionalInfo + '\'' +
+                ", eventLocation=" + eventLocation +
+                ", requestDate=" + requestDate +
+                '}';
+    }
+// Getters and Setters
 }

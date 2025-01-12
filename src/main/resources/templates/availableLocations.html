@@ -48,6 +48,40 @@
                         <td colspan="2">
                             <button class="button" th:onclick="'openModal(' + ${event.id} + ')'">Book Venue</button>
                         </td>
+                        <!-- Contact Form Modal -->
+                        <div id="contactModal" class="modal" style="display: none;">
+                            <div class="modal-content">
+                                <span class="close" onclick="closeContactModal()">&times;</span>
+                                <h2>Contact Event Management Team</h2>
+                                <form id="contactForm" th:action="@{/contact/{eventId}(eventId=${event.id})}" method="post">
+                                    <label for="Cname">Your Name:</label><br>
+                                    <input type="text" id="Cname" name="name" required placeholder="Enter your name"><br><br>
+
+                                    <label for="Cphone">Phone Number:</label><br>
+                                    <input type="text" id="Cphone" name="phone" required placeholder="Enter your phone number"><br><br>
+
+                                    <label for="Cemail">Email Address:</label><br>
+                                    <input type="email" id="Cemail" name="email" required placeholder="Enter your email"><br><br>
+
+                                    <label for="Cavailability">How are you more available?</label><br>
+                                    <select id="Cavailability" name="availability" required>
+                                        <option value="morning">Morning</option>
+                                        <option value="afternoon">Afternoon</option>
+                                        <option value="evening">Evening</option>
+                                    </select><br><br>
+
+                                    <label for="CadditionalInfo">Additional Information:</label><br>
+                                    <textarea id="CadditionalInfo" name="additionalInfo" rows="4" cols="50" placeholder="Enter any additional details"></textarea><br><br>
+
+                                    <button type="submit" class="button">Submit Request</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Add this button where you want to trigger the modal -->
+                        <button class="button" onclick="openContactModal()">Contact Event Management</button>
+
+
 
                     </tr>
                 </table>
@@ -83,5 +117,7 @@
 </div>
 
 <script src="/js/modal.js"></script>
+<script src="/js/request.js"></script>
+
 </body>
 </html>
