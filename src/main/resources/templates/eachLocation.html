@@ -1,48 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title th:text="${event != null ? event.name + ' | Event locations' : 'Location not found | Event locations'}">Event location</title>
   <meta name="description" th:if="${event != null}" th:content="'Explore ' + ${event.name} + ' in ' + ${event.city} + ', ' + ${event.country} + '. View photos and venue details.'">
-  <link rel="stylesheet" th:href="@{/css/pictures.css}">
-  <link rel="stylesheet" th:href="@{/css/venue.css}">
+  <meta name="robots" th:if="${event != null and #strings.contains(event.name, '(Example)')}" content="noindex">
+  <link rel="stylesheet" th:href="@{/CSS/venue.css}">
 </head>
 <body class="venue-page">
-<main class="venue-shell">
-  <nav class="venue-nav" aria-label="Navigation"><a th:href="@{/}">Home</a><a th:href="@{/locations/all}">All locations</a><a th:href="@{/event/search}">Search</a></nav>
+<header class="site-header"><a class="brand" th:href="@{/}">Gather<span>.</span></a><nav aria-label="Main navigation"><a th:href="@{/}">Home</a><a th:href="@{/locations/all}">Explore spaces</a><a th:href="@{/event/search}">Search</a></nav></header>
+<main class="venue-shell detail-shell">
+  <a class="back-link" th:href="@{/locations/all}">← All locations</a>
   <div th:if="${event != null}">
-    <p class="eyebrow" th:text="${event.city} + ', ' + ${event.country}"></p>
-    <h1 th:text="${event.name}"></h1>
-    <div class="venue-layout">
-      <section aria-label="Venue details">
-        <h2>About this location</h2>
-        <p th:text="${event.comment}"></p>
-        <dl><dt>Address</dt><dd th:text="${event.street} + ', ' + ${event.city}"></dd>
-          <dt>Capacity</dt><dd th:text="${event.capacity} + ' guests'"></dd>
-          <dt>Price per event</dt><dd th:text="'$' + ${event.price}"></dd>
-          <dt th:if="${event.inclusion != null}">Includes</dt><dd th:if="${event.inclusion != null}" th:text="${event.inclusion}"></dd>
-          <dt th:if="${event.feature != null}">Features</dt><dd th:if="${event.feature != null}" th:text="${event.feature}"></dd></dl>
-        <a class="button" th:href="@{/locations/update/{id}(id=${event.id})}">Edit location</a>
-      </section>
-      <section aria-label="Location photos" class="gallery">
-        <h2>Photos</h2>
-        <div th:if="${event.base64Images != null and !event.base64Images.isEmpty()}" class="slideshow-container">
-          <div class="slide" th:each="image, state : ${event.base64Images}">
-            <img class="slide-image" th:src="'data:image/jpeg;base64,' + ${image}" th:alt="${event.name} + ' photo ' + ${state.count}">
-            <p th:text="${state.count} + ' / ' + ${state.size}"></p>
-          </div>
-          <div th:if="${event.base64Images.size() > 1}" class="gallery-controls">
-            <button type="button" onclick="prevSlide(this.closest('.slideshow-container'))">Previous photo</button>
-            <button type="button" onclick="nextSlide(this.closest('.slideshow-container'))">Next photo</button>
-          </div>
+    <div class="detail-heading"><div><p class="eyebrow" th:text="${event.city} + ' · ' + ${event.country}"></p><h1 th:text="${event.name}"></h1><p>Make your next gathering memorable.</p></div><a class="text-link" th:href="@{/locations/update/{id}(id=${event.id})}">Edit location ↗</a></div>
+    <p class="sample-notice" th:if="${#strings.contains(event.name, '(Example)')}">Example listing · Photos and details are illustrative and do not represent a real venue.</p>
+    <section aria-label="Location photos" class="gallery">
+      <div th:if="${event.base64Images != null and !event.base64Images.isEmpty()}" class="slideshow-container">
+        <div class="slide" th:each="image, state : ${event.base64Images}">
+          <img class="slide-image" th:src="'data:image/jpeg;base64,' + ${image}" th:alt="'Photo ' + ${state.count} + ' for ' + ${event.name}">
+          <span class="photo-count" th:text="${state.count} + ' / ' + ${state.size}"></span>
         </div>
-        <p th:if="${event.base64Images == null or event.base64Images.isEmpty()}">No photos available yet.</p>
-      </section>
-    </div>
+        <div th:if="${event.base64Images.size() > 1}" class="gallery-controls"><button type="button" onclick="prevSlide(this.closest('.slideshow-container'))" aria-label="Previous photo">←</button><button type="button" onclick="nextSlide(this.closest('.slideshow-container'))" aria-label="Next photo">→</button></div>
+      </div>
+      <p th:if="${event.base64Images == null or event.base64Images.isEmpty()}" class="no-photo">No photos available yet.</p>
+    <p class="small-print" th:if="${event.name == 'New York Public Library - Stephen A. Schwarzman Building'}">Photo by Aude, <a href="https://commons.wikimedia.org/wiki/File:New_York_Public_Library_Schwarzman_Building_on_August_29,_2026.jpg">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> (resized).</p></section>
+    <div class="detail-grid"><section><p class="eyebrow">The space</p><h2>A place to bring people together.</h2><p class="description" th:text="${event.comment}"></p>
+      <div class="details-list"><div><span>Location</span><strong th:text="${event.street} + ', ' + ${event.city}"></strong></div><div th:if="${event.inclusion != null}"><span>Includes</span><strong th:text="${event.inclusion}"></strong></div><div th:if="${event.feature != null}"><span>Features</span><strong th:text="${event.feature}"></strong></div></div>
+    </section><aside class="summary-card"><p class="eyebrow">At a glance</p><p class="price" th:text="${event.price != null ? '$' + event.price : 'Contact venue'}"></p><p th:if="${event.price != null}">per event</p><hr><p th:if="${event.capacity != null}"><strong th:text="${event.capacity}"></strong> guests maximum</p><p th:if="${event.capacity == null}">Capacity: contact venue</p><a class="primary-button" th:href="@{/event/search}">Search availability</a><p class="small-print">Availability and booking are not confirmed on this page.</p></aside></div>
   </div>
-  <div th:if="${event == null}"><h1>Location not found</h1><p>Return to all locations to find another venue.</p></div>
-  <p><a th:href="@{/locations/all}">← Back to all locations</a></p>
-</main>
-<script th:src="@{/js/slideshow.js}"></script>
-</body></html>
+  <div th:if="${event == null}" class="empty-state"><h1>Location not found</h1><p>Explore other spaces to find your next venue.</p><a class="primary-button" th:href="@{/locations/all}">Browse locations</a></div>
+</main><script th:src="@{/js/slideshow.js}"></script></body></html>
+
+
