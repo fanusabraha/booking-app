@@ -45,7 +45,7 @@ public class LocationAddService {
         for (EventLocation available : allLocations) {
             if (available.getPictures() != null && !available.getPictures().isEmpty()) {
                 List<String> base64Images = new ArrayList<>();
-                for (byte[] picture : available.getPictures()) {
+                for (byte[] picture : available.getPictures().subList(0, 1)) {
                     base64Images.add(Base64.getEncoder().encodeToString(picture));
                 }
                 available.setBase64Images(base64Images);
@@ -168,3 +168,4 @@ public class LocationAddService {
         locationRepository.deleteById(id);
     }
 }
+

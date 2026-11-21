@@ -1,64 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Locations</title>
-    <link rel="stylesheet" th:href="@{/css/pictures.css}" />
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Explore event locations</title>
+  <meta name="description" content="Browse event spaces and discover ideas for your next gathering.">
+  <link rel="stylesheet" th:href="@{/CSS/venue.css}">
 </head>
-<body style="background-image: url('/images/JJ.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
-<div class="dashboard-container">
-    <div>
-        <button class="button" onclick="location.href='/'">Go to main page</button>
-    </div>
-    <br>
-    <div>
-        <a th:href="@{/locations/add}" class="button">Add new event location</a>
-    </div>
+<body class="venue-page">
+<header class="site-header"><a class="brand" th:href="@{/}">Gather<span>.</span></a><nav aria-label="Main navigation"><a th:href="@{/}">Home</a><a th:href="@{/event/search}">Search</a><a th:href="@{/locations/add}">Add a location</a></nav></header>
+<main class="venue-shell">
+  <div class="list-heading"><div><p class="eyebrow">Find your setting</p><h1>Spaces worth gathering in.</h1><p>Explore locations for celebrations, meetings, and everything in between.</p></div><span class="count" th:text="${events.size()} + ' locations'"></span></div>
+  <p class="sample-notice">Example listings use illustrative photos and details. They are not real venues.</p>
+  <div class="location-grid" th:if="${!events.isEmpty()}">
+    <article class="location-card" th:each="event : ${events}">
+      <a class="card-image" th:href="@{/event/{id}(id=${event.id})}" th:aria-label="'View ' + ${event.name}">
+        <img th:if="${event.base64Images != null and !event.base64Images.isEmpty()}" th:src="'data:image/jpeg;base64,' + ${event.base64Images[0]}" alt="Illustrative venue photo" loading="lazy">
+        <span th:if="${event.base64Images == null or event.base64Images.isEmpty()}">No photo available</span>
+      </a>
+      <div class="card-body"><p class="eyebrow" th:text="${event.city} + ', ' + ${event.country}"></p><h2><a th:href="@{/event/{id}(id=${event.id})}" th:text="${event.name}"></a></h2>
+        <p th:text="${event.capacity != null ? 'Up to ' + event.capacity + ' guests' : 'Capacity on request'}"></p><div class="card-bottom"><strong th:text="${event.price != null ? '$' + event.price + ' / event' : 'Price on request'}"></strong><a th:href="@{/event/{id}(id=${event.id})}">View space →</a></div></div>
+    </article>
+  </div>
+  <p th:if="${events.isEmpty()}">No locations yet. Add one to get started.</p>
+</main></body></html>
 
-    <div th:if="${events != null}">
-        <h2>List of all locations</h2>
-        <ul>
-            <div th:each="event : ${events}">
-                <table>
-                    <h2 th:text="${event.name}"></h2><a th:href="@{/event/{id}(id=${event.id})}" class="button">View location and photos</a>
-                    <tr>
-                        <td valign="top">
-                            <a th:href="@{/locations/update/{id}(id=${event.id})}" class="button"> Update location</a>
-                            <p th:text="'Street:' + ${event.street}"></p>
-                            <p th:text="'Address: ' + ${event.country} +', '+ ${event.city}"></p>
-                            <p th:text="'Capacity: max ' + ${event.capacity} + ' people'"></p>
-                            <p th:text="'Price: $' + ${event.price}+'/event'"></p>
-                            <p th:text="'Location includes: ' + ${event.inclusion}"></p>
-                            <p th:text="'Location has: ' + ${event.feature}"></p>
-                            <p th:text="'Information: ' + ${event.comment}"></p>
-                        </td>
-                        <td>
-                        <div th:each="image : ${event.base64Images}" style="display: inline-block; margin: 10px;">
-                            <img th:src="'data:image/jpeg;base64,' + ${image}"
-                                 alt="Event Picture"
-                                 style="width: 300px; height: auto; border: 1px solid #ddd;" />
-                        </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <div th:if="${event.bookedDates != null and !event.bookedDates.isEmpty()}">
-                                <h3>Booked on these dates</h3>
-                                <label for="bookedDates"></label>
-                                <p id="bookedDates" th:each="date : ${event.bookedDates}" th:text="${date}"></p>
-                            </div>
-                            <div th:unless="${event.bookedDates != null and !event.bookedDates.isEmpty()}">
-                                <p>No booked dates available.</p>
-                            </div>
-                        </td>
-                    </tr>
-
-                </table>
-            </div>
-        </ul>
-    </div>
-</div>
-
-</body>
-</html>
 
