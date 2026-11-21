@@ -18,7 +18,7 @@ public class EventSearchService {
     LocationRepository locationRepository;
     public Optional<EventLocation> findLocationById(Long id){
         Optional<EventLocation> location = locationRepository.findById(id);
-        if (location.get().getPictures() != null && !location.get().getPictures().isEmpty()) {
+        if (location.isPresent() && location.get().getPictures() != null && !location.get().getPictures().isEmpty()) {
             List<String> base64Images = new ArrayList<>();
             for (byte[] picture : location.get().getPictures()) {
                 base64Images.add(Base64.getEncoder().encodeToString(picture));
@@ -68,3 +68,4 @@ public class EventSearchService {
 //      eventRepository.save(eventSearch);
 //    }
 }
+
