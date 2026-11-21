@@ -34,7 +34,7 @@ Suggested reviewable branches, in order:
 
 For AWS, choose services and sizing after the booking and security requirements are clear. A typical starting point is a managed application deployment, RDS for MySQL, S3 for images, a secrets manager, HTTPS and monitoring. Costs and configuration depend on traffic and availability requirements. Do not expose this prototype to the internet before authentication, authorization and secret rotation are complete.
 
-The temporary in-memory database starts with 50 fictional example venues, one in each state, using resized photos from this project. They reset on restart. A copy of these review listings has also been imported into the existing local MySQL database; those records persist there independently of Git. Their names, addresses, capacities and prices are examples. Photos are reused illustrations and do not depict actual listed venues.
+The temporary in-memory database starts with 150 fictional example venues, including one in each U.S. state and 100 in cities worldwide, using resized photos from this project. They reset on restart. These review listings were also imported into the existing local MySQL database; those records persist there independently of Git. Their names, addresses, capacities and prices are examples. Photos are reused illustrations and do not depict actual listed venues.
 
 
 
@@ -43,3 +43,4 @@ The temporary in-memory database starts with 50 fictional example venues, one in
 Both applications can use Spring Boot DevTools when started from IntelliJ. In **Settings > Build, Execution, Deployment > Compiler**, enable **Build project automatically**. In **Settings > Advanced Settings**, enable **Allow auto-make to start even if developed application is currently running**. Reload the Maven project when IntelliJ prompts you, then restart the app once. Java changes trigger a restart after IntelliJ compiles them; template and static resource changes need a browser refresh. You can also use **Build > Build Project** to trigger a rebuild manually. DevTools does not update an already running process until it has been restarted with this dependency.
 
 The default H2 database is in memory, so an application restart resets its data. Use the MySQL settings above to retain changes between restarts. Run the apps on their separate ports (8080 and 9090); stop any older processes before starting another instance.
+

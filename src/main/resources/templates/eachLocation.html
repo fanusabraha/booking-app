@@ -17,7 +17,7 @@
     <section aria-label="Location photos" class="gallery">
       <div th:if="${event.base64Images != null and !event.base64Images.isEmpty()}" class="slideshow-container">
         <div class="slide" th:each="image, state : ${event.base64Images}">
-          <img class="slide-image" th:src="'data:image/jpeg;base64,' + ${image}" th:alt="'Photo ' + ${state.count} + ' for ' + ${event.name}">
+          <button class="photo-open" type="button" aria-label="Open photo full size"><img class="slide-image" th:src="'data:image/jpeg;base64,' + ${image}" th:alt="'Photo ' + ${state.count} + ' for ' + ${event.name}"></button>
           <span class="photo-count" th:text="${state.count} + ' / ' + ${state.size}"></span>
         </div>
         <div th:if="${event.base64Images.size() > 1}" class="gallery-controls"><button type="button" onclick="prevSlide(this.closest('.slideshow-container'))" aria-label="Previous photo">←</button><button type="button" onclick="nextSlide(this.closest('.slideshow-container'))" aria-label="Next photo">→</button></div>
@@ -29,6 +29,7 @@
     </section><aside class="summary-card"><p class="eyebrow">At a glance</p><p class="price" th:text="${event.price != null ? '$' + event.price : 'Contact venue'}"></p><p th:if="${event.price != null}">per event</p><hr><p th:if="${event.capacity != null}"><strong th:text="${event.capacity}"></strong> guests maximum</p><p th:if="${event.capacity == null}">Capacity: contact venue</p><a class="primary-button" th:href="@{/event/search}">Search availability</a><p class="small-print">Availability and booking are not confirmed on this page.</p></aside></div>
   </div>
   <div th:if="${event == null}" class="empty-state"><h1>Location not found</h1><p>Explore other spaces to find your next venue.</p><a class="primary-button" th:href="@{/locations/all}">Browse locations</a></div>
-</main><script th:src="@{/js/slideshow.js}"></script></body></html>
+</main><dialog class="photo-dialog" aria-label="Full size photo"><button type="button" class="photo-close" aria-label="Close full size photo">×</button><img alt=""></dialog><script th:src="@{/js/slideshow.js}"></script></body></html>
+
 
 

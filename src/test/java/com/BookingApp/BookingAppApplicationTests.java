@@ -18,7 +18,7 @@ class BookingAppApplicationTests {
     @Test
     @org.springframework.transaction.annotation.Transactional
     void sampleVenueCanBeViewed() throws Exception {
-        org.junit.jupiter.api.Assertions.assertEquals(50, locations.count());
+        org.junit.jupiter.api.Assertions.assertEquals(150, locations.count());
         var venue = locations.findAll().stream().filter(v -> v.getName().contains("Miami Beach Celebration")).findFirst().orElseThrow();
         org.junit.jupiter.api.Assertions.assertEquals(6, venue.getPictures().size());
         mvc.perform(get("/event/" + venue.getId()))
@@ -29,6 +29,7 @@ class BookingAppApplicationTests {
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("Location not found")));
     }
 }
+
 
 
 

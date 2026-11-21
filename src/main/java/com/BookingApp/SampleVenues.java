@@ -40,7 +40,7 @@ public class SampleVenues implements CommandLineRunner {
             {"Richmond", "Virginia"}, {"Seattle", "Washington"}, {"Charleston", "West Virginia"},
             {"Milwaukee", "Wisconsin"}, {"Cheyenne", "Wyoming"}
         };
-        byte[][] photos = new byte[8][];
+        byte[][] photos = new byte[19][];
         for (int i = 0; i < photos.length; i++)
             photos[i] = new ClassPathResource("sample-venues/sample-" + i + ".jpg").getContentAsByteArray();
         List<EventLocation> examples = new ArrayList<>();
@@ -55,11 +55,33 @@ public class SampleVenues implements CommandLineRunner {
             venue.setCapacity(80 + (i % 7) * 25);
             venue.setPrice(2200 + (i % 10) * 450);
             venue.setComment("A fictional event space in " + city + " for exploring the app. Details, pricing, and photos are illustrative and do not represent an actual venue.");
-            int photo = (i % 2) * 2;
-            venue.setPictures(List.of(photos[photo], photos[photo + 1], photos[4], photos[5], photos[6], photos[7]));
+            List<byte[]> gallery = new ArrayList<>();
+            for (int j = 0; j < 6; j++) gallery.add(photos[(i * 7 + j * 3) % photos.length]);
+            venue.setPictures(gallery);
             examples.add(venue);
+        }
+        try (var reader = new java.io.BufferedReader(new java.io.InputStreamReader(
+                new ClassPathResource("sample-venues/world-cities.txt").getInputStream(), java.nio.charset.StandardCharsets.UTF_8))) {
+            String line;
+            int i = 0;
+            while ((line = reader.readLine()) != null) {
+                if (line.isBlank()) continue;
+                String[] parts = line.split("\\|", 2);
+                EventLocation venue = new EventLocation();
+                venue.setName(parts[0] + " Gathering Space (Example)");
+                venue.setCity(parts[0]); venue.setCountry(parts[1]); venue.setStreet("Example address");
+                venue.setCapacity(80 + (i % 7) * 25); venue.setPrice(2200 + (i % 10) * 450);
+                venue.setComment("A fictional event space for review. Details, prices and photos are illustrative.");
+                List<byte[]> gallery = new ArrayList<>();
+                for (int j = 0; j < 6; j++) gallery.add(photos[((i + 50) * 7 + j * 3) % photos.length]);
+                venue.setPictures(gallery);
+                examples.add(venue);
+                i++;
+            }
         }
         locations.saveAll(examples);
     }
 }
+
+
 
