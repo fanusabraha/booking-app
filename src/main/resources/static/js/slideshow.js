@@ -69,3 +69,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const dialog = document.querySelector('.photo-dialog');
+    if (!dialog) return;
+    const fullImage = dialog.querySelector('img');
+    document.querySelectorAll('.photo-open').forEach(button => {
+        button.addEventListener('click', function () {
+            const image = button.querySelector('img');
+            fullImage.src = image.src;
+            fullImage.alt = image.alt;
+            dialog.showModal();
+        });
+    });
+    dialog.querySelector('.photo-close').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+});
