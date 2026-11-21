@@ -19,7 +19,7 @@
         <ul>
             <li th:each="event : ${searchedEvents}">
                 <table>
-                    <h2 th:text="${event.name}"></h2>
+                    <h2 th:text="${event.name}"></h2><a th:href="@{/event/{id}(id=${event.id})}" class="button">View location and photos</a>
                     <tr>
                         <td valign="top">
                             <p th:text="'Location name: ' + ${event.name}"></p>

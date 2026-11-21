@@ -1,46 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Location Details</title>
-  <link rel="stylesheet" th:href="@{/css/pictures.css}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title th:text="${event != null ? event.name + ' | Event locations' : 'Location not found | Event locations'}">Event location</title>
+  <meta name="description" th:if="${event != null}" th:content="'Explore ' + ${event.name} + ' in ' + ${event.city} + ', ' + ${event.country} + '. View photos and venue details.'">
+  <link rel="stylesheet" th:href="@{/css/pictures.css}">
+  <link rel="stylesheet" th:href="@{/css/venue.css}">
 </head>
-<body style="background-image: url('/images/II.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
-<div class="dashboard-container">
-  <div>
-    <button class="button" onclick="location.href='/'">Go to Main Page</button>
-  </div>
-  <br>
+<body class="venue-page">
+<main class="venue-shell">
+  <nav class="venue-nav" aria-label="Navigation"><a th:href="@{/}">Home</a><a th:href="@{/locations/all}">All locations</a><a th:href="@{/event/search}">Search</a></nav>
   <div th:if="${event != null}">
-    <h2 th:text="'Location Details for: ' + ${event.name}"></h2>
-    <table>
-      <tr>
-        <td valign="top">
-
-          <p th:text="'Street:' + ${event.street}"></p>
-          <p th:text="'Address: ' + ${event.country} +', '+ ${event.city}"></p>
-          <p th:text="'Capacity: max ' + ${event.capacity} + ' people'"></p>
-          <p th:text="'Price: $' + ${event.price}+'/event'"></p>
-          <p th:text="'Location includes: ' + ${event.inclusion}"></p>
-          <p th:text="'Location has: ' + ${event.feature}"></p>
-          <p th:text="'Information: ' + ${event.comment}"></p>
-        </td>
-        <td>
-          <div th:each="image : ${event.base64Images}" style="display: inline-block; margin: 10px;">
-            <img th:src="'data:image/jpeg;base64,' + ${image}"
-                 alt="Event Picture"
-                 style="width: 300px; height: auto; border: 1px solid #ddd;" />
+    <p class="eyebrow" th:text="${event.city} + ', ' + ${event.country}"></p>
+    <h1 th:text="${event.name}"></h1>
+    <div class="venue-layout">
+      <section aria-label="Venue details">
+        <h2>About this location</h2>
+        <p th:text="${event.comment}"></p>
+        <dl><dt>Address</dt><dd th:text="${event.street} + ', ' + ${event.city}"></dd>
+          <dt>Capacity</dt><dd th:text="${event.capacity} + ' guests'"></dd>
+          <dt>Price per event</dt><dd th:text="'$' + ${event.price}"></dd>
+          <dt th:if="${event.inclusion != null}">Includes</dt><dd th:if="${event.inclusion != null}" th:text="${event.inclusion}"></dd>
+          <dt th:if="${event.feature != null}">Features</dt><dd th:if="${event.feature != null}" th:text="${event.feature}"></dd></dl>
+        <a class="button" th:href="@{/locations/update/{id}(id=${event.id})}">Edit location</a>
+      </section>
+      <section aria-label="Location photos" class="gallery">
+        <h2>Photos</h2>
+        <div th:if="${event.base64Images != null and !event.base64Images.isEmpty()}" class="slideshow-container">
+          <div class="slide" th:each="image, state : ${event.base64Images}">
+            <img class="slide-image" th:src="'data:image/jpeg;base64,' + ${image}" th:alt="${event.name} + ' photo ' + ${state.count}">
+            <p th:text="${state.count} + ' / ' + ${state.size}"></p>
           </div>
-        </td>
-      </tr>
-    </table>
+          <div th:if="${event.base64Images.size() > 1}" class="gallery-controls">
+            <button type="button" onclick="prevSlide(this.closest('.slideshow-container'))">Previous photo</button>
+            <button type="button" onclick="nextSlide(this.closest('.slideshow-container'))">Next photo</button>
+          </div>
+        </div>
+        <p th:if="${event.base64Images == null or event.base64Images.isEmpty()}">No photos available yet.</p>
+      </section>
+    </div>
   </div>
-  <a class="button" th:href="@{'http://localhost:9090/api/bookings/all'}">Go back</a>
-
-  <div th:if="${event == null}">
-    <h2>No location details available.</h2>
-  </div>
-
-</div>
-</body>
-</html>
+  <div th:if="${event == null}"><h1>Location not found</h1><p>Return to all locations to find another venue.</p></div>
+  <p><a th:href="@{/locations/all}">← Back to all locations</a></p>
+</main>
+<script th:src="@{/js/slideshow.js}"></script>
+</body></html>
